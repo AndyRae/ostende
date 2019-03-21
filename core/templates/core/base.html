@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+  <title>Ostende - {% block title %}{% endblock %}</title>
+
+  </head>
+  <body>
+    <header class="navbar">
+      <section class="navbar-section mx-2">
+        <a href="/" class="navbar-brand mr-2">Ostende</a>
+        <a href="{% url 'venues' %}" class="btn btn-link">Venues</a>
+        <a href="{% url 'films' %}" class="btn btn-link">Films</a>
+        <a href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
+        <a href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
+
+      </section>
+      <section class="navbar-section">
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn btn-link">Profile</a>
+          <a href="{% url 'profile' %}" class="btn btn-link">Logout</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-link">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-link">Register</a>
+        {% endif %}
+      </section>
+    </header>
+
+    <main role="main" class="container">
+      <div class="columns">
+        <div class="col-9">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  </body>
+</html>
