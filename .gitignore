@@ -1,0 +1,8 @@
+.DS_Store
+.project
+*.sqlite*
+*.pyc
+*local_settings.*
+/env/
+/static/
+/media/
