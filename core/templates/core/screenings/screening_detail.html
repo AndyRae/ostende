@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+{% block title %}
+  {{ object.name }}
+{% endblock title %}
+{% block content %}
+  <div class="mt-5">
+    <br>
+    <div class="container">
+      <h1>{{ screening.film }}</h1>
+      <h6><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a></h6>
+
+      <span class="chip">{{ screening.q_and_a}}</span>
+
+    </div>
+
+      <p>Date: {{ screening.date }} {{ screening.start_time }}</p>
+      <p>Season: {{ screening.season }}</p>
+      <p>{{ screening.subtitle }}</p>
+    <a href="{{ screening.tickets }}" class="btn btn-primary">Buy Tickets</a>
+
+
+  </div>
+{% endblock content %}

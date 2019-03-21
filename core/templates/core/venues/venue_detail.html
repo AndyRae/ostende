@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+{% block title %}
+  {{ object.name }}
+{% endblock title %}
+{% block content %}
+  <div class="mt-5">
+    <br>
+    <div class="container">
+      <h1>{{ object.name }}</h1>
+
+    </div>
+
+      <p><a href="{{ object.website }}" target="_blank">{{ object.website }}</a></p>
+      <p>{{ object.address }}, {{ object.county }}, {{ object.postcode }} </p>
+      <p>{{ object.twitter}} {{object.facebook}}</p>
+      <p>{{ object.notes }}</p>
+  </div>
+
+  <div class="columns">
+    {% for screening in screenings %}
+      <div class="column col-4">
+          <div class="card">
+            <div class="card-image">
+              <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" class="img-responsive">
+            </div>
+            <div class="card-header">
+              <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>
+              <div class="card-subtitle text-gray">{{ screening.venue }}</div>
+            </div>
+            <div class="card-body">
+              {{ screening.date }} {{ screening.start_time }}
+            </div>
+            <div class="card-footer">
+              <a href="{{ screening.tickets }}" class="btn btn-primary">Buy tickets</a>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
