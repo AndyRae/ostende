@@ -1,30 +1,27 @@
 {% extends "core/base.html" %}
 {% block title %}
-  Venues
+  Articles
 {% endblock title %}
 
 {% block content %}
 
 <div class="mt-5">
-  <h1 class="display-4">What's On</h1>
-    {% if screenings %}
+  <h1 class="display-4">Articles</h1>
+    {% if articles %}
 
     <div class="columns">
-      {% for screening in screenings %}
+      {% for article in articles %}
         <div class="column col-4">
             <div class="card">
               <div class="card-image">
                 <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" class="img-responsive">
               </div>
               <div class="card-header">
-                <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>
-                <div class="card-subtitle text-gray">{{ screening.venue }}</div>
-              </div>
-              <div class="card-body">
-                {{ screening.date }} {{ screening.start_time }}
+                <div class="card-title h5"><a href="{% url 'film-detail' film.slug film.id %}">{{ article.title }}</a></div>
+                <div class="card-subtitle text-gray">{{ article.date }} // {{ article.author }}</div>
               </div>
               <div class="card-footer">
-                <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy tickets</a>
+                <a href="{% url 'article-detail' article.slug article.id %}" class="btn btn-primary">Read more</a>
               </div>
             </div>
         </div>
@@ -36,7 +33,7 @@
         <div class="empty-icon">
           <i class="icon icon-cross"></i>
         </div>
-        <p class="empty-title h5">There are no upcoming screenings</p>
+        <p class="empty-title h5">There are no articles</p>
       </div>
   {% endif %}
 </div>

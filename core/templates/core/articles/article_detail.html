@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% block title %}
+  {{ object.title }}
+{% endblock title %}
+{% block content %}
+  <div class="mt-5">
+    <br>
+    <div class="container">
+      <h1>{{ object.title }}</h1>
+      <h6>{{ object.author }} // {{ object.date }}</h6>
+    </div>
+      <p>{{ object.text }}</p>
+
+  </div>
+
+{% endblock content %}

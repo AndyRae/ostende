@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% block content %}
+  <div class="mt-5">
+    <br>
+      <h1 class="display-4">{{ object.name }}</h1>
+  </div>
+  <div class="mt-5">
+    <form class="" method="post">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Delete </legend>
+        <h2>Are you sure you want to delete "{{ object.name }}?"</h2>
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-danger" type="submit" name="button">Delete</button>
+        <a class="btn btn-outline-secondary" name="button" href="{% url 'article-detail' object.slug object.id %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

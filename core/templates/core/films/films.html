@@ -21,7 +21,7 @@
                 <div class="card-subtitle text-gray">{{ film.director }} // {{ film.year }}</div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-primary">Find out more</button>
+                <a href="{% url 'film-detail' film.slug film.id %}" class="btn btn-primary">Find screenings</a>
               </div>
             </div>
         </div>

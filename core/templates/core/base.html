@@ -35,14 +35,11 @@
 
     <main role="main" class="container">
       <div class="columns">
-        <div class="col-9">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
+        <div class="column col-1 col-sm-1">
+
+        </div>
+        <div class="column col-9">
+
           {% block content %}{% endblock %}
         </div>
       </div>

@@ -5,8 +5,22 @@ from datetime import datetime
 from PIL import Image
 
 
-class Home(models.Model):
-    home = models.CharField(max_length=50, null=True)
+class Programme(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    copy = models.TextField(max_length=200, null=True)
+    slug = models.SlugField(default='programme', editable=False)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        kwargs = {'slug': self.slug, 'pk': self.pk}
+        return reverse('programme-detail', kwargs=kwargs)
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
 
 class Venue(models.Model):
@@ -96,16 +110,17 @@ class Season(models.Model):
 
 
 class Screening(models.Model):
-    name = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=100)
     film = models.ForeignKey(Film, null=True, on_delete=models.CASCADE)
-    venue = models.ForeignKey(Venue, blank=True, on_delete=models.CASCADE)
-    season = models.ForeignKey(Season, blank=True, on_delete=models.CASCADE)
-    date = models.DateField(blank=True)
+    venue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
+    season = models.ForeignKey(Season, null=True, on_delete=models.CASCADE)
+    programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
+    date = models.DateField()
     start_time = models.TimeField(blank=True)
     tickets = models.URLField(max_length=100, blank=True, null=True)
     subtitle = models.CharField(max_length=50, blank=True)
     q_and_a = models.BooleanField(blank=True)
-    slug = models.SlugField(default='venue', editable=False)
+    slug = models.SlugField(default='screening', editable=False)
 
     def __str__(self):
         return self.name
@@ -113,6 +128,28 @@ class Screening(models.Model):
     def get_absolute_url(self):
         kwargs = {'slug': self.slug, 'pk': self.pk}
         return reverse('screening-detail', kwargs=kwargs)
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=100, null=True)
+    date = models.DateField(blank=True, auto_now_add=True)
+    author = models.CharField(max_length=100, null=True)
+    programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
+    image = models.ImageField(default='./media/default.jpg', upload_to='articles')
+    text = models.TextField(max_length=200, null=True)
+    slug = models.SlugField(default='article', editable=False)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        kwargs = {'slug': self.slug, 'pk': self.pk}
+        return reverse('programme-detail', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         value = self.name
