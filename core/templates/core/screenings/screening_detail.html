@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% block title %}
-  {{ object.name }}
+  {{ screening.film }} - {{ screening.venue }}
 {% endblock title %}
 {% block content %}
   <div class="mt-5">
@@ -9,15 +9,44 @@
       <h1>{{ screening.film }}</h1>
       <h6><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a></h6>
 
+      <h6>Director: {{ screening.film.director }}</h6>
+      <p>Country: {{ screening.film.country }} // Year: {{ screening.film.year }} // Length: {{ screening.film.length }} minutes // Certificate: ({{ screening.film.certificate }})</p>
+      <p>{{ screening.film.cast }}</p>
+      <p>{{ screening.film.copy }}</p>
       <span class="chip">{{ screening.q_and_a}}</span>
-
     </div>
 
       <p>Date: {{ screening.date }} {{ screening.start_time }}</p>
-      <p>Season: {{ screening.season }}</p>
+      <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
       <p>{{ screening.subtitle }}</p>
-    <a href="{{ screening.tickets }}" class="btn btn-primary">Buy Tickets</a>
+    <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
 
 
   </div>
+
+  {% if screenings %}
+    <h3>Related Screenings</h3>
+
+    <div class="columns">
+      {% for screening in screenings %}
+        <div class="column col-4">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" class="img-responsive">
+              </div>
+              <div class="card-header">
+                <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>
+                <div class="card-subtitle text-gray">{{ screening.venue }}</div>
+              </div>
+              <div class="card-body">
+                {{ screening.date }} {{ screening.start_time }}
+              </div>
+              <div class="card-footer">
+                <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy tickets</a>
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endblock content %}

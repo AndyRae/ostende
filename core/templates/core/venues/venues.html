@@ -21,7 +21,7 @@
                 <div class="card-subtitle text-gray">{{ venue.county }}</div>
               </div>
               <div class="card-footer">
-                <button class="btn btn-primary">Find out more</button>
+                <a class="btn btn-primary" href="{% url 'venue-detail' venue.slug venue.id %}">Find screenings</a>
               </div>
             </div>
         </div>

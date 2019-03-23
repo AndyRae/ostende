@@ -2,12 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Sum, Q
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
-from .models import Home, Venue, Film, Season, Screening
+from .models import Venue, Film, Season, Screening, Programme, Article
 from datetime import datetime
-
-
-def home(request):
-    return render(request, 'core/home.html')
 
 
 class HomeView(ListView):
@@ -15,7 +11,7 @@ class HomeView(ListView):
     context_object_name = 'screenings'
     template_name = 'core/home.html'
     ordering = ['date']
-    paginate_by = 20
+    paginate_by = 12
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -23,7 +19,7 @@ class HomeView(ListView):
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
         context['screenings'] = Screening.objects.filter(
-            date__gte=todaysdate)
+            date__gte=todaysdate).order_by('date')
         return context
 
 
@@ -32,7 +28,7 @@ class VenueListView(ListView):
     template_name = 'core/venues/venues.html'
     context_object_name = 'venues'
     ordering = ['name']
-    paginate_by = 20
+    paginate_by = 12
 
 
 class VenueDetailView(DetailView):
@@ -42,8 +38,12 @@ class VenueDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(VenueDetailView, self).get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(venue_id=self.kwargs['pk'])
+        context['screenings'] = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(
+            date__gte=todaysdate).order_by('date')
+        context['pastscreenings'] = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(
+            date__lte=todaysdate).order_by('-date')
         return context
 
 
@@ -62,7 +62,7 @@ class VenueUpdateView(LoginRequiredMixin, UpdateView):
 class VenueDeleteView(LoginRequiredMixin, DeleteView):
     model = Venue
     success_url = '/'
-    template_name = 'core/films/film_confirm_delete.html'
+    template_name = 'core/venues/venue_confirm_delete.html'
 
 
 class FilmListView(ListView):
@@ -70,7 +70,7 @@ class FilmListView(ListView):
     template_name = 'core/films/films.html'
     context_object_name = 'films'
     ordering = ['name']
-    paginate_by = 20
+    paginate_by = 12
 
 
 class FilmDetailView(DetailView):
@@ -80,8 +80,12 @@ class FilmDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(FilmDetailView, self).get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(film_id=self.kwargs['pk'])
+        context['screenings'] = Screening.objects.filter(film_id=self.kwargs['pk']).filter(
+            date__gte=todaysdate).order_by('date')
+        context['pastscreenings'] = Screening.objects.filter(film_id=self.kwargs['pk']).filter(
+            date__lte=todaysdate).order_by('-date')
         return context
 
 
@@ -110,7 +114,7 @@ class SeasonListView(ListView):
     template_name = 'core/seasons/seasons.html'
     context_object_name = 'seasons'
     ordering = ['name']
-    paginate_by = 20
+    paginate_by = 12
 
 
 class SeasonDetailView(DetailView):
@@ -120,8 +124,12 @@ class SeasonDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(SeasonDetailView, self).get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(season_id=self.kwargs['pk'])
+        context['screenings'] = Screening.objects.filter(season_id=self.kwargs['pk']).filter(
+            date__gte=todaysdate).order_by('date')
+        context['pastscreenings'] = Screening.objects.filter(season_id=self.kwargs['pk']).filter(
+            date__lte=todaysdate).order_by('-date')
         return context
 
 
@@ -147,13 +155,31 @@ class ScreeningListView(ListView):
     model = Screening
     template_name = 'core/screenings/screenings.html'
     context_object_name = 'screenings'
-    ordering = ['date']
-    paginate_by = 20
+    ordering = ['-date']
+    paginate_by = 12
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
+        # Add in a QuerySet for all objects
+        context['screenings'] = Screening.objects.filter(
+            date__gte=todaysdate).order_by('date')
+        return context
 
 
 class ScreeningDetailView(DetailView):
     model = Screening
     template_name = 'core/screenings/screening_detail.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ScreeningDetailView, self).get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
+        # Add in a QuerySet for all objects
+        context['screenings'] = Screening.objects.filter(
+            date__gte=todaysdate).order_by('date')[:3]
+        return context
 
 
 class ScreeningCreateView(LoginRequiredMixin, CreateView):
@@ -172,3 +198,34 @@ class ScreeningDeleteView(LoginRequiredMixin, DeleteView):
     model = Screening
     success_url = '/'
     template_name = 'core/screenings/screening_confirm_delete.html'
+
+
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'core/articles/articles.html'
+    context_object_name = 'articles'
+    ordering = ['date']
+    paginate_by = 12
+
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'core/articles/article_detail.html'
+
+
+class ArticleCreateView(LoginRequiredMixin, CreateView):
+    model = Article
+    fields = ['title', 'date', 'author', 'programme', 'image', 'text']
+    template_name = 'core/articles/article_form.html'
+
+
+class ArticleUpdateView(LoginRequiredMixin, UpdateView):
+    model = Article
+    fields = ['title', 'date', 'author', 'programme', 'image', 'text']
+    template_name = 'core/articles/article_form.html'
+
+
+class ArticleDeleteView(LoginRequiredMixin, DeleteView):
+    model = Venue
+    success_url = '/'
+    template_name = 'core/articles/article_confirm_delete.html'
