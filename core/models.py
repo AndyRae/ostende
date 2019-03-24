@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
-from datetime import datetime
 from PIL import Image
 
 
@@ -31,6 +30,7 @@ class Venue(models.Model):
     website = models.URLField(max_length=50, blank=True, null=True)
     twitter = models.CharField(max_length=25, blank=True)
     facebook = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(default='default.jpg', upload_to='venues')
     slug = models.SlugField(default='venue', editable=False)
 
     def __str__(self):
@@ -44,6 +44,16 @@ class Venue(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 1200 or img.width > 1200:
+            output_size = (1200, 1200)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 class Film(models.Model):
@@ -63,8 +73,8 @@ class Film(models.Model):
     year = models.CharField(max_length=10, null=True)
     certificate = models.CharField(max_length=10, choices=CERTIFICATES, null=True)
     length = models.PositiveIntegerField(null=True)
-    copy = models.TextField(max_length=200, null=True)
-    image = models.ImageField(default='./media/default.jpg', upload_to='films')
+    copy = models.TextField(max_length=300, null=True)
+    image = models.ImageField(default='default.jpg', upload_to='films')
     slug = models.SlugField(default='venue', editable=False)
 
     def __str__(self):
@@ -75,25 +85,26 @@ class Film(models.Model):
         return reverse('film-detail', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        super(Film, self).save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
-
-        if img.height > 1500 or img.width > 1500:
-            output_size = (1000, 1000)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
-
-    def save(self, *args, **kwargs):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
+    def save(self, *args, **kwargs):
+        super(Film, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 1200 or img.width > 1200:
+            output_size = (1200, 1200)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 
 class Season(models.Model):
     name = models.CharField(max_length=100, null=True)
-    copy = models.TextField(max_length=200, null=True)
-    image = models.ImageField(default='./media/default.jpg', upload_to='seasons')
+    programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
+    copy = models.TextField(max_length=300, null=True)
+    image = models.ImageField(default='default.jpg', upload_to='seasons')
     slug = models.SlugField(default='season', editable=False)
 
     def __str__(self):
@@ -107,6 +118,16 @@ class Season(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 1200 or img.width > 1200:
+            output_size = (1200, 1200)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 class Screening(models.Model):
@@ -140,7 +161,7 @@ class Article(models.Model):
     date = models.DateField(blank=True, auto_now_add=True)
     author = models.CharField(max_length=100, null=True)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
-    image = models.ImageField(default='./media/default.jpg', upload_to='articles')
+    image = models.ImageField(default='default.jpg', upload_to='articles')
     text = models.TextField(max_length=200, null=True)
     slug = models.SlugField(default='article', editable=False)
 
@@ -155,3 +176,13 @@ class Article(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 1200 or img.width > 1200:
+            output_size = (1200, 1200)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

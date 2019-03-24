@@ -7,6 +7,7 @@
     <br>
     <div class="container">
       <h1>{{ object.name }}</h1>
+      <img src="{{ film.image.url }}" class="img-responsive">
       <h6>{{ object.director }}</h6>
     </div>
       <p>{{ object.country }} // {{ object.year }} // {{ object.length }} // {{ object.certificate }}</p>
@@ -22,7 +23,7 @@
         <div class="column col-4">
             <div class="card">
               <div class="card-image">
-                <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" class="img-responsive">
+                <img src="{{ screening.film.image.url }}" class="img-responsive">
               </div>
               <div class="card-header">
                 <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>
@@ -48,7 +49,7 @@
         <div class="column col-4">
             <div class="card">
               <div class="card-image">
-                <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" class="img-responsive">
+                <img src="{{ screening.film.image.url }}" class="img-responsive">
               </div>
               <div class="card-header">
                 <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>

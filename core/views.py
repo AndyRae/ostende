@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Sum, Q
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .models import Venue, Film, Season, Screening, Programme, Article
+from .forms import venueuploadform, filmuploadform, seasonuploadform, articleuploadform
 from datetime import datetime
 
 
@@ -49,13 +50,13 @@ class VenueDetailView(DetailView):
 
 class VenueCreateView(LoginRequiredMixin, CreateView):
     model = Venue
-    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook']
+    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook', 'image']
     template_name = 'core/venues/venue_form.html'
 
 
 class VenueUpdateView(LoginRequiredMixin, UpdateView):
     model = Venue
-    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook']
+    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook', 'image']
     template_name = 'core/venues/venue_form.html'
 
 
