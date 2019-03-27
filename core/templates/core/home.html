@@ -11,29 +11,30 @@
       </div>
     </div>
 
-  {% if screenings %}
+{% if screenings %}
 
-  <div class="columns mt-2">
-    {% for screening in screenings %}
-      <div class="column col-4">
+  <div id ="whatson" class="columns mt-2">
+
+      <div class="column col-4 mt-2" v-for="screening in screenings">
           <div class="card">
             <div class="card-image">
-              <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" class="img-responsive">
+              <img :src="`${ screening.film.image }`" class="img-responsive">
             </div>
             <div class="card-header">
-              <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>
-              <div class="card-subtitle text-gray">{{ screening.venue }}</div>
+              <div class="card-title h5"><a :href="`screenings/${ screening.slug }/${ screening.id }/`">${screening.film.name}</a></div>
+              <div class="card-subtitle text-gray">${ screening.venue.name }, ${ screening.venue.county }</div>
             </div>
             <div class="card-body">
-              {{ screening.date }} {{ screening.start_time }}
+              ${ screening.date } ${ screening.start_time }
             </div>
             <div class="card-footer">
-              <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy tickets</a>
+              <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary">Buy tickets</a>
             </div>
           </div>
       </div>
-    {% endfor %}
+
   </div>
+
 
   {% else %}
     <div class="empty">
@@ -43,5 +44,35 @@
       <p class="empty-title h5">There are no upcoming screenings</p>
     </div>
   {% endif %}
+
+<script type="text/javascript">
+   new Vue({
+     el: '#whatson',
+     delimiters: ['${','}'],
+     data: {
+     screenings: [],
+     loading: false,
+     currentScreening: {},
+     message: null,
+   },
+   mounted: function() {
+     this.getScreenings();
+  },
+   methods: {
+     getScreenings: function() {
+   this.loading = true;
+   this.$http.get('/api/screening/')
+       .then((response) => {
+         this.screenings = response.data;
+         this.loading = false;
+       })
+       .catch((err) => {
+        this.loading = false;
+        console.log(err);
+       })
+  },
+  }
+  });
+</script>
 
 {% endblock content %}

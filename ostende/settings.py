@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ostende.wsgi.application'
+
+
+REST_FRAMEWORK = {
+    "DATE_FORMAT": ("%B %d, %Y"),
+    "TIME_FORMAT": ("%I:%M %p"),
+}
 
 
 # Database

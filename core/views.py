@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Sum, Q
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .models import Venue, Film, Season, Screening, Programme, Article
+from .forms import venueuploadform, filmuploadform, seasonuploadform, articleuploadform
 from datetime import datetime
 
 
@@ -10,17 +11,15 @@ class HomeView(ListView):
     model = Screening
     context_object_name = 'screenings'
     template_name = 'core/home.html'
-    ordering = ['date']
-    paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(
-            date__gte=todaysdate).order_by('date')
-        return context
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super().get_context_data(**kwargs)
+    #     todaysdate = datetime.now().date()
+    #     # Add in a QuerySet for all objects
+    #     context['screenings'] = Screening.objects.filter(
+    #         date__gte=todaysdate).order_by('date')
+    #     return context
 
 
 class VenueListView(ListView):
@@ -49,13 +48,13 @@ class VenueDetailView(DetailView):
 
 class VenueCreateView(LoginRequiredMixin, CreateView):
     model = Venue
-    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook']
+    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook', 'image']
     template_name = 'core/venues/venue_form.html'
 
 
 class VenueUpdateView(LoginRequiredMixin, UpdateView):
     model = Venue
-    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook']
+    fields = ['name', 'address', 'postcode', 'county', 'website', 'twitter', 'facebook', 'image']
     template_name = 'core/venues/venue_form.html'
 
 
