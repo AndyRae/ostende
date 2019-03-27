@@ -7,19 +7,24 @@
     <br>
     <div class="container">
       <h1>{{ screening.film }}</h1>
+      <p>{{ screening.subtitle }}</p>
       <img src="{{ screening.film.image.url }}" class="img-responsive">
       <h6><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a></h6>
 
       <h6>Director: {{ screening.film.director }}</h6>
       <p>Country: {{ screening.film.country }} // Year: {{ screening.film.year }} // Length: {{ screening.film.length }} minutes // Certificate: ({{ screening.film.certificate }})</p>
+      {% if screening.q_and_a %}
+        <span class="chip">Q&A</span>
+      {% endif %}
       <p>{{ screening.film.cast }}</p>
       <p>{{ screening.film.copy }}</p>
-      <span class="chip">{{ screening.q_and_a}}</span>
+
     </div>
+
+
 
       <p>Date: {{ screening.date }} {{ screening.start_time }} </p>
       <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
-      <p>{{ screening.subtitle }}</p>
 
     <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
       {% if screening.screening_passed %}

@@ -13,7 +13,7 @@
 
 {% if screenings %}
 
-  <div id ="starting" class="columns mt-2">
+  <div id ="whatson" class="columns mt-2">
 
       <div class="column col-4 mt-2" v-for="screening in screenings">
           <div class="card">
@@ -47,7 +47,7 @@
 
 <script type="text/javascript">
    new Vue({
-     el: '#starting',
+     el: '#whatson',
      delimiters: ['${','}'],
      data: {
      screenings: [],

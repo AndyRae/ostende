@@ -75,6 +75,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ostende.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    "DATE_FORMAT": ("%B %d, %Y"),
+    "TIME_FORMAT": ("%I:%M %p"),
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
