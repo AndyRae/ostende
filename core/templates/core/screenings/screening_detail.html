@@ -17,12 +17,16 @@
       <span class="chip">{{ screening.q_and_a}}</span>
     </div>
 
-      <p>Date: {{ screening.date }} {{ screening.start_time }}</p>
+      <p>Date: {{ screening.date }} {{ screening.start_time }} </p>
       <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
       <p>{{ screening.subtitle }}</p>
+
     <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
-
-
+      {% if screening.screening_passed %}
+        <div class="toast toast-error">
+          This screening has already taken place
+        </div>
+      {% endif %}
   </div>
 
   {% if screenings %}
@@ -36,7 +40,7 @@
                 <img src="{{ screening.film.image.url }}" class="img-responsive">
               </div>
               <div class="card-header">
-                <div class="card-title h5"><a href="{% url 'screening-detail' screening.slug screening.id %}">{{ screening.film }}</a></div>
+                <div class="card-title h5"><a href="/screenings/{{screening.slug}}/{{screening.id}}/">{{ screening.film }}</a></div>
                 <div class="card-subtitle text-gray">{{ screening.venue }}</div>
               </div>
               <div class="card-body">

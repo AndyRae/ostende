@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 from PIL import Image
+from datetime import datetime
 
 
 class Programme(models.Model):
@@ -154,6 +155,11 @@ class Screening(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
+
+    def screening_passed(self):
+        todaysdate = datetime.now().date()
+        if self.date < todaysdate:
+            return True
 
 
 class Article(models.Model):

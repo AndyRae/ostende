@@ -11,17 +11,15 @@ class HomeView(ListView):
     model = Screening
     context_object_name = 'screenings'
     template_name = 'core/home.html'
-    ordering = ['date']
-    paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(
-            date__gte=todaysdate).order_by('date')
-        return context
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super().get_context_data(**kwargs)
+    #     todaysdate = datetime.now().date()
+    #     # Add in a QuerySet for all objects
+    #     context['screenings'] = Screening.objects.filter(
+    #         date__gte=todaysdate).order_by('date')
+    #     return context
 
 
 class VenueListView(ListView):
