@@ -33,6 +33,8 @@ class Venue(models.Model):
     facebook = models.CharField(max_length=50, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='venues')
     slug = models.SlugField(default='venue', editable=False)
+    lat = models.FloatField(blank=True)
+    long = models.FloatField(blank=True)
 
     def __str__(self):
         return self.name
