@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,7 @@ WSGI_APPLICATION = 'ostende.wsgi.application'
 REST_FRAMEWORK = {
     "DATE_FORMAT": ("%B %d, %Y"),
     "TIME_FORMAT": ("%I:%M %p"),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
 }
 
 

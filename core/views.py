@@ -1,6 +1,4 @@
-from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.db.models import Sum, Q
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .models import Venue, Film, Season, Screening, Programme, Article
 from .forms import venueuploadform, filmuploadform, seasonuploadform, articleuploadform
@@ -11,15 +9,6 @@ class HomeView(ListView):
     model = Screening
     context_object_name = 'screenings'
     template_name = 'core/home.html'
-
-    # def get_context_data(self, **kwargs):
-    #     # Call the base implementation first to get a context
-    #     context = super().get_context_data(**kwargs)
-    #     todaysdate = datetime.now().date()
-    #     # Add in a QuerySet for all objects
-    #     context['screenings'] = Screening.objects.filter(
-    #         date__gte=todaysdate).order_by('date')
-    #     return context
 
 
 class VenueListView(ListView):

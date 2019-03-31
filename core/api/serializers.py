@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Film, Venue, Screening
+from core.models import Film, Venue, Screening
 
 
 class FilmSerializer(serializers.ModelSerializer):
