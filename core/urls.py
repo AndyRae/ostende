@@ -62,13 +62,13 @@ urlpatterns = [
          SeasonDeleteView.as_view(), name='season-delete'),
 
     path('screenings/', ScreeningListView.as_view(), name='screenings'),
-    path('screenings/<str:slug>/<int:pk>/',
+    path('screenings/<int:pk>/',
          ScreeningDetailView.as_view(), name='screening-detail'),
     path('screenings/new/',
          ScreeningCreateView.as_view(), name='screening-create'),
-    path('screenings/<str:slug>/<int:pk>/update/',
+    path('screenings/<int:pk>/update/',
          ScreeningUpdateView.as_view(), name='screening-update'),
-    path('screenings/<str:slug>/<int:pk>/delete/',
+    path('screenings/<int:pk>/delete/',
          ScreeningDeleteView.as_view(), name='screening-delete'),
 
     path('articles/', ArticleListView.as_view(), name='articles'),

@@ -8,15 +8,5 @@ class ScreeningViewSet(viewsets.ModelViewSet):
     todaysdate = datetime.now().date()
     queryset = Screening.objects.filter(date__gte=todaysdate).order_by('date')
     serializer_class = ScreeningSerializer
-
-
-class ScreeningAPIView(generics.ListAPIView):
-    serializer_class = ScreeningSerializer
-
-    def get_queryset(self, *args, **kwargs):
-        todaysdate = datetime.now().date()
-        queryset_list = Screening.objects.filter(date__gte=todaysdate).order_by('date')
-        query = self.request.QUERY_PARAMS.get("search", None)
-        if query:
-            queryset_list = queryset_list.filter(name=query)
-        return queryset_list
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'film__name', 'venue__name', 'venue__city', 'season__name',)

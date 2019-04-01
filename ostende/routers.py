@@ -1,5 +1,5 @@
 from rest_framework import routers
-from core.api.views import ScreeningViewSet, ScreeningAPIView
+from core.api.views import ScreeningViewSet
 
 
 router = routers.DefaultRouter()
