@@ -26,8 +26,9 @@ class Programme(models.Model):
 class Venue(models.Model):
     name = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, null=True)
     postcode = models.CharField(max_length=10, blank=True)
-    county = models.CharField(max_length=50, blank=True)
+    county = models.CharField(max_length=50, null=True)
     website = models.URLField(max_length=50, blank=True, null=True)
     twitter = models.CharField(max_length=25, blank=True)
     facebook = models.CharField(max_length=50, blank=True)
@@ -142,19 +143,13 @@ class Screening(models.Model):
     tickets = models.URLField(max_length=100, blank=True, null=True)
     subtitle = models.CharField(max_length=50, blank=True)
     q_and_a = models.BooleanField(blank=True)
-    slug = models.SlugField(default='screening', editable=False)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        kwargs = {'slug': self.slug, 'pk': self.pk}
+        kwargs = {'pk': self.pk}
         return reverse('screening-detail', kwargs=kwargs)
-
-    def save(self, *args, **kwargs):
-        value = self.name
-        self.slug = slugify(value)
-        super().save(*args, **kwargs)
 
     def screening_passed(self):
         todaysdate = datetime.now().date()

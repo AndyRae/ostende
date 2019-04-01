@@ -22,8 +22,8 @@
                 <img src="{{ screening.film.image.url }}" class="img-responsive">
               </div>
               <div class="card-header">
-                <div class="card-title h5"><a href="/screenings/{{screening.slug}}/{{screening.id}}/">{{ screening.film }}</a></div>
-                <div class="card-subtitle text-gray">{{ screening.venue }}</div>
+                <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
+                <div class="card-subtitle text-gray">{{ screening.venue }}, {{ screening.venue.city }}</div>
               </div>
               <div class="card-body">
                 {{ screening.date }} {{ screening.start_time }}
@@ -48,8 +48,8 @@
                 <img src="{{ screening.film.image.url }}" class="img-responsive">
               </div>
               <div class="card-header">
-                <div class="card-title h5"><a href="/screenings/{{screening.slug}}/{{screening.id}}/">{{ screening.film }}</a></div>
-                <div class="card-subtitle text-gray">{{ screening.venue }}</div>
+                <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
+                <div class="card-subtitle text-gray">{{ screening.venue }}, {{ screening.venue.city }}</div>
               </div>
               <div class="card-body">
                 {{ screening.date }} {{ screening.start_time }}
