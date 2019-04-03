@@ -52,10 +52,9 @@ class Venue(models.Model):
 
         img = Image.open(self.image.path)
 
-        if img.height > 1200 or img.width > 1200:
-            output_size = (1200, 1200)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+        if img.height > 800 or img.width > 1200:
+            img.thumbnail(header_size, Image.ANTIALIAS)
+            img.save(self.image.path, optimize=True)
 
 
 class Film(models.Model):
@@ -91,16 +90,6 @@ class Film(models.Model):
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
-    def save(self, *args, **kwargs):
-        super(Film, self).save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
-
-        if img.height > 1200 or img.width > 1200:
-            output_size = (1200, 1200)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
-
 
 class Season(models.Model):
     name = models.CharField(max_length=100, null=True)
@@ -120,16 +109,6 @@ class Season(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
-
-        if img.height > 1200 or img.width > 1200:
-            output_size = (1200, 1200)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
 
 
 class Screening(models.Model):
@@ -177,13 +156,3 @@ class Article(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
-
-        if img.height > 1200 or img.width > 1200:
-            output_size = (1200, 1200)
-            img.thumbnail(output_size)
-            img.save(self.image.path)

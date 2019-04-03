@@ -3,60 +3,60 @@
   {{ screening.film }} - {{ screening.venue }}
 {% endblock title %}
 {% block content %}
-  <div class="mt-5">
-    <br>
-    <div class="container">
-      <h1>{{ screening.film }}</h1>
-      <p>{{ screening.subtitle }}</p>
-      <img src="{{ screening.film.image.url }}" class="img-responsive">
-      <h6><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a>, {{ screening.venue.city }}</h6>
+{% load thumbnail %}
+<div class="mt-5">
+  <h1>{{ screening.film }}</h1>
+  <p>{{ screening.subtitle }}</p>
+  <img src="{{ screening.film.image.url }}" width=600px>
+  <h6><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a>, {{ screening.venue.city }}</h6>
 
-      <h6>Director: {{ screening.film.director }}</h6>
-      <p>Country: {{ screening.film.country }} // Year: {{ screening.film.year }} // Length: {{ screening.film.length }} minutes // Certificate: ({{ screening.film.certificate }})</p>
-      {% if screening.q_and_a %}
-        <span class="chip">Q&A</span>
-      {% endif %}
-      <p>{{ screening.film.cast }}</p>
-      <p>{{ screening.film.copy }}</p>
-
-    </div>
-
-
+  <h6>Director: {{ screening.film.director }}</h6>
+  <p>Country: {{ screening.film.country }} // Year: {{ screening.film.year }} // Length: {{ screening.film.length }} minutes // Certificate: ({{ screening.film.certificate }})</p>
+  {% if screening.q_and_a %}
+    <span class="chip">Q&A</span>
+  {% endif %}
+  <p>{{ screening.film.cast }}</p>
+  <p>{{ screening.film.copy }}</p>
+</div>
 
       <p>Date: {{ screening.date }} {{ screening.start_time }} </p>
       <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
 
     <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
+
       {% if screening.screening_passed %}
-        <div class="toast toast-error">
+        <div class="toast toast-error mt-3 mb-3">
           This screening has already taken place
         </div>
       {% endif %}
-  </div>
 
-  {% if screenings %}
-    <h3>Related Screenings</h3>
+  <div class="mt-5">
+    <h1 class="display-4">Related Screenings</h1>
+      {% if screenings %}
 
-    <div class="columns">
-      {% for screening in screenings %}
-        <div class="column col-4">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ screening.film.image.url }}" class="img-responsive">
-              </div>
-              <div class="card-header">
-                <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                <div class="card-subtitle text-gray">{{ screening.venue }}, {{ screening.venue.city }}</div>
-              </div>
-              <div class="card-body">
-                {{ screening.date }} {{ screening.start_time }}
-              </div>
-              <div class="card-footer">
-                <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy tickets</a>
-              </div>
+      <div class="row mt-5">
+
+          {% for screening in screenings %}
+          <div class="col-sm-4">
+            <div class="card mb-4">
+                  <a href="/screenings/{{screening.id}}/">
+                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+                  </a>
+                  <div class="card-body">
+                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
+                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
+                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
+                    <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+                  </div>
             </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
+          </div>
+          {% endfor %}
+      </div>
+
+      {% else %}
+
+          <p class="">There are no upcoming screenings</p>
+
+    {% endif %}
+  </div>
 {% endblock content %}

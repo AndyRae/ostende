@@ -1,0 +1,16 @@
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.main {
+  min-height: 600px;
+}
+
+.footer {
+  background: #000;
+  color: #fff;
+  height: 150px;
+  vertical-align: middle;
+}

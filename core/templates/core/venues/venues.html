@@ -4,41 +4,32 @@
 {% endblock title %}
 
 {% block content %}
+{% load thumbnail %}
 
 <div class="mt-5">
   <h1 class="display-4">Venues</h1>
     {% if venues %}
 
-    <div class="columns">
+    <div class="row mt-5">
       {% for venue in venues %}
-        <div class="column col-4">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ venue.image.url }}" class="img-responsive">
-              </div>
-              <div class="card-header">
+        <div class="col-sm-4">
+            <div class="card mb-4">
+              <a href="{% url 'venue-detail' venue.slug venue.id %}">
+                <img src="{{ venue.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+              </a>
+              <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'venue-detail' venue.slug venue.id %}">{{ venue.name }}</a></div>
-                <div class="card-subtitle text-gray">{{ venue.county }}</div>
-              </div>
-              <div class="card-footer">
-                <a class="btn btn-primary" href="{% url 'venue-detail' venue.slug venue.id %}">Find screenings</a>
+                <div class="card-text">{{ venue.county }}</div>
+                <a class="btn btn-primary mt-3" href="{% url 'venue-detail' venue.slug venue.id %}">Find screenings</a>
               </div>
             </div>
         </div>
       {% endfor %}
     </div>
 
-    {% else %}
-      <div class="empty">
-        <div class="empty-icon">
-          <i class="icon icon-cross"></i>
-        </div>
-        <p class="empty-title h5">You have no venues</p>
-        <p class="empty-subtitle">Click the button to add a venue</p>
-        <div class="empty-action">
-          <button class="btn btn-primary">Create Venue</button>
-        </div>
-      </div>
-  {% endif %}
+{% else %}
+<p class="">You have no venues</p>
+
+{% endif %}
 </div>
 {% endblock content %}

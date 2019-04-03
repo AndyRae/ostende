@@ -4,24 +4,24 @@
 {% endblock title %}
 
 {% block content %}
+{% load thumbnail %}
 
 <div class="mt-5">
   <h1 class="display-4">Films</h1>
     {% if films %}
 
-    <div class="columns">
+    <div class="row mt-5">
+
       {% for film in films %}
-        <div class="column col-4">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ film.image.url }}" class="img-responsive">
-              </div>
-              <div class="card-header">
+        <div class="col-sm-4">
+            <div class="card mb-4">
+              <a href="{% url 'film-detail' film.slug film.id %}">
+                <img src="{{ film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+              </a>
+              <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'film-detail' film.slug film.id %}">{{ film.name }}</a></div>
-                <div class="card-subtitle text-gray">{{ film.director }} // {{ film.year }}</div>
-              </div>
-              <div class="card-footer">
-                <a href="{% url 'film-detail' film.slug film.id %}" class="btn btn-primary">Find screenings</a>
+                <div class="card-text">{{ film.director }} // {{ film.year }}</div>
+                <a href="{% url 'film-detail' film.slug film.id %}" class="btn btn-primary mt-3">Find screenings</a>
               </div>
             </div>
         </div>
@@ -29,16 +29,9 @@
     </div>
 
     {% else %}
-      <div class="empty">
-        <div class="empty-icon">
-          <i class="icon icon-cross"></i>
-        </div>
-        <p class="empty-title h5">You have no films</p>
-        <p class="empty-subtitle">Click the button to add a film</p>
-        <div class="empty-action">
-          <button class="btn btn-primary">Create Film</button>
-        </div>
-      </div>
+
+  <p class="">You have no films</p>
+
   {% endif %}
 </div>
 {% endblock content %}
