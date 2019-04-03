@@ -3,65 +3,73 @@
   {{ object.name }}
 {% endblock title %}
 {% block content %}
+{% load thumbnail %}
   <div class="mt-5">
-    <br>
-    <div class="container">
-      <h1>{{ object.name }}</h1>
-      <img src="{{ film.image.url }}" class="img-responsive">
-      <h6>{{ object.director }}</h6>
-    </div>
-      <p>{{ object.country }} // {{ object.year }} // {{ object.length }} // {{ object.certificate }}</p>
-      <p>{{ object.cast }}</p>
-      <p>{{ object.copy }}</p>
+    <h1>{{ object.name }}</h1>
+    <img src="{{ film.image.url }}" width=600px>
+    <h6>{{ object.director }}</h6>
+    <p>{{ object.country }} // {{ object.year }} // {{ object.length }} // {{ object.certificate }}</p>
+    <p>{{ object.cast }}</p>
+    <p>{{ object.copy }}</p>
   </div>
 
-  {% if screenings %}
-    <h3>Upcoming Screenings</h3>
+  <div class="mt-5">
+      {% if screenings %}
+      <h1 class="display-4">Upcoming Screenings</h1>
 
-    <div class="columns">
-      {% for screening in screenings %}
-        <div class="column col-4">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ screening.film.image.url }}" class="img-responsive">
-              </div>
-              <div class="card-header">
-                <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                <div class="card-subtitle text-gray">{{ screening.venue }}, {{ screening.venue.city }}</div>
-              </div>
-              <div class="card-body">
-                {{ screening.date }} {{ screening.start_time }}
-              </div>
-              <div class="card-footer">
-                <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy tickets</a>
-              </div>
+      <div class="row mt-5">
+
+          {% for screening in screenings %}
+          <div class="col-sm-4">
+            <div class="card mb-4">
+                  <a href="/screenings/{{screening.id}}/">
+                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+                  </a>
+                  <div class="card-body">
+                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
+                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
+                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
+                    <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+                  </div>
             </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
+          </div>
+          {% endfor %}
+      </div>
 
-  {% if pastscreenings %}
-    <h3>Past Screenings</h3>
+      {% else %}
 
-    <div class="columns">
-      {% for screening in pastscreenings %}
-        <div class="column col-4">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ screening.film.image.url }}" class="img-responsive">
-              </div>
-              <div class="card-header">
-                <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                <div class="card-subtitle text-gray">{{ screening.venue }}, {{ screening.venue.city }}</div>
-              </div>
-              <div class="card-body">
-                {{ screening.date }} {{ screening.start_time }}
-              </div>
+          <p class="">There are no upcoming screenings</p>
+
+    {% endif %}
+  </div>
+
+  <div class="mt-5">
+      {% if pastscreenings %}
+      <h1 class="display-4">Past Screenings</h1>
+
+      <div class="row mt-5">
+
+          {% for screening in pastscreenings %}
+          <div class="col-sm-4">
+            <div class="card mb-4">
+                  <a href="/screenings/{{screening.id}}/">
+                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+                  </a>
+                  <div class="card-body">
+                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
+                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
+                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
+                  </div>
             </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
+          </div>
+          {% endfor %}
+      </div>
+
+      {% else %}
+
+          <p class="">There are no previous screenings</p>
+
+    {% endif %}
+  </div>
 
 {% endblock content %}

@@ -4,52 +4,57 @@
 {% endblock title %}
 {% block content %}
 
+<div class="">
 
-  <div class="hero hero-md bg-dark">
-    <div class="hero-body">
-      <h1>What's On</h1>
-      <p>Example</p>
+</div>
+
+<div id="whatson" class="mt-5">
+  <h1 class="display-5 text-center">Upcoming Screenings</h1>
+
+  <div class="row mt-5">
+    <div class="col">
+
+    </div>
+    <div class="col-md-6">
+      <form class="input-group mb-2">
+            <input type="search" class="form-control" type="search" name="search" placeholder="Search by film, cinema, city... " aria-label="Search" v-model="search_term">
+            <div class="input-group-append">
+              <button class="btn btn-primary input-group-btn" v-on:click.prevent="getScreenings()">Search</button>
+            </div>
+      </form>
+    </div>
+    <div class="col">
+
     </div>
   </div>
 
-  <div id="whatson">
+  {% if screenings %}
 
-    <form class="input-group mt-2 mb-2">
-          <input type="search" class="form-input" type="search" name="search" placeholder="Search" aria-label="Search" v-model="search_term">
-          <button class="btn btn-primary input-group-btn" v-on:click.prevent="getScreenings()">Submit</button>
-    </form>
+    <div class="row mt-5">
+        <div class="col-sm-4" v-for="screening in screenings">
 
-    {% if screenings %}
-
-      <div class="columns mt-2">
-
-          <div class="column col-4 mt-2" v-for="screening in screenings">
-              <div class="card">
-                <a class="card-image" :href="`screenings/${ screening.id }/`">
-                  <img :src="`${ screening.film.image }`" class="img-responsive">
-                </a>
-                <div class="card-header">
-                  <div class="card-title h5"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
-                  <div class="card-subtitle text-gray">${ screening.venue.name }, ${ screening.venue.city }</div>
-                </div>
-                <div class="card-body">
-                  ${ screening.date } ${ screening.start_time }
-                </div>
-                <div class="card-footer">
-                  <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary">Buy tickets</a>
-                </div>
-              </div>
+          <div class="card mb-4">
+            <a :href="`screenings/${ screening.id }/`">
+              <img :src="`${ screening.film.image }`" class="card-img-top">
+            </a>
+            <div class="card-body">
+              <div class="card-title h5"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
+              <div class="card-text">${ screening.venue.name }, ${ screening.venue.city }</div>
+              <div class="card-text">${ screening.date } ${ screening.start_time }</div>
+              <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+            </div>
           </div>
 
-      </div>
+        </div>
+    </div>
 
-    {% else %}
+  {% else %}
 
-      <p class="empty-title h5">There are no upcoming screenings</p>
+    <p class="empty-title h5">There are no upcoming screenings</p>
 
-    {% endif %}
+  {% endif %}
 
-  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>

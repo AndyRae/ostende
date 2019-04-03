@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from easy_thumbnails.templatetags.thumbnail import thumbnail_url
 from core.models import Film, Venue, Screening
 
 
@@ -21,3 +22,7 @@ class ScreeningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Screening
         fields = 'id', 'name', 'date', 'start_time', 'tickets', 'film', 'venue'
+
+    class ThumbnailSerializer(serializers.ImageField):
+        def to_representation(self, instance):
+            return thumbnail_url(instance, 'cardThumb')

@@ -4,36 +4,32 @@
 {% endblock title %}
 
 {% block content %}
+{% load thumbnail %}
 
 <div class="mt-5">
   <h1 class="display-4">Seasons</h1>
     {% if seasons %}
 
-    <div class="columns">
+    <div class="row mt-5">
       {% for season in seasons %}
-        <div class="column col-4">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ season.image.url }}" class="img-responsive">
-              </div>
-              <div class="card-header">
+        <div class="col-sm-4">
+            <div class="card mb-4">
+              <a href="{% url 'season-detail' season.slug season.id %}">
+                <img src="{{ season.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+              </a>
+              <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'season-detail' season.slug season.id %}">{{ season.name }}</a></div>
-              </div>
-              <div class="card-footer">
-                <a href="{% url 'season-detail' season.slug season.id %}" class="btn btn-primary">Find out more</a>
+                <a href="{% url 'season-detail' season.slug season.id %}" class="btn btn-primary mt-3">Find out more</a>
               </div>
             </div>
         </div>
       {% endfor %}
     </div>
 
-    {% else %}
-      <div class="empty">
-        <div class="empty-icon">
-          <i class="icon icon-cross"></i>
-        </div>
-        <p class="empty-title h5">There are no upcoming seasons</p>
-      </div>
-  {% endif %}
+{% else %}
+
+<p class="">There are no upcoming seasons</p>
+
+{% endif %}
 </div>
 {% endblock content %}

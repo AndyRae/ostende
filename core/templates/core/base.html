@@ -6,9 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% load static %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
   <title>Ostende - {% block title %}{% endblock %}</title>
 
   <!-- Optional JavaScript -->
@@ -18,37 +20,71 @@
 
   </head>
   <body>
-    <header class="navbar">
-      <section class="navbar-section mx-2">
-        <a href="/" class="navbar-brand mr-2">Ostende</a>
-        <a href="{% url 'venues' %}" class="btn btn-link">Venues</a>
-        <a href="{% url 'films' %}" class="btn btn-link">Films</a>
-        <a href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
-        <a href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
-
-      </section>
-      <section class="navbar-section">
-        {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}" class="btn btn-link">Profile</a>
-          <a href="{% url 'profile' %}" class="btn btn-link">Logout</a>
-        {% else %}
-        <a href="{% url 'login' %}" class="btn btn-link">Login</a>
-        <a href="{% url 'register' %}" class="btn btn-link">Register</a>
-        {% endif %}
-      </section>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar bg-white fixed-top">
+        <div class="container">
+          <!-- <a class="navbar-brand mr-4" href="/">Ostende</a> -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mx-auto">
+              <a class="nav-item nav-link" href="{% url 'screenings' %}">What's On</a>
+              <a class="nav-item nav-link" href="#">About</a>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
 
-    <main role="main" class="container">
+    <main role="main" class="container main">
       <div class="columns">
-        <div class="column col-1 col-sm-1">
 
-        </div>
-        <div class="column col-9">
+        <div class="column col-12">
 
           {% block content %}{% endblock %}
         </div>
       </div>
     </main>
+
+    <footer class="footer mt-5">
+      <nav class="navbar navbar-expand-md navbar">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Ostende</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            {% if user.is_authenticated %}
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url 'venues' %}" class="btn btn-link">Venues</a>
+                <a class="nav-item nav-link" href="{% url 'films' %}" class="btn btn-link">Films</a>
+                <a class="nav-item nav-link" href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
+                <a class="nav-item nav-link" href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row pt-5">
+          <div class="col">
+
+          </div>
+          <div class="col">
+            <p class="text-center">Footer</p>
+          </div>
+          <div class="col">
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
 
 
   </body>

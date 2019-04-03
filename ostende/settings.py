@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'django_filters',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'ostende.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR + '/templates/', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +83,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
 }
 
+THUMBNAIL_ALIASES = {
+    '': {
+        'cardThumb': {'size': (400, 400), 'quality': 100, },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
