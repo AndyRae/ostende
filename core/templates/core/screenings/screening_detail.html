@@ -25,8 +25,8 @@
     <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
 
       {% if screening.screening_passed %}
-        <div class="toast toast-error mt-3 mb-3">
-          This screening has already taken place
+        <div class="alert alert-danger mt-5" role="alert">
+          Sorry you missed it! This screening has already taken place.
         </div>
       {% endif %}
 

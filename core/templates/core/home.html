@@ -4,8 +4,13 @@
 {% endblock title %}
 {% block content %}
 
-<div class="">
-
+<div class="jumbotron mt-5">
+  <h1 class="display-4">Ostende</h1>
+  <p class="lead">An open source film season listing system, built with Python on Django.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
+  </p>
 </div>
 
 <div id="whatson" class="mt-5">
@@ -66,7 +71,6 @@
      delimiters: ['${','}'],
      data: {
        screenings: [],
-       loading: true,
        message: null,
        search_term: '',
       },
