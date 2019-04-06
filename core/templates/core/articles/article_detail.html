@@ -5,11 +5,12 @@
 {% block content %}
   <div class="mt-5">
     <br>
-    <div class="container">
+    <div class="">
+      <img src="{{ object.image.url }}" style="width=600px; max-height:400px;">
       <h1>{{ object.title }}</h1>
       <h6>{{ object.author }} // {{ object.date }}</h6>
     </div>
-      <p>{{ object.text }}</p>
+      <p>{{ object.text|safe }}</p>
 
   </div>
 

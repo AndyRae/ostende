@@ -3,6 +3,7 @@
   What's On
 {% endblock title %}
 {% block content %}
+{% load thumbnail %}
 
 <div class="jumbotron mt-5">
   <h1 class="display-4">Ostende</h1>
@@ -14,6 +15,7 @@
 </div>
 
 <div id="whatson" class="mt-5">
+  {% if screenings %}
   <h1 class="display-5 text-center">Upcoming Screenings</h1>
 
   <div class="row mt-5">
@@ -33,32 +35,65 @@
     </div>
   </div>
 
-  {% if screenings %}
+
 
     <div class="row mt-5">
-        <div class="col-sm-4" v-for="screening in screenings">
+        <div class="col-sm-4" v-for="screening in screenings.slice(0, 3)">
 
           <div class="card mb-4">
             <a :href="`screenings/${ screening.id }/`">
               <img :src="`${ screening.film.image }`" class="card-img-top">
             </a>
             <div class="card-body">
-              <div class="card-title h5"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
-              <div class="card-text">${ screening.venue.name }, ${ screening.venue.city }</div>
-              <div class="card-text">${ screening.date } ${ screening.start_time }</div>
+              <div class="card-title h4"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
+              <div class="card-text text-secondary">${ screening.venue.name }, ${ screening.venue.city }</div>
+              <div class="card-text text-secondary">${ screening.date } - ${ screening.start_time }</div>
               <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
             </div>
           </div>
 
         </div>
     </div>
+    <div class="row mt-4 mb-5">
+      <div class="col text-center">
+          <a class="btn-lg btn-secondary" href="{% url 'screenings' %}">Find more</a>
+      </div>
+    </div>
+    <hr>
 
-  {% else %}
 
-    <p class="empty-title h5">There are no upcoming screenings</p>
+{% endif %}
 
-  {% endif %}
+</div>
 
+<div class="mt-5">
+{% if articles %}
+  <div class="columns mt-5">
+    {% for article in articles %}
+      <a class="card mb-5" style="height: 350px;" href="{% url 'article-detail' article.slug article.id %}">
+          <div class="row no-gutters no-overflow">
+              <div class="col-auto" style="max-width: 50%;">
+                  <img src="{{ article.image|thumbnail_url:'panelThumb' }}" style="max-width: 539px;" class="img-fluid" alt="">
+              </div>
+              <div class="col">
+                  <div class="card-block px-5 text-center" style="padding-top: 150px;">
+                      <h2 class="card-title">{{ article.title }}</h2>
+                      <p class="card-text text-secondary">{{ article.author }}</p>
+                      <p class="card-text text-secondary">{{ article.date }}</p>
+                  </div>
+              </div>
+          </div>
+      </a>
+    {% endfor %}
+  </div>
+  <div class="row mt-4 mb-5">
+    <div class="col text-center">
+        <a class="btn-lg btn-secondary" href="{% url 'articles' %}">Read more</a>
+    </div>
+  </div>
+  <hr>
+
+{% endif %}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
