@@ -5,12 +5,6 @@ from .forms import venueuploadform, filmuploadform, seasonuploadform, articleupl
 from datetime import datetime
 
 
-class HomeView(ListView):
-    model = Screening
-    context_object_name = 'screenings'
-    template_name = 'core/home.html'
-
-
 class VenueListView(ListView):
     model = Venue
     template_name = 'core/venues/venues.html'
@@ -194,7 +188,7 @@ class ArticleListView(ListView):
     model = Article
     template_name = 'core/articles/articles.html'
     context_object_name = 'articles'
-    ordering = ['date']
+    ordering = ['-date']
     paginate_by = 12
 
 
@@ -219,3 +213,19 @@ class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     model = Venue
     success_url = '/'
     template_name = 'core/articles/article_confirm_delete.html'
+
+
+class HomeView(ListView):
+    model = Screening
+    context_object_name = 'screenings'
+    template_name = 'core/home.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
+        # Add in a QuerySet for all objects
+        context['screenings'] = Screening.objects.all()
+        context['articles'] = Article.objects.filter(
+            date__lte=todaysdate).order_by('-date')[:3]
+        return context

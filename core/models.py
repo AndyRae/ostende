@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 from PIL import Image
+from tinymce import HTMLField
 from datetime import datetime
 
 
@@ -138,21 +139,21 @@ class Screening(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=100, null=True)
-    date = models.DateField(blank=True, auto_now_add=True)
+    date = models.DateField()
     author = models.CharField(max_length=100, null=True)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='articles')
-    text = models.TextField(max_length=200, null=True)
+    text = HTMLField('Text')
     slug = models.SlugField(default='article', editable=False)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def get_absolute_url(self):
         kwargs = {'slug': self.slug, 'pk': self.pk}
-        return reverse('programme-detail', kwargs=kwargs)
+        return reverse('article-detail', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        value = self.name
+        value = self.title
         self.slug = slugify(value)
         super().save(*args, **kwargs)

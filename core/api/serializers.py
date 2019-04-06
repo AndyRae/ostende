@@ -22,7 +22,3 @@ class ScreeningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Screening
         fields = 'id', 'name', 'date', 'start_time', 'tickets', 'film', 'venue'
-
-    class ThumbnailSerializer(serializers.ImageField):
-        def to_representation(self, instance):
-            return thumbnail_url(instance, 'cardThumb')
