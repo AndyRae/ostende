@@ -77,7 +77,7 @@ class Film(models.Model):
     length = models.PositiveIntegerField(null=True)
     copy = models.TextField(max_length=1000, null=True)
     image = models.ImageField(default='default.jpg', upload_to='films')
-    slug = models.SlugField(default='venue', editable=False)
+    slug = models.SlugField(default='film', editable=False)
 
     def __str__(self):
         return self.name
