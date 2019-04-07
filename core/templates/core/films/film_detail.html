@@ -18,22 +18,18 @@
       <h1 class="display-4">Upcoming Screenings</h1>
 
       <div class="row mt-5">
-
+        <table class="table col-sm-5">
+          <tbody>
           {% for screening in screenings %}
-          <div class="col-sm-4">
-            <div class="card mb-4">
-                  <a href="/screenings/{{screening.id}}/">
-                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
-                  </a>
-                  <div class="card-body">
-                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
-                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-                    <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
-                  </div>
-            </div>
-          </div>
+            <tr>
+              <td><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></td>
+              <td>{{ screening.venue }}, {{ screening.venue.city }}</td>
+              <td>{{ screening.date }} {{ screening.start_time }}</td>
+              <td><a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a></td>
+            </tr>
           {% endfor %}
+        </tbody>
+      </table>
       </div>
 
       {% else %}
@@ -48,21 +44,17 @@
       <h1 class="display-4">Past Screenings</h1>
 
       <div class="row mt-5">
-
+        <table class="table col-sm-5">
+          <tbody>
           {% for screening in pastscreenings %}
-          <div class="col-sm-4">
-            <div class="card mb-4">
-                  <a href="/screenings/{{screening.id}}/">
-                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
-                  </a>
-                  <div class="card-body">
-                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
-                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-                  </div>
-            </div>
-          </div>
+            <tr>
+              <td><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></td>
+              <td>{{ screening.venue }}, {{ screening.venue.city }}</td>
+              <td>{{ screening.date }} {{ screening.start_time }}</td>
+            </tr>
           {% endfor %}
+        </tbody>
+      </table>
       </div>
 
       {% else %}
