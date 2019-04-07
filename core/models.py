@@ -54,7 +54,7 @@ class Venue(models.Model):
         img = Image.open(self.image.path)
 
         if img.height > 800 or img.width > 1200:
-            img.thumbnail(header_size, Image.ANTIALIAS)
+            img.thumbnail((800, 1200), Image.ANTIALIAS)
             img.save(self.image.path, optimize=True)
 
 
@@ -69,13 +69,13 @@ class Film(models.Model):
         ('TBC', 'TBC'),
     ]
     name = models.CharField(max_length=100, null=True)
-    director = models.CharField(max_length=50, null=True)
-    cast = models.CharField(max_length=50, null=True)
+    director = models.CharField(max_length=100, null=True)
+    cast = models.CharField(max_length=100, null=True)
     country = models.CharField(max_length=50, null=True)
     year = models.CharField(max_length=10, null=True)
     certificate = models.CharField(max_length=10, choices=CERTIFICATES, null=True)
     length = models.PositiveIntegerField(null=True)
-    copy = models.TextField(max_length=300, null=True)
+    copy = models.TextField(max_length=1000, null=True)
     image = models.ImageField(default='default.jpg', upload_to='films')
     slug = models.SlugField(default='venue', editable=False)
 
@@ -90,6 +90,15 @@ class Film(models.Model):
         value = self.name
         self.slug = slugify(value)
         super().save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 800 or img.width > 1200:
+            img.thumbnail((800, 1200), Image.ANTIALIAS)
+            img.save(self.image.path, optimize=True)
 
 
 class Season(models.Model):
