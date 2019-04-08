@@ -26,7 +26,6 @@ class Programme(models.Model):
 
 class Venue(models.Model):
     name = models.CharField(max_length=100, null=True)
-    address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, null=True)
     postcode = models.CharField(max_length=10, blank=True)
     county = models.CharField(max_length=50, null=True)
@@ -128,7 +127,7 @@ class Screening(models.Model):
     season = models.ForeignKey(Season, null=True, on_delete=models.CASCADE)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
     date = models.DateField()
-    start_time = models.TimeField(blank=True)
+    start_time = models.TimeField()
     tickets = models.URLField(max_length=100, blank=True, null=True)
     subtitle = models.CharField(max_length=50, blank=True)
     q_and_a = models.BooleanField(blank=True)
