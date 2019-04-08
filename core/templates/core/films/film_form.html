@@ -1,11 +1,13 @@
 {% extends "core/base.html" %}
 {% load crispy_forms_tags %}
+{% block title %}
+  Update Film
+{% endblock title %}
 {% block content %}
-  <div class="mt-5">
-    <br>
+<div class="container">
+  <div class="col-7">
       <h1 class="display-4">{{ object.name }}</h1>
-  </div>
-  <div class="mt-5">
+
     <form class="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <fieldset class="form-group">
@@ -16,4 +18,5 @@
       </div>
     </form>
   </div>
+</div>
 {% endblock content %}

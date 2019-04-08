@@ -4,18 +4,29 @@
 {% endblock title %}
 {% block content %}
 {% load thumbnail %}
-  <div class="mt-5">
-    <h1>{{ object.name }}</h1>
-    <img src="{{ film.image.url }}" width=600px>
+<div class="banner">
+  <picture>
+    <img src="{{ film.image.url }}" alt="">
+  </picture>
+  <div class="banner-content container">
+
+  </div>
+</div>
+<div class="container">
+  <div class="col-10 mb-5">
+    <h1 class="display-3 font-weight-bold">{{ object.name }}</h1>
+
     <h6>{{ object.director }}</h6>
     <p>{{ object.country }} // {{ object.year }} // {{ object.length }} // {{ object.certificate }}</p>
     <p>{{ object.cast }}</p>
     <p>{{ object.copy }}</p>
   </div>
 
+<hr>
+
   <div class="mt-5">
       {% if screenings %}
-      <h1 class="display-4">Upcoming Screenings</h1>
+      <h1 class="display-5">Upcoming Screenings</h1>
 
       <div class="row mt-5">
         <table class="table col-sm-8 table-striped">
@@ -31,17 +42,12 @@
         </tbody>
       </table>
       </div>
-
-      {% else %}
-
-          <p class="">There are no upcoming screenings</p>
-
     {% endif %}
   </div>
 
   <div class="mt-5">
       {% if pastscreenings %}
-      <h1 class="display-4">Past Screenings</h1>
+      <h1 class="display-5">Past Screenings</h1>
 
       <div class="row mt-5">
         <table class="table table-striped col-sm-8">
@@ -56,12 +62,9 @@
         </tbody>
       </table>
       </div>
-
-      {% else %}
-
-          <p class="">There are no previous screenings</p>
-
     {% endif %}
+  </div>
+
   </div>
 
 {% endblock content %}
