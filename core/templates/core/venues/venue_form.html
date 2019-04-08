@@ -1,19 +1,21 @@
 {% extends "core/base.html" %}
 {% load crispy_forms_tags %}
+{% block title %}
+  Update Venue
+{% endblock title %}
 {% block content %}
-  <div class="mt-5">
-    <br>
-      <h1 class="display-4">{{ object.name }}</h1>
-  </div>
-  <div class="mt-5">
-    <form class="" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <fieldset class="form-group">
-        {{ form|crispy }}
-      </fieldset>
-      <div class="form-group">
-        <button class="btn btn-outline-info" type="submit" name="button">Update</button>
-      </div>
-    </form>
+  <div class="container">
+    <div class="col-7">
+        <h1 class="display-4">{{ object.name }}</h1>
+      <form class="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit" name="button">Update</button>
+        </div>
+      </form>
+    </div>
   </div>
 {% endblock content %}

@@ -6,15 +6,17 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<div class="container">
   <a href="/venues/new/" class="btn btn-primary mt-3">Add Venue</a>
   <a href="/films/new/" class="btn btn-primary mt-3">Add Film</a>
   <a href="/seasons/new/" class="btn btn-primary mt-3">Add Season</a>
   <a href="/screenings/new/" class="btn btn-primary mt-3">Add Screening</a>
   <a href="/articles/new/" class="btn btn-primary mt-3">Add Article</a>
+</div>
 {% endif %}
 
-<div class="mt-5">
-  <h1 class="display-4">All Screenings ({{ screenings|length }})</h1>
+<div class="container">
+  <h1 class="display-3 font-weight-bold">All Screenings ({{ screenings|length }})</h1>
     {% if screenings %}
 
     <div class="row mt-5">

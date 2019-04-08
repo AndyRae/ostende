@@ -9,18 +9,35 @@
     <img src="{{ screening.film.image.url }}" alt="">
   </picture>
   <div class="banner-content container">
-  
+
   </div>
 </div>
 
 <div class="container">
   <div class="col-10 mb-5">
     <h1 class="display-3 font-weight-bold">{{ screening.film }}</h1>
-    <h3>{{ screening.subtitle }}</h3>
-    <h3 class=""><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a>, {{ screening.venue.city }}</h3>
+    <h4>{{ screening.subtitle }}</h4>
+    <h4 class=""><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a>, {{ screening.venue.city }}</h4>
+    <h4>{{ screening.date }} {{ screening.start_time }} </h4>
+
     {% if screening.q_and_a %}
       <button class="btn-sm btn-secondary mt-2 mb-2">Q&A</button>
     {% endif %}
+
+    <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
+
+    <div class="mt-2 mb-5">
+      {% if screening.screening_passed %}
+        <div class="alert alert-danger mt-2" role="alert">
+          Sorry you missed it! This screening has already taken place.
+        </div>
+        {% else %}
+        <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
+      {% endif %}
+    </div>
+
+<hr>
+
     <p><strong>Director:</strong> {{ screening.film.director }}<br>
     <strong>Cast:</strong> {{ screening.film.cast }}<br>
     <strong>Country:</strong> {{ screening.film.country }}<br>
@@ -29,20 +46,6 @@
     <strong>Certificate:</strong> {{ screening.film.certificate }}</p>
 
     <p>{{ screening.film.copy }}</p>
-
-
-    <p>Date: {{ screening.date }} {{ screening.start_time }} </p>
-    <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
-
-    {% if screening.tickets %}
-      <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
-    {% endif %}
-
-    {% if screening.screening_passed %}
-      <div class="alert alert-danger mt-5" role="alert">
-        Sorry you missed it! This screening has already taken place.
-      </div>
-    {% endif %}
 
   </div>
 

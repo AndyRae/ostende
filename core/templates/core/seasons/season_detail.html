@@ -4,14 +4,26 @@
 {% endblock title %}
 {% block content %}
 {% load thumbnail %}
-  <div class="mt-5">
-      <h1>{{ object.name }}</h1>
-      <p>{{ object.copy }}</p>
+<div class="banner">
+  <picture>
+    <img src="{{ season.image.url }}" alt="">
+  </picture>
+  <div class="banner-content container">
+
   </div>
+</div>
+<div class="container">
+
+  <div class="col-10 mb-5">
+    <h1 class="display-3 font-weight-bold">{{ object.name }}</h1>
+    <p>{{ object.copy }}</p>
+  </div>
+
+<hr>
 
   <div class="mt-5">
       {% if screenings %}
-      <h1 class="display-4">What's On</h1>
+      <h1 class="display-5">What's On</h1>
 
       <div class="row mt-5">
 
@@ -31,17 +43,12 @@
           </div>
           {% endfor %}
       </div>
-
-      {% else %}
-
-          <p class="">There are no upcoming screenings</p>
-
     {% endif %}
   </div>
 
 
   <div class="mt-5">
-    <h1 class="display-4">Past Screenings</h1>
+    <h1 class="display-5">Past Screenings</h1>
       {% if pastscreenings %}
 
       <div class="row mt-5">
@@ -61,12 +68,7 @@
           </div>
           {% endfor %}
       </div>
-
-      {% else %}
-
-          <p class="">There are no upcoming screenings</p>
-
     {% endif %}
   </div>
-
+</div>
 {% endblock content %}

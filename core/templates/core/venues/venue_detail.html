@@ -4,10 +4,20 @@
 {% endblock title %}
 {% block content %}
 {% load thumbnail %}
-  <div class="mt-5">
-    <h1>{{ object.name }}</h1>
-    <img src="{{ venue.image.url }}" width=600px>
-    <p>
+<div class="banner">
+  <picture>
+    <img src="{{ venue.image.url }}" alt="">
+  </picture>
+  <div class="banner-content container">
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-10 mb-5">
+    <h1 class="display-3 font-weight-bold">{{ object.name }}, {{ object.city }}</h1>
+
+    <div class="social-icons">
       {% if object.website %}
         <a target="_blank" href="{{ object.website }}"><i class="fas fa-link"></i></a>
       {% endif %}
@@ -17,14 +27,14 @@
       {% if object.facebook %}
         <a target="_blank" href="https://facebook.com/{{ object.facebook }}"><i class="fab fa-facebook-f"></i></a>
       {% endif %}
-    </p>
-    <p>{{ object.city }}</p>
+    </div>
+
   </div>
 
 <div class="mt-5">
 
 {% if screenings %}
-<h1 class="display-4">What's On</h1>
+<h1 class="display-5">What's On</h1>
   <div class="row mt-5">
 
       {% for screening in screenings %}

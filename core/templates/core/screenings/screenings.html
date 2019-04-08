@@ -7,12 +7,15 @@
 {% load thumbnail %}
 
 {% if user.is_authenticated %}
+<div class="container">
   <a href="/screenings/screening_list/" class="btn btn-primary mt-3">Screening List</a>
+</div>
+
 
 {% endif %}
 
-<div class="mt-5">
-  <h1 class="display-4">What's On</h1>
+<div class="container">
+  <h1 class="display-3 font-weight-bold">What's On</h1>
     {% if screenings %}
 
     <div class="row mt-5">
