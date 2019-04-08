@@ -4,13 +4,21 @@
 {% endblock title %}
 {% block content %}
   <div class="mt-5">
-    <br>
-    <div class="">
-      <img src="{{ object.image.url }}" style="width=600px; max-height:400px;">
-      <h1>{{ object.title }}</h1>
-      <h6>{{ object.author }} // {{ object.date }}</h6>
+    <div class="container">
+      <div class="col-md-8">
+        <img src="{{ object.image.url }}" style="width=600px; max-height:400px;">
+        <h1 class="mt-3">{{ object.title }}</h1>
+        <h6 class="text-secondary">{{ object.author }} // {{ object.date }}</h6>
+      </div>
     </div>
-      <p>{{ object.text|safe }}</p>
+    
+    <div class="container mt-3">
+      <div class="col-md-8">
+        <p>{{ object.text|safe }}</p>
+      </div>
+
+    </div>
+
 
   </div>
 

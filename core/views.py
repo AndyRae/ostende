@@ -23,7 +23,7 @@ class VenueDetailView(DetailView):
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
         context['screenings'] = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(
-            date__gte=todaysdate).order_by('date')[:3]
+            date__gte=todaysdate).order_by('date')[:6]
         context['pastscreenings'] = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(
             date__lte=todaysdate).order_by('-date')[:3]
         return context
@@ -111,7 +111,7 @@ class SeasonDetailView(DetailView):
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
         context['screenings'] = Screening.objects.filter(season_id=self.kwargs['pk']).filter(
-            date__gte=todaysdate).order_by('date')[:3]
+            date__gte=todaysdate).order_by('date')[:6]
         context['pastscreenings'] = Screening.objects.filter(season_id=self.kwargs['pk']).filter(
             date__lte=todaysdate).order_by('-date')[:3]
         return context
