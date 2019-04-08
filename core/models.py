@@ -134,7 +134,7 @@ class Screening(models.Model):
     q_and_a = models.BooleanField(blank=True)
 
     def __str__(self):
-        return self.name
+        return self.id
 
     def get_absolute_url(self):
         kwargs = {'pk': self.pk}

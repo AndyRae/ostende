@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'easy_thumbnails',
     'tinymce',
+    'import_export',
 ]
 
 MIDDLEWARE = [
