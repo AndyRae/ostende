@@ -2,18 +2,21 @@
 {% block title %}
   {{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}
 {% endblock title %}
+
+{% block banner %}
+  <div class="banner">
+    <picture>
+      <img src="{{ screening.film.image.url }}" alt="">
+    </picture>
+    <div class="banner-content container">
+
+    </div>
+  </div>
+{% endblock %}
+
 {% block content %}
 {% load thumbnail %}
-<div class="banner">
-  <picture>
-    <img src="{{ screening.film.image.url }}" alt="">
-  </picture>
-  <div class="banner-content container">
 
-  </div>
-</div>
-
-<div class="container">
   <div class="col-10 mb-5">
     <h1 class="display-3 font-weight-bold">{{ screening.film }}</h1>
     <h4>{{ screening.subtitle }}</h4>
@@ -52,8 +55,8 @@
 <hr>
 
   <div class="mt-5">
-    <h1 class="display-4">Related Screenings</h1>
       {% if screenings %}
+      <h1 class="display-5">Related Screenings</h1>
 
       <div class="row mt-5">
 
@@ -72,12 +75,10 @@
             </div>
           </div>
           {% endfor %}
+          
       </div>
-
-      {% else %}
-
-          <p class="">There are no upcoming screenings</p>
 
     {% endif %}
   </div>
+
 {% endblock content %}

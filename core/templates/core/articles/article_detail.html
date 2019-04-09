@@ -2,18 +2,20 @@
 {% block title %}
   {{ object.title }}
 {% endblock title %}
-{% block content %}
-<div class="banner banner-article">
-  <picture>
-    <img src="{{ object.image.url }}" alt="">
-  </picture>
-  <div class="banner-content container">
 
+{% block banner %}
+  <div class="banner banner-article">
+    <picture>
+      <img src="{{ object.image.url }}" alt="">
+    </picture>
+    <div class="banner-content container">
+
+    </div>
   </div>
-</div>
+{% endblock %}
 
+{% block content %}
 
-<div class="container">
   <div class="col-10 mb-3">
     <h1 class="display-3 font-weight-bold">{{ object.title }}</h1>
     <h4 class="text-secondary">{{ object.author }} // {{ object.date }}</h4>
@@ -21,11 +23,8 @@
 
   <hr>
 
-  <div class="col-md-8">
+  <div class="col-md-8 article-text">
     <p>{{ object.text|safe }}</p>
   </div>
-
-</div>
-
 
 {% endblock content %}

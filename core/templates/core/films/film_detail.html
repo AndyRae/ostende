@@ -2,17 +2,21 @@
 {% block title %}
   {{ object.name }}
 {% endblock title %}
+
+{% block banner %}
+  <div class="banner">
+    <picture>
+      <img src="{{ film.image.url }}" alt="">
+    </picture>
+    <div class="banner-content container">
+
+    </div>
+  </div>
+{% endblock %}
+
 {% block content %}
 {% load thumbnail %}
-<div class="banner">
-  <picture>
-    <img src="{{ film.image.url }}" alt="">
-  </picture>
-  <div class="banner-content container">
 
-  </div>
-</div>
-<div class="container">
   <div class="col-10 mb-5">
     <h1 class="display-3 font-weight-bold">{{ object.name }}</h1>
 
@@ -63,8 +67,6 @@
       </table>
       </div>
     {% endif %}
-  </div>
-
   </div>
 
 {% endblock content %}

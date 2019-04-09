@@ -9,27 +9,21 @@
 <div class="container">
   <h1 class="display-3 font-weight-bold">Articles</h1>
 
-    {% if articles %}
-    <div class="columns mt-5">
+  {% if articles %}
+    <div class="row mt-5">
       {% for article in articles %}
-        <a class="card mb-5" style="height: 400px;" href="{% url 'article-detail' article.slug article.id %}">
-            <div class="row no-gutters no-overflow">
-                <div class="col-auto">
-                    <img src="{{ article.image|thumbnail_url:'panelThumb' }}" style="max-width: 539px;" class="img-fluid" alt="">
-                </div>
-                <div class="col">
-                    <div class="card-block px-5 " style="padding-top: 150px;">
-                        <h4 class="card-title">{{ article.title }}</h4>
-                        <p class="card-text">{{ article.date }} // {{ article.author }}</p>
-                    </div>
-                </div>
-            </div>
-        </a>
+        <div class="col-sm-6">
+          <a class="card mb-5" href="{% url 'article-detail' article.slug article.id %}">
+              <img src="{{ article.image|thumbnail_url:'panelThumb' }}" class="card-img-top card-article" alt="">
+              <div class="card-body">
+                <h4 class="card-title">{{ article.title }}</h4>
+                <p class="card-text">{{ article.date }} // {{ article.author }}</p>
+              </div>
+          </a>
+        </div>
       {% endfor %}
     </div>
-
-    {% else %}
-  <p class="empty-title h5">There are no articles</p>
   {% endif %}
+
 </div>
 {% endblock content %}
