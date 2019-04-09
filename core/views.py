@@ -234,5 +234,5 @@ class HomeView(ListView):
         # Add in a QuerySet for all objects
         context['screenings'] = Screening.objects.all()
         context['articles'] = Article.objects.filter(
-            date__lte=todaysdate).order_by('-date')[:3]
+            date__lte=todaysdate).order_by('-date')[:2]
         return context
