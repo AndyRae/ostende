@@ -16,6 +16,11 @@
 
 {% block content %}
 
+  {% if user.is_authenticated %}
+    <a href="{% url 'article-update' article.slug article.id %}" class="btn-sm btn-dark mb-5">Edit Article</a>
+    <a href="{% url 'article-delete' article.slug article.id %}" class="btn-sm btn-dark mb-5">Delete Article</a>
+  {% endif %}
+
   <div class="col-10 mb-3">
     <h1 class="display-3 font-weight-bold">{{ object.title }}</h1>
     <h4 class="text-secondary">{{ object.author }} // {{ object.date }}</h4>

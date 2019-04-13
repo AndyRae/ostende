@@ -5,6 +5,23 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta property="og:image" content="./apple-icon-180x180.png" />
+  <link rel="apple-touch-icon" type="image/png" href="./apple-icon.png" />
+  <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="./apple-icon-180x180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-hires.png" />
+  <link rel="canonical" href="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_gb" />
+  <meta property="og:title" content="Ostende" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta property="og:site_name" content="Ostende" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="" />
+  <meta name="twitter:image" content="" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -25,6 +42,7 @@
   <body>
 
     <header role="banner" class="site-header">
+
       <div class="container text-center mt-5">
 
       <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
@@ -42,6 +60,42 @@
         </div>
       </nav>
     </header>
+  {% if user.is_authenticated %}
+    <nav class="navbar fixed-bottom navbar-dark bg-dark navbar-expand-md navbar">
+      <div class="container">
+        <a class="navbar-brand mr-4" href="/">Ostende</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+
+            <div class="navbar-nav">
+              <div class="btn-group dropup">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  New
+                </button>
+                <div class="dropdown-menu bg-dark">
+                  <a href="/venues/new/" class="nav-item nav-link">Add Venue</a>
+                  <a href="/films/new/" class="nav-item nav-link">Add Film</a>
+                  <a href="/seasons/new/" class="nav-item nav-link">Add Season</a>
+                  <a href="/screenings/new/" class="nav-item nav-link">Add Screening</a>
+                  <a href="/articles/new/" class="nav-item nav-link">Add Article</a>
+                </div>
+              </div>
+              <a class="nav-item nav-link" href="{% url 'venues' %}" class="btn btn-link">Venues</a>
+              <a class="nav-item nav-link" href="{% url 'films' %}" class="btn btn-link">Films</a>
+              <a class="nav-item nav-link" href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
+              <a class="nav-item nav-link" href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
+              <a class="nav-item nav-link" href="{% url 'screening-list' %}" class="btn btn-link">Screening List</a>
+              <a class="nav-item nav-link" href="{% url 'articles' %}" class="btn btn-link">Articles</a>
+              <a class="nav-item nav-link" href="#" class="btn btn-link">|</a>
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  {% endif %}
 
     <main role="main" class="main">
 
@@ -59,27 +113,6 @@
     </main>
 
     <footer class="footer mt-5">
-      <nav class="navbar pt-4 navbar-expand-md navbar">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="/">Ostende</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            {% if user.is_authenticated %}
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{% url 'venues' %}" class="btn btn-link">Venues</a>
-                <a class="nav-item nav-link" href="{% url 'films' %}" class="btn btn-link">Films</a>
-                <a class="nav-item nav-link" href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
-                <a class="nav-item nav-link" href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
-                <a class="nav-item nav-link" href="{% url 'articles' %}" class="btn btn-link">Articles</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </nav>
       <div class="container">
         <div class="row">
           <div class="col">

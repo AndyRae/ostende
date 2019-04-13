@@ -2,6 +2,7 @@
 {% block title %}
   {{ object.name }}
 {% endblock title %}
+{% load thumbnail %}
 
 {% block banner %}
   <div class="banner">
@@ -15,14 +16,22 @@
 {% endblock %}
 
 {% block content %}
-{% load thumbnail %}
+
+{% if user.is_authenticated %}
+  <a href="{% url 'film-update' film.slug film.id %}" class="btn-sm btn-dark mb-5">Edit Film</a>
+  <a href="{% url 'film-delete' film.slug film.id %}" class="btn-sm btn-dark mb-5">Delete Film</a>
+{% endif %}
 
   <div class="col-10 mb-5">
     <h1 class="display-3 font-weight-bold">{{ object.name }}</h1>
 
-    <h6>{{ object.director }}</h6>
-    <p>{{ object.country }} // {{ object.year }} // {{ object.length }} // {{ object.certificate }}</p>
-    <p>{{ object.cast }}</p>
+    <p><strong>Director:</strong> {{ object.director }}<br>
+    <strong>Cast:</strong> {{ object.cast }}<br>
+    <strong>Country:</strong> {{ object.country }}<br>
+    <strong>Year:</strong> {{ object.year }}<br>
+    <strong>Duration:</strong> {{ object.length }} minutes<br>
+    <strong>Certificate:</strong> {{ object.certificate }}</p>
+
     <p>{{ object.copy }}</p>
   </div>
 

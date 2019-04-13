@@ -1,65 +1,31 @@
 {% extends "core/base.html" %}
 {% block title %}
-  Venues
+  What's On
 {% endblock title %}
 
 {% block content %}
 {% load thumbnail %}
 
-{% if user.is_authenticated %}
-<div class="container">
-  <a href="/screenings/screening_list/" class="btn btn-primary mt-3">Screening List</a>
-</div>
-
-
-{% endif %}
 
 <div class="container">
   <h1 class="display-3 font-weight-bold">What's On</h1>
+
+  <div class="mt-5">
     {% if screenings %}
 
-    <div class="row mt-5">
+      {% include "../includes/screening_loop.html" %}
 
-        {% for screening in screenings %}
-        <div class="col-sm-4">
-          <div class="card mb-4">
-                <a href="/screenings/{{screening.id}}/">
-                  <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
-                </a>
-                <div class="card-body">
-                  <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                  <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
-                  <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-                  <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
-                </div>
-          </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% if is_paginated %}
+      <hr>
+      {% if is_paginated %}
 
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-secondary mb-4" href="?page=1">First</a>
+        {% include "../includes/pagination.html" %}
+
       {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
-          <a class="btn btn-outline-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
-
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
-
-    {% endif %}
-
-    {% else %}
-
-        <p class="">There are no upcoming screenings</p>
 
   {% endif %}
+
+  </div>
+
 </div>
+
 {% endblock content %}
