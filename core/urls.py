@@ -18,6 +18,7 @@ from .views import (
     SeasonDeleteView,
     ScreeningListView,
     ScreeningListingView,
+    ScreeningDateListingView,
     ScreeningDetailView,
     ScreeningCreateView,
     ScreeningUpdateView,
@@ -61,8 +62,8 @@ urlpatterns = [
          SeasonUpdateView.as_view(), name='season-update'),
     path('seasons/<str:slug>/<int:pk>/delete/',
          SeasonDeleteView.as_view(), name='season-delete'),
-
     path('screenings/', ScreeningListView.as_view(), name='screenings'),
+    path('screenings/thismonth/', ScreeningDateListingView.as_view(), name='screening-month'),
     path('screenings/screening_list/', ScreeningListingView.as_view(), name='screening-list'),
     path('screenings/<int:pk>/',
          ScreeningDetailView.as_view(), name='screening-detail'),

@@ -10,85 +10,22 @@
 <div class="container">
   <h1 class="display-3 font-weight-bold">What's On</h1>
 
-  <div id="whatson" class="mt-5">
+  <div class="mt-5">
     {% if screenings %}
 
-    <div class="row mt-5">
-      <div class="col">
-
-      </div>
-      <div class="col-md-6">
-
-        <!-- <button type="button" name="button" class="btn btn-primary" v-on:click.prevent="getScreenings()" v-bind="urlparams" value="2019-08-30">This Week</button> -->
-      </div>
-      <div class="col">
-
-      </div>
-    </div>
-
-
-      <div class="row mt-5">
-          <div class="col-sm-4" v-for="screening in screenings">
-
-            <div class="card mb-4">
-              <a :href="`${ screening.id }/`">
-                <img :src="`${ screening.film.image }`" class="card-img-top">
-              </a>
-              <div class="card-body">
-                <div class="card-title h4"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
-                <div class="card-text text-secondary">${ screening.venue.name }, ${ screening.venue.city }</div>
-                <div class="card-text text-secondary">${ screening.date } - ${ screening.start_time }</div>
-                <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
-              </div>
-            </div>
-
-          </div>
-      </div>
+      {% include "../includes/screening_loop.html" %}
 
       <hr>
+      {% if is_paginated %}
 
+        {% include "../includes/pagination.html" %}
+
+      {% endif %}
 
   {% endif %}
 
   </div>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
-
-<script type="text/javascript">
-  Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
-   new Vue({
-     el: '#whatson',
-     delimiters: ['${','}'],
-     data: {
-       screenings: [],
-       message: null,
-       urlparams: '',
-      },
-      mounted: function() {
-      this.getScreenings();
-      },
-      methods: {
-       getScreenings: function() {
-         let api_url = '/api/screeningdate/';
-         if(this.urlparams!==''||this.urlparams!==null) {
-           api_url = `/api/screeningdate/?date=${this.urlparams}`
-         }
-         this.$http.get(api_url)
-          .then((response) => {
-          this.screenings = response.data;
-         })
-         .catch((err) => {
-           console.log(err);
-         })
-       },
-      },
-
-  });
-</script>
-
-
 
 {% endblock content %}

@@ -17,6 +17,11 @@
 {% block content %}
 {% load thumbnail %}
 
+{% if user.is_authenticated %}
+  <a href="{% url 'screening-update' screening.id %}" class="btn-sm btn-dark mb-5">Edit Screening</a>
+  <a href="{% url 'screening-delete' screening.id %}" class="btn-sm btn-dark mb-5">Delete Screening</a>
+{% endif %}
+
   <div class="col-10 mb-5">
     <h1 class="display-3 font-weight-bold">{{ screening.film }}</h1>
     <h4>{{ screening.subtitle }}</h4>
@@ -29,7 +34,7 @@
 
     <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
 
-    <div class="mt-2 mb-5">
+    <div class="mt-2 mb-3">
       {% if screening.screening_passed %}
         <div class="alert alert-danger mt-2" role="alert">
           Sorry you missed it! This screening has already taken place.
@@ -37,6 +42,12 @@
         {% else %}
         <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
       {% endif %}
+    </div>
+
+    <div class="social-icons">
+      <h4>Share:</h4>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text={% url 'screening-detail' screening.id %}"><i class="fab fa-twitter"></i></a>
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u="><i class="fab fa-facebook-f"></i></a>
     </div>
 
 <hr>
@@ -58,25 +69,7 @@
       {% if screenings %}
       <h1 class="display-5">Related Screenings</h1>
 
-      <div class="row mt-5">
-
-          {% for screening in screenings %}
-          <div class="col-sm-4">
-            <div class="card mb-4">
-                  <a href="/screenings/{{screening.id}}/">
-                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
-                  </a>
-                  <div class="card-body">
-                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
-                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-                    <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
-                  </div>
-            </div>
-          </div>
-          {% endfor %}
-          
-      </div>
+      {% include "../includes/screening_loop.html" %}
 
     {% endif %}
   </div>

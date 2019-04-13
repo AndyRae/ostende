@@ -60,7 +60,7 @@
         </div>
       </nav>
     </header>
-
+  {% if user.is_authenticated %}
     <nav class="navbar fixed-bottom navbar-dark bg-dark navbar-expand-md navbar">
       <div class="container">
         <a class="navbar-brand mr-4" href="/">Ostende</a>
@@ -68,7 +68,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
-          {% if user.is_authenticated %}
+
             <div class="navbar-nav">
               <div class="btn-group dropup">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,10 +91,11 @@
               <a class="nav-item nav-link" href="#" class="btn btn-link">|</a>
               <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
           </div>
-          {% endif %}
+
         </div>
       </div>
     </nav>
+  {% endif %}
 
     <main role="main" class="main">
 

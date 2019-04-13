@@ -17,7 +17,7 @@ class ScreeningViewSet(viewsets.ModelViewSet):
 
 
 class ScreeningDateViewSet(viewsets.ModelViewSet):
-    d = timedelta(days=7)
+    d = timedelta(days=30)
     todaysdate = datetime.now().date()
     targetdate = datetime.now().date() + d
     queryset = Screening.objects.filter(date__gte=todaysdate).filter(

@@ -139,17 +139,10 @@ class ScreeningListView(ListView):
     model = Screening
     template_name = 'core/screenings/screenings.html'
     context_object_name = 'screenings'
-    ordering = ['-date']
+    ordering = ['date']
     paginate_by = 12
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(
-            date__gte=todaysdate).order_by('date')
-        return context
+    todaysdate = datetime.now().date()
+    queryset = Screening.objects.filter(date__gte=todaysdate).order_by('date')
 
 
 class ScreeningListingView(ListView):
@@ -157,6 +150,12 @@ class ScreeningListingView(ListView):
     template_name = 'core/screenings/screening_list.html'
     context_object_name = 'screenings'
     ordering = ['-date']
+
+
+class ScreeningDateListingView(ListView):
+    model = Screening
+    template_name = 'core/screenings/thismonth.html'
+    context_object_name = 'screenings'
 
 
 class ScreeningDetailView(DetailView):
