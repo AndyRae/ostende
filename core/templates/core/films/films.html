@@ -29,10 +29,11 @@
       {% endfor %}
     </div>
 
-    {% else %}
+    {% if is_paginated %}
 
-  <p class="">You have no films</p>
+      {% include "../includes/pagination.html" %}
 
+    {% endif %}
   {% endif %}
 </div>
 {% endblock content %}

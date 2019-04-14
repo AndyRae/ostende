@@ -4,14 +4,15 @@
 {% endblock title %}
 
 {% block banner %}
-<div class="jumbotron mt-5">
-  <h1 class="display-4">Ostende</h1>
-  <p class="lead">An open source film season listing system, built with Python on Django.</p>
-  <hr class="my-4">
-  <p class="lead">
-    <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
-  </p>
-</div>
+  {% load static %}
+  <div class="jumbotron mt-5" style="background-image: url({% static 'images/home.jpg' %});">
+    <h1 class="display-4">Ostende</h1>
+    <p class="lead">An open source film season listing system, built with Python on Django.</p>
+    <hr class="my-4">
+    <p class="lead">
+      <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
+    </p>
+  </div>
 {% endblock %}
 
 {% block content %}

@@ -26,9 +26,11 @@
       {% endfor %}
     </div>
 
-{% else %}
+    {% if is_paginated %}
 
-<p class="">There are no upcoming seasons</p>
+      {% include "../includes/pagination.html" %}
+
+    {% endif %}
 
 {% endif %}
 </div>

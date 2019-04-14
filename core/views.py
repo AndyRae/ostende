@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .models import Venue, Film, Season, Screening, Programme, Article
-from .forms import venueuploadform, filmuploadform, seasonuploadform, articleuploadform
+from .forms import venueuploadform, filmuploadform, seasonuploadform, articleuploadform, screeningupdateform
 from datetime import datetime
 
 
@@ -174,8 +174,9 @@ class ScreeningDetailView(DetailView):
 
 class ScreeningCreateView(LoginRequiredMixin, CreateView):
     model = Screening
-    fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
+    # fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
     template_name = 'core/screenings/screening_form.html'
+    form_class = screeningupdateform
 
 
 class ScreeningUpdateView(LoginRequiredMixin, UpdateView):
@@ -231,7 +232,6 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        # context['screenings'] = Screening.objects.all()
         context['articles'] = Article.objects.filter(
             date__lte=todaysdate).order_by('-date')[:2]
         return context

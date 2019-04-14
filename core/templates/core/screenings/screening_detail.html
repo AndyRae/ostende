@@ -1,16 +1,30 @@
 {% extends "core/base.html" %}
-{% block title %}
-  {{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}
-{% endblock title %}
+
+{% block og:title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock og:title %}
+
+{% block og:description %}{% endblock %}
+
+{% block twitter:image %}{{ screening.film.image.url }}{% endblock %}
+
+{% block title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock title %}
 
 {% block banner %}
-  <div class="banner">
+  <!-- <div class="banner">
     <picture>
       <img src="{{ screening.film.image.url }}" alt="">
     </picture>
     <div class="banner-content container">
 
     </div>
+  </div> -->
+
+  <div class="jumbotron mt-5 banner" style="background-image: url({{ screening.film.image.url }});">
+    <h1 class="display-3 text-white font-weight-bold">{{ screening.film }}</h1>
+    <p class="lead">An open source film season listing system, built with Python on Django.</p>
+    <hr class="my-4">
+    <p class="lead">
+      <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
+    </p>
   </div>
 {% endblock %}
 
@@ -32,7 +46,9 @@
       <button class="btn-sm btn-secondary mt-2 mb-2">Q&A</button>
     {% endif %}
 
+    {% if screening.season %}
     <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
+    {% endif %}
 
     <div class="mt-2 mb-3">
       {% if screening.screening_passed %}
@@ -46,8 +62,8 @@
 
     <div class="social-icons">
       <h4>Share:</h4>
-        <a target="_blank" href="https://twitter.com/intent/tweet?text={% url 'screening-detail' screening.id %}"><i class="fab fa-twitter"></i></a>
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u="><i class="fab fa-facebook-f"></i></a>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-twitter"></i></a>
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-facebook-f"></i></a>
     </div>
 
 <hr>
