@@ -2,31 +2,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta property="og:image" content="./apple-icon-180x180.png" />
-  <link rel="apple-touch-icon" type="image/png" href="./apple-icon.png" />
-  <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="./apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-hires.png" />
   <link rel="canonical" href="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_gb" />
-  <meta property="og:title" content="Ostende" />
-  <meta property="og:description" content="" />
+  <meta property="og:title" content="Ostende - {% block og:title %}{% endblock %}" />
+  <meta property="og:description" content="{% block og:description %}{% endblock %}" />
   <meta property="og:image" content="" />
   <meta property="og:site_name" content="Ostende" />
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:creator" content="" />
-  <meta name="twitter:image" content="" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{% block twitter:image %}{% endblock %}" />
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   {% load static %}
+  <meta property="og:image" content="{% static 'icons/apple-icon-180x180.png' %}" />
+  <link rel="apple-touch-icon" type="image/png" href="{% static 'icons/apple-icon.png' %}" />
+  <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="{% static 'icons/apple-icon-180x180.png' %}" />
+  <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/icon-hires.png' %}" />
 
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
@@ -86,7 +84,7 @@
               <a class="nav-item nav-link" href="{% url 'films' %}" class="btn btn-link">Films</a>
               <a class="nav-item nav-link" href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
               <a class="nav-item nav-link" href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
-              <a class="nav-item nav-link" href="{% url 'screening-list' %}" class="btn btn-link">Screening List</a>
+              <a class="nav-item nav-link" href="/screenings/screening_list/" class="btn btn-link">Screening List</a>
               <a class="nav-item nav-link" href="{% url 'articles' %}" class="btn btn-link">Articles</a>
               <a class="nav-item nav-link" href="#" class="btn btn-link">|</a>
               <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
@@ -112,21 +110,43 @@
 
     </main>
 
-    <footer class="footer mt-5">
+    <footer class="footer text-white mt-5">
+      <div class="container pt-3">
+        <hr class="border-white seperator mt-5">
+      </div>
       <div class="container">
-        <div class="row">
+        <div class="row pt-5">
           <div class="col">
-
+            <nav class="nav flex-column">
+              <a class="nav-link text-white" href="/">Ostende</a>
+              <a class="nav-link text-white" href="#">About</a>
+              <a class="nav-link text-white" href="{% url 'venues' %}">Venues</a>
+              <a class="nav-link text-white" href="{% url 'films' %}">Films</a>
+              <a class="nav-link text-white" href="{% url 'seasons' %}">Seasons</a>
+            </nav>
           </div>
           <div class="col">
-            <p class="text-center">Footer</p>
+            <div class="logo">
+              <img class="footer-logo" src="{% static 'images/logo1.svg' %}">
+            </div>
           </div>
           <div class="col">
-
+            <div class="logo">
+              <img class="footer-logo" src="{% static 'images/logo1.svg' %}">
+            </div>
           </div>
+          <div class="col">
+            <div class="logo">
+              <img class="footer-logo" src="{% static 'images/logo1.svg' %}">
+            </div>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <p class="small">Built by <a href="https://rae.li" class="text-white" target="_blank">rae.li</a></p>
         </div>
 
       </div>
+    </footer>
 
     </div>
 

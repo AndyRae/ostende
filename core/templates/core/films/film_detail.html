@@ -5,13 +5,8 @@
 {% load thumbnail %}
 
 {% block banner %}
-  <div class="banner">
-    <picture>
-      <img src="{{ film.image.url }}" alt="">
-    </picture>
-    <div class="banner-content container">
-
-    </div>
+  <div class="jumbotron mt-5 banner" style="background-image: linear-gradient(#00000080, #0200007d), url({{ film.image.url }});">
+    <h1 class="display-3 text-white mt-5 font-weight-bold banner-title">{{ object.name }}</h1>
   </div>
 {% endblock %}
 
@@ -23,8 +18,6 @@
 {% endif %}
 
   <div class="col-10 mb-5">
-    <h1 class="display-3 font-weight-bold">{{ object.name }}</h1>
-
     <p><strong>Director:</strong> {{ object.director }}<br>
     <strong>Cast:</strong> {{ object.cast }}<br>
     <strong>Country:</strong> {{ object.country }}<br>

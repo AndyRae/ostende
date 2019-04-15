@@ -25,5 +25,11 @@
     </div>
   {% endif %}
 
+  {% if is_paginated %}
+
+    {% include "../includes/pagination.html" %}
+
+  {% endif %}
+
 </div>
 {% endblock content %}

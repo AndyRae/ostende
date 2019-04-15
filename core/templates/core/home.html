@@ -4,14 +4,14 @@
 {% endblock title %}
 
 {% block banner %}
-<div class="jumbotron mt-5">
-  <h1 class="display-4">Ostende</h1>
-  <p class="lead">An open source film season listing system, built with Python on Django.</p>
-  <hr class="my-4">
-  <p class="lead">
-    <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
-  </p>
-</div>
+  {% load static %}
+  <div class="jumbotron jumbotron-fluid jumbotron-home banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({% static 'images/home.jpg' %});">
+    <h1 class="display-3 text-white mt-5 font-weight-bold">Ostende</h1>
+    <p class="lead text-white">An open source film season listing system, built with Python on Django.</p>
+    <p class="lead">
+      <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
+    </p>
+  </div>
 {% endblock %}
 
 {% block content %}
@@ -30,12 +30,13 @@
       <form class="input-group mb-2">
             <input type="search" class="form-control" type="search" name="search" placeholder="Search by film, cinema, city... " aria-label="Search" v-model="search_term">
             <div class="input-group-append">
-              <button class="btn btn-primary input-group-btn" v-on:click.prevent="getScreenings()">Search</button>
+              <button class="btn btn-dark input-group-btn" v-on:click.prevent="getScreenings()">Search</button>
             </div>
       </form>
 
       <div class="text-center mt-3">
-        <a href="{% url 'screening-month' %}" type="button" name="button" class="btn btn-primary">Next 7 Days</a>
+        <a href="{% url 'screening-month' %}" name="button" class="btn btn-dark">Next 30 Days</a>
+        <input type="date" name="button" placeholder="date" v-model="search_term" class="btn btn-dark">
       </div>
 
     </div>
@@ -50,7 +51,7 @@
         <div class="col-sm-4" v-for="screening in screenings.slice(0, 9)">
 
           <div class="card mb-4">
-            <a :href="`screenings/${ screening.id }/`">
+            <a :href="`screenings/${ screening.id }/`" class="card-link">
               <img :src="`${ screening.film.image }`" class="card-img-top">
             </a>
             <div class="card-body">
@@ -65,7 +66,7 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col text-center">
-          <a class="btn-lg btn-secondary" href="{% url 'screenings' %}">Find more</a>
+          <a class="btn-lg btn-dark" href="{% url 'screenings' %}">Find more</a>
       </div>
     </div>
     <hr>
@@ -92,7 +93,7 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col text-center">
-          <a class="btn-lg btn-secondary" href="{% url 'articles' %}">Find more</a>
+          <a class="btn-lg btn-dark" href="{% url 'articles' %}">Find more</a>
       </div>
     </div>
   <hr>
