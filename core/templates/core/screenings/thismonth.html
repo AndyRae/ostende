@@ -63,7 +63,7 @@
          }
          this.$http.get(api_url)
           .then((response) => {
-          this.screenings = response.data;
+          this.screenings = response.data.results;
          })
          .catch((err) => {
            console.log(err);
