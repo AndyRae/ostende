@@ -21,10 +21,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   {% load static %}
-  <meta property="og:image" content="../apple-icon-180x180.png" />
-  <link rel="apple-touch-icon" type="image/png" href="./apple-icon.png" />
-  <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="/apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-hires.png" />
+  <meta property="og:image" content="{% static 'icons/apple-icon-180x180.png' %}" />
+  <link rel="apple-touch-icon" type="image/png" href="{% static 'icons/apple-icon.png' %}" />
+  <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="{% static 'icons/apple-icon-180x180.png' %}" />
+  <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/icon-hires.png' %}" />
 
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
@@ -111,13 +111,19 @@
     </main>
 
     <footer class="footer text-white mt-5">
-      <div class="row pt-5">
-        <hr class="border-white seperator">
+      <div class="container pt-3">
+        <hr class="border-white seperator mt-5">
       </div>
       <div class="container">
         <div class="row pt-5">
           <div class="col">
-
+            <nav class="nav flex-column">
+              <a class="nav-link text-white" href="/">Ostende</a>
+              <a class="nav-link text-white" href="#">About</a>
+              <a class="nav-link text-white" href="{% url 'venues' %}">Venues</a>
+              <a class="nav-link text-white" href="{% url 'films' %}">Films</a>
+              <a class="nav-link text-white" href="{% url 'seasons' %}">Seasons</a>
+            </nav>
           </div>
           <div class="col">
             <div class="logo">
@@ -135,7 +141,7 @@
             </div>
           </div>
         </div>
-        <div class="row pt-5">
+        <div class="row pt-3">
           <p class="small">Built by <a href="https://rae.li" class="text-white" target="_blank">rae.li</a></p>
         </div>
 

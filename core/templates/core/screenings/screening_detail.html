@@ -9,22 +9,12 @@
 {% block title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock title %}
 
 {% block banner %}
-  <!-- <div class="banner">
-    <picture>
-      <img src="{{ screening.film.image.url }}" alt="">
-    </picture>
-    <div class="banner-content container">
-
+  <div class="jumbotron mt-5 banner" style="background-image: linear-gradient(#00000080, #0200007d), url({{ screening.film.image.url }});">
+    <h1 class="display-3 text-white mt-5 font-weight-bold banner-title">{{ screening.film }}</h1>
+    <div class="social-icons">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-twitter"></i></a>
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-facebook-f"></i></a>
     </div>
-  </div> -->
-
-  <div class="jumbotron mt-5 banner" style="background-image: url({{ screening.film.image.url }});">
-    <h1 class="display-3 text-white font-weight-bold">{{ screening.film }}</h1>
-    <p class="lead">An open source film season listing system, built with Python on Django.</p>
-    <hr class="my-4">
-    <p class="lead">
-      <a class="btn btn-dark btn-lg mt-4" href="#" role="button">Learn more</a>
-    </p>
   </div>
 {% endblock %}
 
@@ -37,7 +27,6 @@
 {% endif %}
 
   <div class="col-10 mb-5">
-    <h1 class="display-3 font-weight-bold">{{ screening.film }}</h1>
     <h4>{{ screening.subtitle }}</h4>
     <h4 class=""><a href="{% url 'venue-detail' screening.venue.slug screening.venue.id %}">{{ screening.venue }}</a>, {{ screening.venue.city }}</h4>
     <h4>{{ screening.date }} {{ screening.start_time }} </h4>
@@ -58,12 +47,6 @@
         {% else %}
         <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
       {% endif %}
-    </div>
-
-    <div class="social-icons">
-      <h4>Share:</h4>
-        <a target="_blank" href="https://twitter.com/intent/tweet?text={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-twitter"></i></a>
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-facebook-f"></i></a>
     </div>
 
 <hr>

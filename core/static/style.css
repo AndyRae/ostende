@@ -7,6 +7,11 @@ body {
     height: 15vw;
     min-height: 175px;
     object-fit: cover;
+    opacity: 0.8;
+}
+
+.card-link {
+  background: #000;
 }
 
 .card-article {
@@ -15,6 +20,10 @@ body {
 
 .main {
   min-height: 600px;
+}
+
+.jumbotron-home {
+  min-height: 750px
 }
 
 .banner {
@@ -26,6 +35,11 @@ body {
   -o-object-fit: cover;
   object-fit: cover;
   background-size: cover;
+}
+
+.banner-title {
+  /* background: #fff; */
+  display: inline-block;
 }
 
 .banner-article {
