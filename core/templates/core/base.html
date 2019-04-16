@@ -10,31 +10,31 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_gb" />
+  <meta property="og:url" content="{{ request.get_host }}" />
   <meta property="og:title" content="Ostende - {% block og:title %}{% endblock %}" />
-  <meta property="og:description" content="{% block og:description %}{% endblock %}" />
-  <meta property="og:image" content="" />
+  <meta property="og:description" content="An open source film season listing system, built with Python on Django." />
+  <meta property="og:image" content="http://{{ request.get_host }}{% block og:image %}{% endblock %}" />
   <meta property="og:site_name" content="Ostende" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{% block twitter:image %}{% endblock %}" />
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:title" content="Ostende - {% block twitter:title %}{% endblock %}" />
+  <meta name="twitter:description" content="An open source film season listing system, built with Python on Django." />
+  <meta name="twitter:image" content="http://{{ request.get_host }}{% block twitter:image %}{% endblock %}" />
+
+  <title>Ostende - {% block title %}{% endblock %}</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   <meta property="og:image" content="{% static 'icons/apple-icon-180x180.png' %}" />
   <link rel="apple-touch-icon" type="image/png" href="{% static 'icons/apple-icon.png' %}" />
   <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="{% static 'icons/apple-icon-180x180.png' %}" />
   <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/icon-hires.png' %}" />
-
-  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-
-  <title>Ostende - {% block title %}{% endblock %}</title>
-
-  <!-- Optional JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 
   </head>
   <body>

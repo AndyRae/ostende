@@ -197,6 +197,7 @@ class ArticleListView(ListView):
     context_object_name = 'articles'
     ordering = ['-date']
     paginate_by = 12
+    todaysdate = datetime.now().date()
 
 
 class ArticleDetailView(DetailView):
