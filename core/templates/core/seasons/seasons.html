@@ -1,6 +1,14 @@
 {% extends "core/base.html" %}
+
+{% block og:title %}Seasons{% endblock og:title %}
+{% block twitter:title %}Seasons{% endblock twitter:title %}
+
+{% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
+{% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
+
+
 {% block title %}
-  Venues
+  Seasons
 {% endblock title %}
 
 {% block content %}

@@ -1,4 +1,12 @@
 {% extends "core/base.html" %}
+
+{% block og:title %}Films{% endblock og:title %}
+{% block twitter:title %}Films{% endblock twitter:title %}
+
+{% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
+{% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
+
+
 {% block title %}
   Films
 {% endblock title %}

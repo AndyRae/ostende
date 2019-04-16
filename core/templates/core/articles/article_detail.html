@@ -1,4 +1,11 @@
 {% extends "core/base.html" %}
+
+{% block og:title %}{{ object.title }}{% endblock og:title %}
+{% block twitter:title %}{{ object.title }}{% endblock twitter:title %}
+
+{% block og:image %}{{ object.image.url }}{% endblock og:image %}
+{% block twitter:image %}{{ object.image.url }}{% endblock twitter:image %}
+
 {% block title %}
   {{ object.title }}
 {% endblock title %}

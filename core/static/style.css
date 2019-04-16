@@ -7,7 +7,7 @@ body {
     height: 15vw;
     min-height: 175px;
     object-fit: cover;
-    opacity: 0.8;
+    /* opacity: 0.8; */
 }
 
 .card-link {
@@ -16,6 +16,10 @@ body {
 
 .card-article {
   min-height: 300px;
+}
+
+.card-title {
+  min-height: 56px;
 }
 
 .main {

@@ -1,6 +1,14 @@
 {% extends "core/base.html" %}
+
+{% block og:title %}{{ object.name }}, {{ object.city }}{% endblock og:title %}
+{% block twitter:title %}{{ object.name }}, {{ object.city }}{% endblock twitter:title %}
+
+{% block og:image %}{{ venue.image.url }}{% endblock og:image %}
+{% block twitter:image %}{{ venue.image.url }}{% endblock twitter:image %}
+
+
 {% block title %}
-  {{ object.name }}
+  {{ object.name }}, {{ object.city }}
 {% endblock title %}
 {% load thumbnail %}
 

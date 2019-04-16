@@ -8,7 +8,7 @@ from datetime import datetime
 
 class Programme(models.Model):
     name = models.CharField(max_length=100, null=True)
-    copy = models.TextField(max_length=200, null=True)
+    copy = models.TextField(max_length=1000, null=True)
     slug = models.SlugField(default='programme', editable=False)
 
     def __str__(self):
@@ -52,8 +52,8 @@ class Venue(models.Model):
 
         img = Image.open(self.image.path)
 
-        if img.height > 800 or img.width > 1200:
-            img.thumbnail((800, 1200), Image.ANTIALIAS)
+        if img.height > 1000 or img.width > 1400:
+            img.thumbnail((1000, 1400), Image.ANTIALIAS)
             img.save(self.image.path, optimize=True)
 
 
@@ -95,15 +95,15 @@ class Film(models.Model):
 
         img = Image.open(self.image.path)
 
-        if img.height > 800 or img.width > 1200:
-            img.thumbnail((800, 1200), Image.ANTIALIAS)
+        if img.height > 1000 or img.width > 1400:
+            img.thumbnail((1000, 1400), Image.ANTIALIAS)
             img.save(self.image.path, optimize=True)
 
 
 class Season(models.Model):
     name = models.CharField(max_length=100, null=True)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
-    copy = models.TextField(max_length=300, null=True)
+    copy = models.TextField(max_length=1000, null=True)
     image = models.ImageField(default='default.jpg', upload_to='seasons')
     slug = models.SlugField(default='season', editable=False)
 
@@ -129,7 +129,7 @@ class Screening(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     tickets = models.URLField(max_length=100, blank=True, null=True)
-    subtitle = models.CharField(max_length=50, blank=True)
+    subtitle = models.CharField(max_length=100, blank=True)
     q_and_a = models.BooleanField(blank=True)
 
     def __str__(self):

@@ -1,10 +1,10 @@
 {% extends "core/base.html" %}
 
 {% block og:title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock og:title %}
+{% block twitter:title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock twitter:title %}
 
-{% block og:description %}{% endblock %}
-
-{% block twitter:image %}{{ screening.film.image.url }}{% endblock %}
+{% block og:image %}{{ screening.film.image.url }}{% endblock og:image %}
+{% block twitter:image %}{{ screening.film.image.url }}{% endblock twitter:image %}
 
 {% block title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock title %}
 
