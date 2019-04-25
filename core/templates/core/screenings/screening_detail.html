@@ -12,8 +12,8 @@
   <div class="jumbotron mt-5 banner" style="background-image: linear-gradient(#00000080, #0200007d), url({{ screening.film.image.url }});">
     <h1 class="display-3 text-white mt-5 font-weight-bold banner-title">{{ screening.film }}</h1>
     <div class="social-icons">
-        <a target="_blank" href="https://twitter.com/intent/tweet?text={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-twitter"></i></a>
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={% url 'screening-detail' screening.id %} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-facebook-f"></i></a>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=http://{{ request.get_host }}/screenings/{{screening.id}} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-twitter"></i></a>
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://{{ request.get_host }}/screenings/{{screening.id}}"><i class="fab fa-facebook-f"></i></a>
     </div>
   </div>
 {% endblock %}
@@ -48,6 +48,10 @@
         <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
       {% endif %}
     </div>
+
+    {% if screening.copy %}
+    <p>{{ screening.copy }}</p>
+    {% endif %}
 
 <hr>
 
