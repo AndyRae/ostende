@@ -32,7 +32,8 @@ class seasonuploadform(forms.ModelForm):
 class screeningupdateform(forms.ModelForm):
     class Meta:
         model = Screening
-        fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
+        fields = ['film', 'venue', 'season', 'date', 'start_time',
+                  'tickets', 'subtitle', 'copy', 'q_and_a']
         widgets = {
             'date': DateInput(),
             'start_time': TimeInput(),

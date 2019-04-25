@@ -8,7 +8,7 @@ from datetime import datetime
 
 class Programme(models.Model):
     name = models.CharField(max_length=100, null=True)
-    copy = models.TextField(max_length=1000, null=True)
+    copy = models.TextField(max_length=2000, null=True)
     slug = models.SlugField(default='programme', editable=False)
 
     def __str__(self):
@@ -74,7 +74,7 @@ class Film(models.Model):
     year = models.CharField(max_length=10, null=True)
     certificate = models.CharField(max_length=10, choices=CERTIFICATES, null=True)
     length = models.PositiveIntegerField(null=True)
-    copy = models.TextField(max_length=1000, null=True)
+    copy = models.TextField(max_length=2000, null=True)
     image = models.ImageField(default='default.jpg', upload_to='films')
     slug = models.SlugField(default='film', editable=False)
 
@@ -103,7 +103,7 @@ class Film(models.Model):
 class Season(models.Model):
     name = models.CharField(max_length=100, null=True)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
-    copy = models.TextField(max_length=1000, null=True)
+    copy = models.TextField(max_length=2000, null=True)
     image = models.ImageField(default='default.jpg', upload_to='seasons')
     slug = models.SlugField(default='season', editable=False)
 
@@ -130,6 +130,7 @@ class Screening(models.Model):
     start_time = models.TimeField()
     tickets = models.URLField(max_length=100, blank=True, null=True)
     subtitle = models.CharField(max_length=100, blank=True)
+    copy = models.TextField(max_length=2000, blank=True)
     q_and_a = models.BooleanField(blank=True)
 
     def __str__(self):

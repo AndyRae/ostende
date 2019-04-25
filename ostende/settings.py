@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
@@ -78,6 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ostende.wsgi.application'
 
+SITE_ID = 1
 
 REST_FRAMEWORK = {
     "DATE_FORMAT": ("%B %d, %Y"),

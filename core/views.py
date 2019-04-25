@@ -181,8 +181,9 @@ class ScreeningCreateView(LoginRequiredMixin, CreateView):
 
 class ScreeningUpdateView(LoginRequiredMixin, UpdateView):
     model = Screening
-    fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
+    # fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
     template_name = 'core/screenings/screening_form.html'
+    form_class = screeningupdateform
 
 
 class ScreeningDeleteView(LoginRequiredMixin, DeleteView):
