@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <h1 class="display-3 font-weight-bold">Page not found.</h1>
+
+    <p>Sorry, the page you were looking for couldn’t be found. Visit the <a href="/">Home Page</a></p>
+
+</div>
+
+<img src="{% static 'images/404.gif' %}">
+
+{% endblock content %}

@@ -1,7 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
-from .models import Venue, Film, Season, Screening, Programme, Article
-from .forms import venueuploadform, filmuploadform, seasonuploadform, articleuploadform, screeningupdateform
+from django.shortcuts import render
+from .models import Venue, Film, Season, Screening, Article
+from .forms import screeningupdateform
 from datetime import datetime
 
 
@@ -174,7 +175,6 @@ class ScreeningDetailView(DetailView):
 
 class ScreeningCreateView(LoginRequiredMixin, CreateView):
     model = Screening
-    # fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
     template_name = 'core/screenings/screening_form.html'
     form_class = screeningupdateform
 
@@ -236,3 +236,13 @@ class HomeView(ListView):
         context['articles'] = Article.objects.filter(
             date__lte=todaysdate).order_by('-date')[:2]
         return context
+
+
+def handler404(request, *args, **kwargs):
+    response = render(request, "core/404.html", status=404)
+    return response
+
+
+def handler500(request, *args, **kwargs):
+    response = render(request, "core/404.html", status=500)
+    return response
