@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.shortcuts import render
+from django.contrib.sitemaps import Sitemap
 from .models import Venue, Film, Season, Screening, Article
 from .forms import screeningupdateform
 from datetime import datetime
@@ -181,7 +182,6 @@ class ScreeningCreateView(LoginRequiredMixin, CreateView):
 
 class ScreeningUpdateView(LoginRequiredMixin, UpdateView):
     model = Screening
-    # fields = ['film', 'venue', 'season', 'date', 'start_time', 'tickets', 'subtitle', 'q_and_a']
     template_name = 'core/screenings/screening_form.html'
     form_class = screeningupdateform
 

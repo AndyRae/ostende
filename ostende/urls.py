@@ -20,13 +20,26 @@ from django.conf.urls.static import static
 from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.contrib.flatpages import views
+from django.contrib.sitemaps.views import sitemap
 from .routers import router
+from core.sitemaps import VenueSitemap, FilmSitemap, SeasonSitemap, ScreeningSitemap, ArticleSitemap
+
+sitemaps = {
+    'venues': VenueSitemap,
+    'films': FilmSitemap,
+    'seasons': SeasonSitemap,
+    'screenings': ScreeningSitemap,
+    'articles': ArticleSitemap,
+}
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path(r'tinymce/', include('tinymce.urls')),
     path('api/', include(router.urls)),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('about/', views.flatpage, {'url': '/about/'}, name='about'),
     path('profile/', user_views.profile, name='profile'),

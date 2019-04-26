@@ -47,9 +47,6 @@ class Venue(models.Model):
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
         img = Image.open(self.image.path)
 
         if img.height > 1000 or img.width > 1400:
@@ -88,9 +85,6 @@ class Film(models.Model):
     def save(self, *args, **kwargs):
         value = self.name
         self.slug = slugify(value)
-        super().save(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
