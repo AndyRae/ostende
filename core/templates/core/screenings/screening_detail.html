@@ -14,6 +14,7 @@
     <div class="social-icons">
         <a target="_blank" href="https://twitter.com/intent/tweet?text=http://{{ request.get_host }}/screenings/{{screening.id}} {{ screening.film }} showing at {{ screening.venue }} on {{ screening.date }}"><i class="fab fa-twitter"></i></a>
         <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://{{ request.get_host }}/screenings/{{screening.id}}"><i class="fab fa-facebook-f"></i></a>
+
     </div>
   </div>
 {% endblock %}
@@ -45,7 +46,10 @@
           Sorry you missed it! This screening has already taken place.
         </div>
         {% else %}
-        <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary">Buy Tickets</a>
+        <a href="{{ screening.tickets }}" target="_blank" class="mr-3 btn btn-primary">Buy Tickets</a>
+      {% endif %}
+      {% if screening.film.trailer %}
+      <a data-fancybox href="{{ screening.film.trailer }}" class="btn btn-outline-secondary"><i class="fas fa-play-circle"></i> Trailer</a>
       {% endif %}
     </div>
 
