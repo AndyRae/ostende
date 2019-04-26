@@ -78,14 +78,14 @@ class FilmDetailView(DetailView):
 class FilmCreateView(LoginRequiredMixin, CreateView):
     model = Film
     fields = ['name', 'director', 'cast', 'country',
-              'year', 'certificate', 'length', 'copy', 'image']
+              'year', 'certificate', 'length', 'trailer', 'copy', 'image']
     template_name = 'core/films/film_form.html'
 
 
 class FilmUpdateView(LoginRequiredMixin, UpdateView):
     model = Film
     fields = ['name', 'director', 'cast', 'country',
-              'year', 'certificate', 'length', 'copy', 'image']
+              'year', 'certificate', 'length', 'trailer', 'copy', 'image']
     template_name = 'core/films/film_form.html'
 
 

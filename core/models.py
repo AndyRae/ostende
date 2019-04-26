@@ -71,6 +71,7 @@ class Film(models.Model):
     year = models.CharField(max_length=10, null=True)
     certificate = models.CharField(max_length=10, choices=CERTIFICATES, null=True)
     length = models.PositiveIntegerField(null=True)
+    trailer = models.URLField(max_length=100, blank=True, null=True)
     copy = models.TextField(max_length=2000, null=True)
     image = models.ImageField(default='default.jpg', upload_to='films')
     slug = models.SlugField(default='film', editable=False)
