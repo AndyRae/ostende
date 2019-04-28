@@ -46,10 +46,10 @@
           Sorry you missed it! This screening has already taken place.
         </div>
         {% else %}
-        <a href="{{ screening.tickets }}" target="_blank" class="mr-3 btn btn-primary">Buy Tickets</a>
+        <a href="{{ screening.tickets }}" onclick="gtag('event', 'click', {'event_category': 'outbound', 'event_label': '{{ screening.venue }}, {{ screening.film }}, id:{{ screening.id }}'});" target="_blank" class="mr-3 btn btn-primary">Buy Tickets</a>
       {% endif %}
       {% if screening.film.trailer %}
-      <a data-fancybox href="{{ screening.film.trailer }}" class="btn btn-outline-secondary"><i class="fas fa-play-circle"></i> Trailer</a>
+      <a data-fancybox href="{{ screening.film.trailer }}" onclick="gtag('event', 'click', {'event_category': 'trailer', 'event_label': 'trailer, {{ screening.venue }}, {{ screening.film }}, id:{{ screening.id }}'});" class="btn btn-outline-secondary"><i class="fas fa-play-circle"></i> Trailer</a>
       {% endif %}
     </div>
 

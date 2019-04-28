@@ -65,7 +65,7 @@
               <div class="card-title h4"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
               <div class="card-text text-secondary">${ screening.venue.name }, ${ screening.venue.city }</div>
               <div class="card-text text-secondary">${ screening.date } - ${ screening.start_time }</div>
-              <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+              <a :href="`${ screening.tickets }`" v-on:click="gtag('event', 'click', {'event_category': 'outbound', 'event_label': '${ screening.venue.name }, ${ screening.film }, id:${ screening.id }'});" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
             </div>
           </div>
 

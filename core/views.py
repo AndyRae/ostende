@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.shortcuts import render
 from django.contrib.sitemaps import Sitemap
+from django.http import HttpResponseRedirect
 from .models import Venue, Film, Season, Screening, Article
 from .forms import screeningupdateform
 from datetime import datetime
