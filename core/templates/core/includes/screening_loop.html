@@ -11,7 +11,7 @@
               <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
               <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
               <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-              <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+              <a href="{{ screening.tickets }}" onclick="gtag('event', 'click', {'event_category': 'outbound', 'event_label': '{{ screening.venue }}, {{ screening.film }}, id:{{ screening.id }}'});" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
             </div>
       </div>
     </div>
