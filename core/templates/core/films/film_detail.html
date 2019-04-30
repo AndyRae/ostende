@@ -14,11 +14,13 @@
 
 {% block banner %}
   <div class="jumbotron mt-5 banner" style="background-image: linear-gradient(#00000080, #0200007d), url({{ film.image.url }});">
-    <h1 class="display-3 text-white mt-5 font-weight-bold banner-title">{{ object.name }}</h1>
+    <h1 class="display-4 text-white mt-5 font-weight-bold banner-title">{{ object.name }}</h1>
   </div>
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 {% if user.is_authenticated %}
   <a href="{% url 'film-update' film.slug film.id %}" class="btn-sm btn-dark mb-5">Edit Film</a>

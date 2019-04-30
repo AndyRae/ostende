@@ -1,9 +1,10 @@
 .DS_Store
 .project
+*.vscode
 *.sqlite*
 *.pyc
 *local_settings.*
 /env/
 /static/
 /media/
-/static/images/*
+core/static/images/*

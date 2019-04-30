@@ -67,6 +67,16 @@ body {
   font-size: 2em;
 }
 
+.social-icons svg {
+  fill: #007bff;
+  stroke: #007bff;
+}
+
+.social-icons svg:hover {
+  fill: #000;
+  stroke: #000;
+}
+
 .article-text p {
   font-family: Georgia !important;
   font-size: 1.4em;
@@ -82,6 +92,7 @@ body {
 .footer {
   background: #000;
   height: 400px;
+  overflow: auto;
   vertical-align: middle;
 }
 
@@ -97,4 +108,9 @@ body {
 .footer-logo {
   height: auto;
   width: 100%;
+  filter: opacity(75%) grayscale(100%);
+}
+
+.footer-logo:hover {
+  filter: none;
 }
