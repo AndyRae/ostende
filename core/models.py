@@ -32,6 +32,7 @@ class Venue(models.Model):
     website = models.URLField(max_length=50, blank=True, null=True)
     twitter = models.CharField(max_length=25, blank=True)
     facebook = models.CharField(max_length=50, blank=True)
+    copy = models.TextField(max_length=2000, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='venues')
     slug = models.SlugField(default='venue', editable=False)
 

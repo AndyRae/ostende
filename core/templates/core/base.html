@@ -24,9 +24,6 @@
   <title>Ostende - {% block title %}{% endblock %}</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-
 
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
@@ -35,9 +32,7 @@
   <link rel="apple-touch-icon-180x180" sizes="180x180" type="image/png" href="{% static 'icons/apple-icon-180x180.png' %}" />
   <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/icon-hires.png' %}" />
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
   <script>
@@ -63,6 +58,8 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mx-auto">
               <a class="nav-item nav-link" href="{% url 'screenings' %}">What's On</a>
+              <a class="nav-item nav-link" href="{% url 'venues' %}">Locations</a>
+              <a class="nav-item nav-link" href="{% url 'films' %}">Films</a>
               <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
             </div>
           </div>
@@ -125,9 +122,10 @@
       <div class="container pt-3">
         <hr class="border-white seperator mt-5">
       </div>
+
       <div class="container">
         <div class="row pt-5">
-          <div class="col">
+          <div class="col-sm-3">
             <nav class="nav small flex-column">
               <a class="nav-link text-white" href="/">Ostende</a>
               <a class="nav-link text-white" href="#">About</a>
@@ -138,26 +136,22 @@
               <p class="nav-link">Built by <a href="https://rae.li" class="text-white font-weight-bold" target="_blank">rae.li</a></p>
             </nav>
           </div>
-          <div class="col">
-            <div class="logo">
+          <div class="col-sm-3">
+            <div class="logo pt-3">
               <a href="#"><img class="footer-logo" src="{% static 'images/logo1.svg' %}"></a>
             </div>
           </div>
-          <div class="col">
-            <div class="logo">
+          <div class="col-sm-3">
+            <div class="logo pt-3">
               <a href="#"><img class="footer-logo" src="{% static 'images/logo1.svg' %}"></a>
             </div>
           </div>
-          <div class="col">
-            <div class="logo">
+          <div class="col-sm-3">
+            <div class="logo pt-3">
               <a href="#"><img class="footer-logo" src="{% static 'images/logo1.svg' %}"></a>
             </div>
           </div>
         </div>
-        <div class="row pt-3">
-
-        </div>
-
       </div>
     </footer>
 

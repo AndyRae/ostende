@@ -35,14 +35,14 @@ class VenueDetailView(DetailView):
 class VenueCreateView(LoginRequiredMixin, CreateView):
     model = Venue
     fields = ['name', 'city', 'postcode',
-              'county', 'website', 'twitter', 'facebook', 'image']
+              'county', 'website', 'twitter', 'facebook', 'copy', 'image']
     template_name = 'core/venues/venue_form.html'
 
 
 class VenueUpdateView(LoginRequiredMixin, UpdateView):
     model = Venue
     fields = ['name', 'city', 'postcode',
-              'county', 'website', 'twitter', 'facebook', 'image']
+              'county', 'website', 'twitter', 'facebook', 'copy', 'image']
     template_name = 'core/venues/venue_form.html'
 
 
