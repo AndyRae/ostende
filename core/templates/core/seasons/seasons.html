@@ -22,7 +22,7 @@
       {% for season in seasons %}
         <div class="col-sm-4">
             <div class="card mb-4">
-              <a href="{% url 'season-detail' season.slug season.id %}">
+              <a href="{% url 'season-detail' season.slug season.id %}" class="card-link">
                 <img src="{{ season.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
               </a>
               <div class="card-body">

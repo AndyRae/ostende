@@ -23,7 +23,7 @@
       {% for film in films %}
         <div class="col-sm-4">
             <div class="card mb-4">
-              <a href="{% url 'film-detail' film.slug film.id %}">
+              <a href="{% url 'film-detail' film.slug film.id %}" class="card-link">
                 <img src="{{ film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
               </a>
               <div class="card-body">

@@ -117,7 +117,7 @@ class Season(models.Model):
 
 
 class Screening(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True)
     film = models.ForeignKey(Film, null=True, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
     season = models.ForeignKey(Season, null=True, on_delete=models.CASCADE)
@@ -130,7 +130,7 @@ class Screening(models.Model):
     q_and_a = models.BooleanField(blank=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     def get_absolute_url(self):
         kwargs = {'pk': self.pk}
