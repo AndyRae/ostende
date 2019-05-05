@@ -22,7 +22,7 @@
       {% for venue in venues %}
         <div class="col-sm-4">
             <div class="card mb-4">
-              <a href="{% url 'venue-detail' venue.slug venue.id %}">
+              <a href="{% url 'venue-detail' venue.slug venue.id %}" class="card-link">
                 <img src="{{ venue.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
               </a>
               <div class="card-body">

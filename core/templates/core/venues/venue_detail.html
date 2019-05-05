@@ -67,7 +67,7 @@
     {% for screening in pastscreenings %}
     <div class="col-sm-4">
       <div class="card mb-4">
-            <a href="/screenings/{{screening.id}}/">
+            <a href="/screenings/{{screening.id}}/" class="card-link">
               <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
             </a>
             <div class="card-body">

@@ -24,7 +24,7 @@
           <div class="col-sm-4" v-for="screening in screenings">
 
             <div class="card mb-4">
-              <a :href="`/screenings/${ screening.id }/`">
+              <a :href="`/screenings/${ screening.id }/`" class="card-link">
                 <img :src="`${ screening.film.image }`" class="card-img-top">
               </a>
               <div class="card-body">
