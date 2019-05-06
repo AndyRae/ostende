@@ -22,6 +22,9 @@
 {% load thumbnail %}
 
 
+
+
+
 <div id="whatson" class="mt-5">
   {% if screenings %}
   <h1 class="display-5 text-center">Upcoming Screenings</h1>
@@ -32,7 +35,8 @@
     </div>
     <div class="col-md-6">
       <form class="input-group mb-2">
-            <input type="search" class="form-control" type="search" name="search" placeholder="Search by film, cinema, city... " aria-label="Search" v-model="search_term">
+          {% csrf_token %}
+            <input type="search" class="form-control" name="search" placeholder="Search by film, cinema, city... " aria-label="Search" v-model="search_term">
             <div class="input-group-append">
               <button class="btn btn-dark input-group-btn" v-on:click.prevent="getScreenings()">Search</button>
             </div>
@@ -40,9 +44,10 @@
 
       <div class="text-center mt-3">
         <a href="{% url 'screening-month' %}" name="button" class="btn btn-dark">Next 30 Days</a>
-        <input type="date" name="button" placeholder="date" v-model="search_term" class="btn btn-dark date-calendar">
-      </div>
+        <input type="date" name="button" placeholder="date" class="btn btn-dark html5-date-picker" v-model="search_term">
+        <!-- <input type="text" name="button" placeholder="date" id="datepicker" class="safari-date-picker" v-model="search_term"> -->
 
+      </div>
     </div>
     <div class="col">
 
@@ -86,7 +91,10 @@
         <a href="{% url 'article-detail' article.slug article.id %}">
           <div class="jumbotron jumbotron-fluid banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image|thumbnail_url:'panelThumb' }});">
             <h1 class="display-5 text-white mt-5 font-weight-bold">{{ article.title }}</h1>
-            <p class="lead text-white">{{ article.date }} // {{ article.author }}</p>
+            <p class="lead text-white">
+                {% if article.show_author %}{{ article.author }} // {% endif %}
+                {% if article.show_date %}{{ article.date }}{% endif %}
+              </p>
           </div>
         </a>
         {% endfor %}
@@ -103,6 +111,29 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+
+<script>
+var isDateSupported = function () {
+	var input = document.createElement('input');
+	var value = 'a';
+	input.setAttribute('type', 'date');
+	input.setAttribute('value', value);
+	return (input.value !== value);
+};
+
+if (isDateSupported()) {
+	// Browser native date pickers are supported
+  $(".safari-date-picker").hide();
+}
+
+if (!isDateSupported()) {
+	// No support.
+  $(".html5-date-picker").hide();      
+}
+</script>
+
+
+
 
 <script type="text/javascript">
   Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
@@ -135,5 +166,6 @@
 
   });
 </script>
+
 
 {% endblock content %}

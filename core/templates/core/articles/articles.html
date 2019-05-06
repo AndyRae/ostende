@@ -25,7 +25,10 @@
               <img src="{{ article.image|thumbnail_url:'panelThumb' }}" class="card-img-top card-article" alt="">
               <div class="card-body">
                 <h4 class="card-title">{{ article.title }}</h4>
-                <p class="card-text">{{ article.date }} // {{ article.author }}</p>
+                <p class="card-text">
+                  {% if article.show_author %}{{ article.author }},{% endif %}
+                  {% if article.show_date %}{{ article.date }}{% endif %}
+                </p>
               </div>
           </a>
         </div>

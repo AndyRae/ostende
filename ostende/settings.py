@@ -126,7 +126,7 @@ TINYMCE_DEFAULT_CONFIG = {
 THUMBNAIL_ALIASES = {
     '': {
         'cardThumb': {'size': (400, 400), 'quality': 100, },
-        'panelThumb': {'size': (600, 600), 'quality': 100, },
+        'panelThumb': {'size': (1100, 400), 'quality': 100, },
     },
 }
 

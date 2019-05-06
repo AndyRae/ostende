@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.sitemaps import Sitemap
 from django.http import HttpResponseRedirect
 from .models import Venue, Film, Season, Screening, Article
-from .forms import screeningupdateform
+from .forms import ScreeningUpdateForm, ArticleForm
 from datetime import datetime
 
 
@@ -13,8 +13,7 @@ class VenueListView(ListView):
     template_name = 'core/venues/venues.html'
     context_object_name = 'venues'
     ordering = ['name']
-    paginate_by = 12
-
+    paginate_by = 9
 
 class VenueDetailView(DetailView):
     model = Venue
@@ -57,7 +56,7 @@ class FilmListView(ListView):
     template_name = 'core/films/films.html'
     context_object_name = 'films'
     ordering = ['name']
-    paginate_by = 12
+    paginate_by = 9
 
 
 class FilmDetailView(DetailView):
@@ -101,7 +100,7 @@ class SeasonListView(ListView):
     template_name = 'core/seasons/seasons.html'
     context_object_name = 'seasons'
     ordering = ['name']
-    paginate_by = 12
+    paginate_by = 9
 
 
 class SeasonDetailView(DetailView):
@@ -143,16 +142,17 @@ class ScreeningListView(ListView):
     template_name = 'core/screenings/screenings.html'
     context_object_name = 'screenings'
     ordering = ['date']
-    paginate_by = 12
+    paginate_by = 9
     todaysdate = datetime.now().date()
     queryset = Screening.objects.filter(date__gte=todaysdate).order_by('date')
 
 
-class ScreeningListingView(ListView):
+class ScreeningListingView(LoginRequiredMixin, ListView):
     model = Screening
     template_name = 'core/screenings/screening_list.html'
     context_object_name = 'screenings'
     ordering = ['-date']
+    paginate_by = 100
 
 
 class ScreeningDateListingView(ListView):
@@ -178,13 +178,13 @@ class ScreeningDetailView(DetailView):
 class ScreeningCreateView(LoginRequiredMixin, CreateView):
     model = Screening
     template_name = 'core/screenings/screening_form.html'
-    form_class = screeningupdateform
+    form_class = ScreeningUpdateForm
 
 
 class ScreeningUpdateView(LoginRequiredMixin, UpdateView):
     model = Screening
     template_name = 'core/screenings/screening_form.html'
-    form_class = screeningupdateform
+    form_class = ScreeningUpdateForm
 
 
 class ScreeningDeleteView(LoginRequiredMixin, DeleteView):
@@ -198,7 +198,7 @@ class ArticleListView(ListView):
     template_name = 'core/articles/articles.html'
     context_object_name = 'articles'
     ordering = ['-date']
-    paginate_by = 12
+    paginate_by = 9
     todaysdate = datetime.now().date()
 
 
@@ -209,14 +209,14 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
-    fields = ['title', 'date', 'author', 'programme', 'image', 'text']
     template_name = 'core/articles/article_form.html'
+    form_class = ArticleForm
 
 
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     model = Article
-    fields = ['title', 'date', 'author', 'programme', 'image', 'text']
     template_name = 'core/articles/article_form.html'
+    form_class = ArticleForm
 
 
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
@@ -236,7 +236,7 @@ class HomeView(ListView):
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
         context['articles'] = Article.objects.filter(
-            date__lte=todaysdate).order_by('-date')[:2]
+            date__lte=todaysdate).order_by('-date')[:3]
         return context
 
 

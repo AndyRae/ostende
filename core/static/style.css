@@ -37,12 +37,13 @@ a {
     min-height: 175px;
     object-fit: cover;
     opacity: 0.8;
-    background-color: #212529;
+    background-color: ;
     /* border-radius: 0; */
 }
 
 .card-link {
-  background: #000;
+  background: #212529;
+  border-radius: .25rem;
 }
 
 .card-article {
@@ -79,8 +80,7 @@ a {
   background-size: cover;
 }
 
-.banner-title {
-  /* background: #fff; */
+.banner-title { 
   display: inline-block;
 }
 
