@@ -1,6 +1,6 @@
 from django import forms
 from tinymce import TinyMCE
-from .models import Venue, Film, Season, Article, Screening
+from .models import Screening, Article
 
 
 class DateInput(forms.DateInput):
@@ -11,28 +11,10 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
 
 
-class venueuploadform(forms.ModelForm):
-    class Meta:
-        model = Venue
-        fields = ('image',)
-
-
-class filmuploadform(forms.ModelForm):
-    class Meta:
-        model = Film
-        fields = ('image',)
-
-
-class seasonuploadform(forms.ModelForm):
-    class Meta:
-        model = Season
-        fields = ('image',)
-
-
-class screeningupdateform(forms.ModelForm):
+class ScreeningUpdateForm(forms.ModelForm):
     class Meta:
         model = Screening
-        fields = ['film', 'venue', 'season', 'date', 'start_time',
+        fields = ['film', 'venue', 'season', 'programme', 'date', 'start_time',
                   'tickets', 'subtitle', 'copy', 'q_and_a']
         widgets = {
             'date': DateInput(),
@@ -57,7 +39,10 @@ class ArticleForm(forms.ModelForm):
             attrs={'required': False, 'cols': 30, 'rows': 10}
         )
     )
-
+    
     class Meta:
         model = Article
         fields = '__all__'
+        widgets = {
+            'date': DateInput(),
+        }
