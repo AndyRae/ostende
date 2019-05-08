@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from local_settings import S_KEY, GOOGLE_ANALYTICS
+from local_settings import S_KEY, GOOGLE_ANALYTICS, TITLE, DESCRIPTION, TWITTER
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,6 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = S_KEY
 GOOGLE_ANALYTICS = GOOGLE_ANALYTICS
+TITLE = TITLE
+DESCRIPTION = DESCRIPTION
+TWITTER = TWITTER
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,7 +78,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'ostende.context_processors.ga_tracking_id',
+                'ostende.context_processors.google_analytics',
+                'ostende.context_processors.title',
+                'ostende.context_processors.description',
+                'ostende.context_processors.twitter',
             ],
         },
     },

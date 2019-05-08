@@ -1,0 +1,16 @@
+{
+    "short_name": "",
+    "name": "",
+    "icons": [
+      {
+        "src": "./static/icons/apple-icon.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#000"
+  }

@@ -1,15 +1,12 @@
 {% extends "core/base.html" %}
 
-{% block og:title %}{% endblock og:title %}
-{% block twitter:title %}{% endblock twitter:title %}
+{% block og:title %}What's On{% endblock og:title %}
+{% block twitter:title %}What's On{% endblock twitter:title %}
 
 {% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
 {% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
 
-
-{% block title %}
-  What's On
-{% endblock title %}
+{% block title %}What's On{% endblock title %}
 
 {% block content %}
 {% load thumbnail %}
@@ -22,13 +19,6 @@
     {% if screenings %}
 
       {% include "../includes/screening_loop.html" %}
-
-      <hr>
-      {% if is_paginated %}
-
-        {% include "../includes/pagination.html" %}
-
-      {% endif %}
 
     {% else %}
 

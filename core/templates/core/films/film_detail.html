@@ -36,7 +36,7 @@
     <strong>Certificate:</strong> {{ object.certificate }}</p>
 
     {% if object.trailer %}
-    <a data-fancybox href="{{ object.trailer }}" class="mb-3 btn btn-outline-secondary"><i class="fas fa-play-circle"></i> Trailer</a>
+    <a data-fancybox href="{{ object.trailer }}" class="mb-3 btn btn-outline-secondary">Trailer</a>
     {% endif %}
 
     <p>{{ object.copy }}</p>
@@ -45,43 +45,30 @@
 <hr>
 
   <div class="mt-5">
-      {% if screenings %}
+    {% if object_list %}
       <h1 class="display-5">Upcoming Screenings</h1>
 
       <div class="row mt-5">
         <table class="table col-sm-8 table-striped">
           <tbody>
-          {% for screening in screenings %}
+          {% for object in object_list %}
             <tr>
-              <td><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></td>
-              <td>{{ screening.venue }}, {{ screening.venue.city }}</td>
-              <td>{{ screening.date }} {{ screening.start_time }}</td>
-              <td><a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a></td>
+              <td class="font-weight-bold"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></td>
+              <td>{{ object.venue }}, {{ object.venue.city }}</td>
+              <td>{{ object.date }} {{ object.start_time }}</td>
+              <td><a href="{{ object.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a></td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
       </div>
-    {% endif %}
-  </div>
 
-  <div class="mt-5">
-      {% if pastscreenings %}
-      <h1 class="display-5">Past Screenings</h1>
+      {% if is_paginated %}
 
-      <div class="row mt-5">
-        <table class="table table-striped col-sm-8">
-          <tbody>
-          {% for screening in pastscreenings %}
-            <tr>
-              <td><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></td>
-              <td>{{ screening.venue }}, {{ screening.venue.city }}</td>
-              <td>{{ screening.date }} {{ screening.start_time }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
+        {% include "../includes/pagination.html" %}
+
+      {% endif %}
+
     {% endif %}
   </div>
 

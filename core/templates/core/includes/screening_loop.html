@@ -1,20 +1,26 @@
 {% load thumbnail %}
 <div class="row mt-5">
 
-    {% for screening in screenings %}
+    {% for object in object_list %}
     <div class="col-sm-4">
       <div class="card mb-4">
-            <a href="/screenings/{{screening.id}}/" class="card-link">
-              <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+            <a href="/screenings/{{object.id}}/" class="card-link">
+              <img src="{{ object.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
             </a>
             <div class="card-body">
-              <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-              <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
-              <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-              <a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+              <div class="card-title h5"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></div>
+              <div class="card-text">{{ object.venue }}, {{ object.venue.city }}</div>
+              <div class="card-text">{{ object.date }} {{ object.start_time }}</div>
+              <a href="{{ object.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
             </div>
       </div>
     </div>
     {% endfor %}
 
 </div>
+
+{% if is_paginated %}
+<hr>
+  {% include "../includes/pagination.html" %}
+
+{% endif %}
