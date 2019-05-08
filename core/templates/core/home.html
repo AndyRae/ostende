@@ -1,20 +1,18 @@
 {% extends "core/base.html" %}
 
-{% block og:title %}An open source film season listing system, built with Python on Django.{% endblock og:title %}
-{% block twitter:title %}An open source film season listing system, built with Python on Django.{% endblock twitter:title %}
+{% block og:title %}What's On{% endblock og:title %}
+{% block twitter:title %}What's On{% endblock twitter:title %}
 
 {% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
 {% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
 
-{% block title %}
-  What's On
-{% endblock title %}
+{% block title %}What's On{% endblock title %}
 
 {% block banner %}
   {% load static %}
   <div class="jumbotron jumbotron-fluid jumbotron-home banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({% static 'images/home.jpg' %});">
-    <h1 class="display-3 text-white mt-5 font-weight-bold">Ostende</h1>
-    <p class="lead text-white">An open source film season listing system, built with Python on Django.</p>
+    <h1 class="display-3 text-white mt-5 font-weight-bold">{{ title }}</h1>
+    <p class="lead text-white">{{ description }}</p>
   </div>
 {% endblock %}
 

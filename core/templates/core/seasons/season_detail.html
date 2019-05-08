@@ -7,9 +7,8 @@
 {% block twitter:image %}{{ season.image.url }}{% endblock twitter:image %}
 
 
-{% block title %}
-  {{ object.name }}
-{% endblock title %}
+{% block title %}{{ object.name }}{% endblock title %}
+
 {% load thumbnail %}
 
 {% block banner %}
@@ -32,35 +31,12 @@
 <hr>
 
   <div class="mt-5">
-      {% if screenings %}
-        <h1 class="display-5">What's On</h1>
+    {% if object_list %}
+      <h1 class="display-5">What's On</h1>
 
-        {% include "../includes/screening_loop.html" %}
+      {% include "../includes/screening_loop.html" %}
+
     {% endif %}
   </div>
 
-
-  <div class="mt-5">
-    <h1 class="display-5">Past Screenings</h1>
-      {% if pastscreenings %}
-
-      <div class="row mt-5">
-
-          {% for screening in pastscreenings %}
-          <div class="col-sm-4">
-            <div class="card mb-4">
-                  <a href="/screenings/{{screening.id}}/" class="card-link">
-                    <img src="{{ screening.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
-                  </a>
-                  <div class="card-body">
-                    <div class="card-title h5"><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></div>
-                    <div class="card-text">{{ screening.venue }}, {{ screening.venue.city }}</div>
-                    <div class="card-text">{{ screening.date }} {{ screening.start_time }}</div>
-                  </div>
-            </div>
-          </div>
-          {% endfor %}
-      </div>
-    {% endif %}
-  </div>
 {% endblock content %}

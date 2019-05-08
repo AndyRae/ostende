@@ -7,25 +7,25 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="canonical" href="" />
-
+  <link rel="manifest" href="{% static 'manifest.json' %}">
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_gb" />
   <meta property="og:url" content="{{ request.get_host }}" />
-  <meta property="og:title" content="Ostende - {% block og:title %}{% endblock %}" />
-  <meta property="og:description" content="An open source film season listing system, built with Python on Django." />
-  <meta property="og:image" content="http://{{ request.get_host }}{% block og:image %}{% endblock %}" />
-  <meta property="og:site_name" content="Ostende" />
+  <meta property="og:title" content="{{ title }} - {% block og:title %}{% endblock %}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:image" content="https://{{ request.get_host }}{% block og:image %}{% endblock %}" />
+  <meta property="og:site_name" content="{{ title }}" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@">
-  <meta name="twitter:title" content="Ostende - {% block twitter:title %}{% endblock %}" />
-  <meta name="twitter:description" content="An open source film season listing system, built with Python on Django." />
-  <meta name="twitter:image" content="http://{{ request.get_host }}{% block twitter:image %}{% endblock %}" />
+  <meta name="twitter:site" content="@{{ twitter }}">
+  <meta name="twitter:title" content="{{ title }} - {% block twitter:title %}{% endblock %}" />
+  <meta name="twitter:description" content="{{ description }}" />
+  <meta name="twitter:image" content="https://{{ request.get_host }}{% block twitter:image %}{% endblock %}" />
 
-  <title>Ostende - {% block title %}{% endblock %}</title>
+  <title>{{ title }} - {% block title %}{% endblock %}</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  {% load static %}
+  
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   <meta property="og:image" content="{% static 'icons/apple-icon-180x180.png' %}" />
   <link rel="apple-touch-icon" type="image/png" href="{% static 'icons/apple-icon.png' %}" />
@@ -35,12 +35,12 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_tracking_id }}"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '{{ ga_tracking_id }}', { 'anonymize_ip': true });
+    gtag('config', '{{ google_analytics }}', { 'anonymize_ip': true });
   </script>
 
 <script>
@@ -69,7 +69,7 @@
 
       <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
         <div class="container">
-          <a class="navbar-brand" href="/">Ostende</a>
+          <a class="navbar-brand" href="/">{{ title }}</a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -88,7 +88,7 @@
   {% if user.is_authenticated %}
     <nav class="navbar fixed-bottom navbar-dark bg-dark navbar-expand-md navbar">
       <div class="container">
-        <a class="navbar-brand mr-4" href="/">Ostende</a>
+        <a class="navbar-brand mr-4" href="/">{{ title }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -140,14 +140,14 @@
     <footer class="footer text-white mt-5">
       <div class="container pt-3">
         <hr class="border-white seperator mt-5">
-        <p class="small text-white">An open source film season listing system, built with Python on Django.</p>
+        <p class="small text-white">{{ description }}</p>
       </div>
 
       <div class="container">
         <div class="row pt-3">
           <div class="col-sm-3">
             <nav class="nav small flex-column">
-              <a class="nav-link text-white" href="/">Ostende</a>
+              <a class="nav-link text-white" href="/">{{ title }}</a>
               <a class="nav-link text-white" href="/about">About</a>
               <a class="nav-link text-white" href="{% url 'venues' %}">Venues</a>
               <a class="nav-link text-white" href="{% url 'films' %}">Films</a>

@@ -1,14 +1,12 @@
 {% extends "core/base.html" %}
 
-{% block og:title %}{% endblock og:title %}
-{% block twitter:title %}{% endblock twitter:title %}
+{% block og:title %}This Month{% endblock og:title %}
+{% block twitter:title %}This Month{% endblock twitter:title %}
 
 {% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
 {% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
 
-{% block title %}
-  What's On
-{% endblock title %}
+{% block title %}What's On{% endblock title %}
 
 {% block content %}
 {% load thumbnail %}

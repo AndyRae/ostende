@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
+from django.views.generic.list import MultipleObjectMixin
 from django.shortcuts import render
 from django.contrib.sitemaps import Sitemap
 from django.http import HttpResponseRedirect
@@ -15,19 +16,16 @@ class VenueListView(ListView):
     ordering = ['name']
     paginate_by = 9
 
-class VenueDetailView(DetailView):
+
+class VenueDetailView(DetailView, MultipleObjectMixin):
     model = Venue
     template_name = 'core/venues/venue_detail.html'
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(VenueDetailView, self).get_context_data(**kwargs)
         todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(
-            date__gte=todaysdate).order_by('date')[:6]
-        context['pastscreenings'] = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(
-            date__lte=todaysdate).order_by('-date')[:3]
+        object_list = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(date__gte=todaysdate).order_by('date')
+        context = super(VenueDetailView, self).get_context_data(object_list=object_list, **kwargs)
         return context
 
 
@@ -59,19 +57,15 @@ class FilmListView(ListView):
     paginate_by = 9
 
 
-class FilmDetailView(DetailView):
+class FilmDetailView(DetailView, MultipleObjectMixin):
     model = Film
     template_name = 'core/films/film_detail.html'
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(FilmDetailView, self).get_context_data(**kwargs)
         todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(film_id=self.kwargs['pk']).filter(
-            date__gte=todaysdate).order_by('date')
-        context['pastscreenings'] = Screening.objects.filter(film_id=self.kwargs['pk']).filter(
-            date__lte=todaysdate).order_by('-date')
+        object_list = Screening.objects.filter(film_id=self.kwargs['pk']).filter(date__gte=todaysdate).order_by('date')
+        context = super(FilmDetailView, self).get_context_data(object_list=object_list, **kwargs)
         return context
 
 
@@ -103,19 +97,15 @@ class SeasonListView(ListView):
     paginate_by = 9
 
 
-class SeasonDetailView(DetailView):
+class SeasonDetailView(DetailView, MultipleObjectMixin):
     model = Season
     template_name = 'core/seasons/season_detail.html'
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(SeasonDetailView, self).get_context_data(**kwargs)
         todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(season_id=self.kwargs['pk']).filter(
-            date__gte=todaysdate).order_by('date')[:6]
-        context['pastscreenings'] = Screening.objects.filter(season_id=self.kwargs['pk']).filter(
-            date__lte=todaysdate).order_by('-date')[:3]
+        object_list = Screening.objects.filter(season_id=self.kwargs['pk']).filter(date__gte=todaysdate).order_by('date')
+        context = super(SeasonDetailView, self).get_context_data(object_list=object_list, **kwargs)
         return context
 
 
@@ -161,17 +151,14 @@ class ScreeningDateListingView(ListView):
     context_object_name = 'screenings'
 
 
-class ScreeningDetailView(DetailView):
+class ScreeningDetailView(DetailView, MultipleObjectMixin):
     model = Screening
     template_name = 'core/screenings/screening_detail.html'
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(ScreeningDetailView, self).get_context_data(**kwargs)
         todaysdate = datetime.now().date()
-        # Add in a QuerySet for all objects
-        context['screenings'] = Screening.objects.filter(
-            date__gte=todaysdate).order_by('date')[:3]
+        object_list = Screening.objects.filter(date__gte=todaysdate).order_by('date')[:3]
+        context = super(ScreeningDetailView, self).get_context_data(object_list=object_list, **kwargs)
         return context
 
 
@@ -235,8 +222,7 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['articles'] = Article.objects.filter(
-            date__lte=todaysdate).order_by('-date')[:3]
+        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-date')[:3]
         return context
 
 
