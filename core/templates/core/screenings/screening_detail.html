@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-{% load thumbnail %}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
@@ -51,7 +51,7 @@
         <a href="{{ screening.tickets }}" target="_blank" class="mr-3 btn btn-primary">Buy Tickets</a>
       {% endif %}
       {% if screening.film.trailer %}
-      <a data-fancybox href="{{ screening.film.trailer }}" onclick="gtag('event', 'click', {'event_category': 'trailer', 'event_label': 'trailer, {{ screening.venue }}, {{ screening.film }}, id:{{ screening.id }}'});" class="btn btn-outline-secondary"><i class="fas fa-play-circle"></i> Trailer</a>
+      <a data-fancybox href="{{ screening.film.trailer }}"  class="btn btn-outline-secondary">Trailer</a>
       {% endif %}
     </div>
 

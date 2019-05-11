@@ -4,6 +4,8 @@ from django.template.defaultfilters import slugify
 from PIL import Image
 from tinymce import HTMLField
 from datetime import datetime
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 
 class Programme(models.Model):
@@ -35,6 +37,10 @@ class Venue(models.Model):
     copy = models.TextField(max_length=2000, blank=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='venues')
     slug = models.SlugField(default='venue', editable=False)
+    image_thumbnail = ImageSpecField(source='image',
+                                    processors=[ResizeToFill(350, 350)],
+                                    format='JPEG',
+                                    options={'quality': 100})
 
     def __str__(self):
         return self.name
@@ -79,6 +85,10 @@ class Film(models.Model):
     copy = models.TextField(max_length=2000, null=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='films')
     slug = models.SlugField(default='film', editable=False)
+    image_thumbnail = ImageSpecField(source='image',
+                                      processors=[ResizeToFill(350, 350)],
+                                      format='JPEG',
+                                      options={'quality': 100})
 
     def __str__(self):
         return self.name
@@ -108,6 +118,10 @@ class Season(models.Model):
     copy = models.TextField(max_length=2000, null=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='seasons')
     slug = models.SlugField(default='season', editable=False)
+    image_thumbnail = ImageSpecField(source='image',
+                                    processors=[ResizeToFill(350, 350)],
+                                    format='JPEG',
+                                    options={'quality': 100})
 
     def __str__(self):
         return self.name
@@ -167,6 +181,10 @@ class Article(models.Model):
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='articles')
     text = HTMLField('Text')
     slug = models.SlugField(default='article', editable=False)
+    image_thumbnail = ImageSpecField(source='image',
+                                      processors=[ResizeToFill(1100, 400)],
+                                      format='JPEG',
+                                      options={'quality': 100})
 
     def __str__(self):
         return self.title

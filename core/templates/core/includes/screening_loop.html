@@ -1,11 +1,10 @@
-{% load thumbnail %}
 <div class="row mt-5">
 
     {% for object in object_list %}
     <div class="col-sm-4">
       <div class="card mb-4">
             <a href="/screenings/{{object.id}}/" class="card-link">
-              <img src="{{ object.film.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+              <img src="{{ object.film.image_thumbnail.url }}" class="card-img-top">
             </a>
             <div class="card-body">
               <div class="card-title h5"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></div>

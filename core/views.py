@@ -29,6 +29,18 @@ class VenueDetailView(DetailView, MultipleObjectMixin):
         return context
 
 
+class VenueArchiveView(DetailView, MultipleObjectMixin):
+    model = Venue
+    template_name = 'core/venues/venue_detail.html'
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        todaysdate = datetime.now().date()
+        object_list = Screening.objects.filter(venue_id=self.kwargs['pk']).filter(date__lte=todaysdate).order_by('-date')
+        context = super(VenueArchiveView, self).get_context_data(object_list=object_list, **kwargs)
+        return context
+
+
 class VenueCreateView(LoginRequiredMixin, CreateView):
     model = Venue
     fields = ['name', 'city', 'postcode',
@@ -69,6 +81,18 @@ class FilmDetailView(DetailView, MultipleObjectMixin):
         return context
 
 
+class FilmArchiveView(DetailView, MultipleObjectMixin):
+    model = Film
+    template_name = 'core/films/film_detail.html'
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        todaysdate = datetime.now().date()
+        object_list = Screening.objects.filter(film_id=self.kwargs['pk']).filter(date__lte=todaysdate).order_by('-date')
+        context = super(FilmArchiveView, self).get_context_data(object_list=object_list, **kwargs)
+        return context
+
+
 class FilmCreateView(LoginRequiredMixin, CreateView):
     model = Film
     fields = ['name', 'director', 'cast', 'country',
@@ -106,6 +130,18 @@ class SeasonDetailView(DetailView, MultipleObjectMixin):
         todaysdate = datetime.now().date()
         object_list = Screening.objects.filter(season_id=self.kwargs['pk']).filter(date__gte=todaysdate).order_by('date')
         context = super(SeasonDetailView, self).get_context_data(object_list=object_list, **kwargs)
+        return context
+
+
+class SeasonArchiveView(DetailView, MultipleObjectMixin):
+    model = Season
+    template_name = 'core/seasons/season_detail.html'
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        todaysdate = datetime.now().date()
+        object_list = Screening.objects.filter(season_id=self.kwargs['pk']).filter(date__lte=todaysdate).order_by('-date')
+        context = super(SeasonArchiveView, self).get_context_data(object_list=object_list, **kwargs)
         return context
 
 

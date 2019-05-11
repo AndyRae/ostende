@@ -10,7 +10,6 @@
 {% block title %}Venues{% endblock title %}
 
 {% block content %}
-{% load thumbnail %}
 
 <div class="container">
   <h1 class="display-3 font-weight-bold">Venues</h1>
@@ -21,7 +20,7 @@
         <div class="col-sm-4">
             <div class="card mb-4">
               <a href="{% url 'venue-detail' venue.slug venue.id %}" class="card-link">
-                <img src="{{ venue.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+                <img src="{{ venue.image_thumbnail.url }}" class="card-img-top">
               </a>
               <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'venue-detail' venue.slug venue.id %}">{{ venue.name }}</a></div>
