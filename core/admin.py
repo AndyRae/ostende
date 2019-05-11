@@ -10,7 +10,7 @@ admin.site.register(Film)
 admin.site.register(Season)
 admin.site.register(Article)
 
-
+# This is for the import/export
 class ScreeningResource(resources.ModelResource):
 
     class Meta:
