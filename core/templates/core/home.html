@@ -17,11 +17,6 @@
 {% endblock %}
 
 {% block content %}
-{% load thumbnail %}
-
-
-
-
 
 <div id="whatson" class="mt-5">
   {% if screenings %}
@@ -59,7 +54,7 @@
 
           <div class="card mb-4">
             <a :href="`screenings/${ screening.id }/`" class="card-link">
-              <img :src="`${ screening.film.image }`" class="card-img-top">
+              <img :src="`${ screening.film.image_thumbnail }`" class="card-img-top">
             </a>
             <div class="card-body">
               <div class="card-title h4"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
@@ -87,7 +82,7 @@
     {% if articles %}
         {% for article in articles %}
         <a href="{% url 'article-detail' article.slug article.id %}">
-          <div class="jumbotron jumbotron-fluid banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image|thumbnail_url:'panelThumb' }});">
+          <div class="jumbotron jumbotron-fluid banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
             <h1 class="display-5 text-white mt-5 font-weight-bold">{{ article.title }}</h1>
             <p class="lead text-white">
                 {% if article.show_author %}{{ article.author }} // {% endif %}

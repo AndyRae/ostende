@@ -1,12 +1,14 @@
 from rest_framework import serializers
-from easy_thumbnails.templatetags.thumbnail import thumbnail_url
 from core.models import Film, Venue, Screening
+from rest_framework.serializers import ImageField
 
 
 class FilmSerializer(serializers.ModelSerializer):
+    image_thumbnail = ImageField(read_only=True)
+    
     class Meta:
         model = Film
-        fields = 'id', 'name', 'director', 'certificate', 'image', 'slug'
+        fields = 'id', 'name', 'director', 'certificate', 'image_thumbnail', 'slug'
 
 
 class VenueSerializer(serializers.ModelSerializer):

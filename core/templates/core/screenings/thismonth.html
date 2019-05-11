@@ -9,7 +9,6 @@
 {% block title %}What's On{% endblock title %}
 
 {% block content %}
-{% load thumbnail %}
 
 
 <div class="container">
@@ -23,7 +22,7 @@
 
             <div class="card mb-4">
               <a :href="`/screenings/${ screening.id }/`" class="card-link">
-                <img :src="`${ screening.film.image }`" class="card-img-top">
+                <img :src="`${ screening.film.image_thumbnail }`" class="card-img-top">
               </a>
               <div class="card-body">
                 <div class="card-title h4"><a :href="`/screenings/${ screening.id }/`">${ screening.film.name }</a></div>

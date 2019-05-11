@@ -10,7 +10,6 @@
 {% block title %}
   {{ object.name }}
 {% endblock title %}
-{% load thumbnail %}
 
 {% block banner %}
   <div class="jumbotron mt-5 banner" style="background-image: linear-gradient(#00000080, #0200007d), url({{ film.image.url }});">
@@ -70,6 +69,11 @@
       {% endif %}
 
     {% endif %}
+  </div>
+
+  <div class="mt-5">
+      <h5><a href="{% url 'film-archive' film.slug film.id %}">Past Screenings of {{ object.name }} ></a></h5>
+      <hr>
   </div>
 
 {% endblock content %}

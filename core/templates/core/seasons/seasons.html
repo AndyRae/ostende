@@ -9,7 +9,6 @@
 {% block title %}Seasons{% endblock title %}
 
 {% block content %}
-{% load thumbnail %}
 
 <div class="container">
   <h1 class="display-3 font-weight-bold">Seasons</h1>
@@ -20,7 +19,7 @@
         <div class="col-sm-4">
             <div class="card mb-4">
               <a href="{% url 'season-detail' season.slug season.id %}" class="card-link">
-                <img src="{{ season.image|thumbnail_url:'cardThumb' }}" class="card-img-top">
+                <img src="{{ season.image_thumbnail.url }}" class="card-img-top">
               </a>
               <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'season-detail' season.slug season.id %}">{{ season.name }}</a></div>

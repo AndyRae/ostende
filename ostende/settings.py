@@ -50,9 +50,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'django_filters',
-    'easy_thumbnails',
     'tinymce',
     'import_export',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -96,7 +96,7 @@ REST_FRAMEWORK = {
     "TIME_FORMAT": ("%I:%M %p"),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 9,
 }
 
 
@@ -129,12 +129,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
 }
 
-THUMBNAIL_ALIASES = {
-    '': {
-        'cardThumb': {'size': (400, 400), 'quality': 100, },
-        'panelThumb': {'size': (1100, 400), 'quality': 100, },
-    },
-}
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
