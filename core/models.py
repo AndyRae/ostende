@@ -83,6 +83,8 @@ class Film(models.Model):
     length = models.PositiveIntegerField(null=True, help_text="In minutes",)
     trailer = models.URLField(max_length=100, help_text="Youtube or Vimeo link", blank=True, null=True)
     copy = models.TextField(max_length=2000, null=True)
+    quote = models.TextField(max_length=2000, blank=True)
+    quote_source = models.CharField(max_length=100, blank=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='films')
     slug = models.SlugField(default='film', editable=False)
     image_thumbnail = ImageSpecField(source='image',
@@ -157,6 +159,11 @@ class Screening(models.Model):
     subtitle = models.CharField(max_length=100, help_text="Only if the screening needs a special subtitle", blank=True)
     copy = models.TextField(max_length=2000, help_text="Only if the screening needs special copy", blank=True)
     q_and_a = models.BooleanField(blank=True)
+    introduction = models.BooleanField(blank=True)
+    subtitled = models.BooleanField(blank=True)
+    audio_description = models.BooleanField(blank=True)
+    relaxed_environment = models.BooleanField(blank=True)
+    dementia_friendly = models.BooleanField(blank=True)
 
     def __str__(self):
         return str(self.id)
