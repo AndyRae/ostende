@@ -24,8 +24,8 @@
               </a>
               <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'venue-detail' venue.slug venue.id %}">{{ venue.name }}</a></div>
-                <div class="card-text">{{ venue.city }}</div>
-                <a class="btn btn-primary mt-3" href="{% url 'venue-detail' venue.slug venue.id %}">Find screenings</a>
+                <div class="card-text text-muted">{{ venue.city }}</div>
+                <a class="btn btn-outline-primary mt-3" href="{% url 'venue-detail' venue.slug venue.id %}">Find screenings</a>
               </div>
             </div>
         </div>

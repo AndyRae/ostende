@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'ostende.wsgi.application'
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    "DATE_FORMAT": ("%B %d, %Y"),
-    "TIME_FORMAT": ("%I:%M %p"),
+    "DATE_FORMAT": ("%A %d %B"),
+    "TIME_FORMAT": ("%H:%M"),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 9,
@@ -170,6 +170,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_L10N = True
+
 
 USE_TZ = True
 

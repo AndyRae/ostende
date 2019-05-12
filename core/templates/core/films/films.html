@@ -24,8 +24,8 @@
               </a>
               <div class="card-body">
                 <div class="card-title h5"><a href="{% url 'film-detail' film.slug film.id %}">{{ film.name }}</a></div>
-                <div class="card-text">{{ film.director }} // {{ film.year }}</div>
-                <a href="{% url 'film-detail' film.slug film.id %}" class="btn btn-primary mt-3">Find screenings</a>
+                <div class="card-text text-muted">{{ film.director }} // {{ film.year }}</div>
+                <a href="{% url 'film-detail' film.slug film.id %}" class="btn btn-outline-primary mt-3">Find screenings</a>
               </div>
             </div>
         </div>

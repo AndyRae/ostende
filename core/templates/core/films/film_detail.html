@@ -35,10 +35,16 @@
     <strong>Certificate:</strong> {{ object.certificate }}</p>
 
     {% if object.trailer %}
-    <a data-fancybox href="{{ object.trailer }}" class="mb-3 btn btn-outline-secondary">Trailer</a>
+    <a data-fancybox href="{{ object.trailer }}" class="mb-3 btn btn-outline-secondary">Play Trailer</a>
     {% endif %}
 
     <p>{{ object.copy }}</p>
+
+    <blockquote class="blockquote mt-4">
+        <p class="mb-0">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
+        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+      
   </div>
 
 <hr>
@@ -54,8 +60,8 @@
             <tr>
               <td class="font-weight-bold"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></td>
               <td>{{ object.venue }}, {{ object.venue.city }}</td>
-              <td>{{ object.date }} {{ object.start_time }}</td>
-              <td><a href="{{ object.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a></td>
+              <td>{{ object.date|date:"l j F" }} {{ object.start_time|time:"H:i" }}</td>
+              <td><a href="{{ object.tickets }}" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a></td>
             </tr>
           {% endfor %}
         </tbody>

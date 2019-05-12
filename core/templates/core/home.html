@@ -57,10 +57,10 @@
               <img :src="`${ screening.film.image_thumbnail }`" class="card-img-top">
             </a>
             <div class="card-body">
-              <div class="card-title h4"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
-              <div class="card-text text-secondary">${ screening.venue.name }, ${ screening.venue.city }</div>
-              <div class="card-text text-secondary">${ screening.date } - ${ screening.start_time }</div>
-              <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-primary mt-3">Buy tickets</a>
+              <div class="card-title h5"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
+              <div class="card-text text-muted">${ screening.venue.name }, ${ screening.venue.city }</div>
+              <div class="card-text text-muted">${ screening.date } - ${ screening.start_time }</div>
+              <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a>
             </div>
           </div>
 
@@ -68,7 +68,7 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col text-center">
-          <a class="btn-lg btn-dark" href="{% url 'screenings' %}">Find more</a>
+          <a class="btn btn-outline-dark" href="{% url 'screenings' %}">Find more</a>
       </div>
     </div>
     <hr>
@@ -81,20 +81,20 @@
 <div class="mt-5">
     {% if articles %}
         {% for article in articles %}
-        <a href="{% url 'article-detail' article.slug article.id %}">
+        <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
           <div class="jumbotron jumbotron-fluid banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
-            <h1 class="display-5 text-white mt-5 font-weight-bold">{{ article.title }}</h1>
+            <h1 class="display-5 text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
             <p class="lead text-white">
                 {% if article.show_author %}{{ article.author }} // {% endif %}
-                {% if article.show_date %}{{ article.date }}{% endif %}
+                {% if article.show_date %}{{ article.date|date:"l j F" }}{% endif %}
               </p>
           </div>
         </a>
         {% endfor %}
       </div>
-      <div class="row mt-4 mb-5">
+      <div class="row mt-5 mb-5">
         <div class="col text-center">
-            <a class="btn-lg btn-dark" href="{% url 'articles' %}">Find more</a>
+            <a class="btn btn-outline-dark" href="{% url 'articles' %}">Find more</a>
         </div>
       </div>
     <hr>
