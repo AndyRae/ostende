@@ -34,7 +34,7 @@ sitemaps = {
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('member/', admin.site.urls),
     path('', include('core.urls')),
     path(r'tinymce/', include('tinymce.urls')),
     path('api/', include(router.urls)),
@@ -42,9 +42,10 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('about/', views.flatpage, {'url': '/about/'}, name='about'),
+    path('privacy/', views.flatpage, {'url': '/privacy/'}, name='privacy'),
     path('profile/', user_views.profile, name='profile'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('enter/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('exit/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 ]
 
 handler404 = 'core.views.handler404'
