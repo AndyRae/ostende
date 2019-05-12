@@ -14,8 +14,9 @@ class TimeInput(forms.TimeInput):
 class ScreeningUpdateForm(forms.ModelForm):
     class Meta:
         model = Screening
-        fields = ['film', 'venue', 'season', 'programme', 'date', 'start_time',
-                  'tickets', 'subtitle', 'copy', 'q_and_a']
+        fields = ['film', 'venue', 'season', 'programme', 'date', 'start_time', 
+        'tickets', 'subtitle', 'copy', 'q_and_a', 'introduction', 'audio_description',
+        'relaxed_environment', 'dementia_friendly']
         widgets = {
             'date': DateInput(),
             'start_time': TimeInput(),
