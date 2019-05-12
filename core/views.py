@@ -96,14 +96,14 @@ class FilmArchiveView(DetailView, MultipleObjectMixin):
 class FilmCreateView(LoginRequiredMixin, CreateView):
     model = Film
     fields = ['name', 'director', 'cast', 'country',
-              'year', 'certificate', 'length', 'trailer', 'copy', 'image']
+              'year', 'certificate', 'length', 'trailer', 'copy', 'quote', 'quote_source', 'image']
     template_name = 'core/films/film_form.html'
 
 
 class FilmUpdateView(LoginRequiredMixin, UpdateView):
     model = Film
     fields = ['name', 'director', 'cast', 'country',
-              'year', 'certificate', 'length', 'trailer', 'copy', 'image']
+              'year', 'certificate', 'length', 'trailer', 'copy', 'quote', 'quote_source', 'image']
     template_name = 'core/films/film_form.html'
 
 

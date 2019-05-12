@@ -40,10 +40,14 @@
 
     <p>{{ object.copy }}</p>
 
-    <blockquote class="blockquote mt-4">
-        <p class="mb-0">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+    {% if object.quote %}
+      <blockquote class="blockquote mt-4">
+        <p class="mb-0">"{{ object.quote }}"</p>
+        {% if object.quote_source %}
+          <footer class="blockquote-footer"><cite title="Source Title">{{ object.quote_source }}</cite></footer>
+        {% endif %}
       </blockquote>
+    {% endif %}
       
   </div>
 

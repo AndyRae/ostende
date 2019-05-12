@@ -10,7 +10,7 @@ from imagekit.processors import ResizeToFill
 
 class Programme(models.Model):
     name = models.CharField(max_length=100, null=True)
-    copy = models.TextField(max_length=2000, null=True)
+    copy = models.TextField(max_length=1000, null=True)
     slug = models.SlugField(default='programme', editable=False)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Venue(models.Model):
     website = models.URLField(max_length=50, help_text="Full URL including https://", blank=True, null=True)
     twitter = models.CharField(max_length=25, help_text="Username only, no @", blank=True)
     facebook = models.CharField(max_length=50,  help_text="Username only", blank=True)
-    copy = models.TextField(max_length=2000, blank=True)
+    copy = models.TextField(max_length=1000, blank=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='venues')
     slug = models.SlugField(default='venue', editable=False)
     image_thumbnail = ImageSpecField(source='image',
@@ -82,8 +82,8 @@ class Film(models.Model):
     certificate = models.CharField(max_length=10, choices=CERTIFICATES, null=True)
     length = models.PositiveIntegerField(null=True, help_text="In minutes",)
     trailer = models.URLField(max_length=100, help_text="Youtube or Vimeo link", blank=True, null=True)
-    copy = models.TextField(max_length=2000, null=True)
-    quote = models.TextField(max_length=2000, blank=True)
+    copy = models.TextField(max_length=1000, null=True)
+    quote = models.TextField(max_length=500, blank=True)
     quote_source = models.CharField(max_length=100, blank=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='films')
     slug = models.SlugField(default='film', editable=False)
@@ -117,7 +117,7 @@ class Film(models.Model):
 class Season(models.Model):
     name = models.CharField(max_length=100, null=True)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
-    copy = models.TextField(max_length=2000, null=True)
+    copy = models.TextField(max_length=1000, null=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='seasons')
     slug = models.SlugField(default='season', editable=False)
     image_thumbnail = ImageSpecField(source='image',
@@ -157,7 +157,7 @@ class Screening(models.Model):
     start_time = models.TimeField()
     tickets = models.URLField(max_length=100, help_text="Link to external tickets page", blank=True, null=True)
     subtitle = models.CharField(max_length=100, help_text="Only if the screening needs a special subtitle", blank=True)
-    copy = models.TextField(max_length=2000, help_text="Only if the screening needs special copy", blank=True)
+    copy = models.TextField(max_length=1000, help_text="Only if the screening needs special copy", blank=True)
     q_and_a = models.BooleanField(blank=True)
     introduction = models.BooleanField(blank=True)
     subtitled = models.BooleanField(blank=True)

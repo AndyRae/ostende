@@ -38,6 +38,26 @@
       <button class="btn-sm btn-secondary mt-2 mb-2">Q&A</button>
     {% endif %}
 
+    {% if screening.introduction %}
+      <button class="btn-sm btn-secondary mt-2 mb-2">Introduction</button>
+    {% endif %}
+
+    {% if screening.subtitled %}
+      <button class="btn-sm btn-secondary mt-2 mb-2">Subtitled</button>
+    {% endif %}
+
+    {% if screening.audio_description %}
+      <button class="btn-sm btn-secondary mt-2 mb-2">Audio Description</button>
+    {% endif %}
+
+    {% if screening.relaxed_environment %}
+      <button class="btn-sm btn-secondary mt-2 mb-2">Relaxed Environment</button>
+    {% endif %}
+
+    {% if screening.dementia_friendly %}
+      <button class="btn-sm btn-secondary mt-2 mb-2">Dementia Friendly</button>
+    {% endif %}
+  
     {% if screening.season %}
     <p>Season: <a href="{% url 'season-detail' screening.season.slug screening.season.id %}">{{ screening.season }}</a></p>
     {% endif %}
@@ -69,6 +89,15 @@
     <strong>Certificate:</strong> {{ screening.film.certificate }}</p>
 
     <p>{{ screening.film.copy }}</p>
+
+    {% if screening.film.quote %}
+      <blockquote class="blockquote mt-4">
+        <p class="mb-0">"{{ screening.film.quote }}"</p>
+        {% if screening.film.quote_source %}
+          <footer class="blockquote-footer"><cite title="Source Title">{{ screening.film.quote_source }}</cite></footer>
+        {% endif %}
+      </blockquote>
+    {% endif %}
 
   </div>
 
