@@ -1,5 +1,13 @@
 {% extends "core/base.html" %}
 
+{% block og:title %}{{ flatpage.title }}{% endblock og:title %}
+{% block twitter:title %}{{ flatpage.title }}{% endblock twitter:title %}
+
+{% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
+{% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
+
+{% block title %}{{ flatpage.title }}{% endblock title %}
+
 {% block content %}
 
 <div class="container">

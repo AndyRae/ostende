@@ -148,11 +148,11 @@
           <div class="col-sm-3">
             <nav class="nav small flex-column">
               <a class="nav-link text-white" href="/">{{ title }}</a>
-              <a class="nav-link text-white" href="/about">About</a>
+              <a class="nav-link text-white" href="{% url 'about' %}">About</a>
+              <a class="nav-link text-white" href="{% url 'privacy' %}">Privacy</a>
               <a class="nav-link text-white" href="{% url 'venues' %}">Venues</a>
               <a class="nav-link text-white" href="{% url 'films' %}">Films</a>
               <a class="nav-link text-white" href="{% url 'seasons' %}">Seasons</a>
-              <a class="nav-link text-white" href="{% url 'articles' %}">Articles</a>
               <p class="nav-link">Built by <a href="https://rae.li" class="text-white font-weight-bold" target="_blank">rae.li</a></p>
             </nav>
           </div>
