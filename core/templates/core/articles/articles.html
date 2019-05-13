@@ -12,13 +12,13 @@
 {% block content %}
 
 <div class="container">
-  <h1 class="display-3 font-weight-bold">Articles</h1>
+  <h1 class="display-3 font-weight-bold mt-5">Articles</h1>
 
   {% if articles %}
         {% for article in articles %}
-        <a href="{% url 'article-detail' article.slug article.id %}">
-          <div class="jumbotron jumbotron-fluid banner mt-5 text-center" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
-            <h1 class="display-5 text-white mt-5 font-weight-bold">{{ article.title }}</h1>
+        <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
+          <div class="jumbotron jumbotron-fluid banner mt-5 text-center" alt="{{ article.title }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
+            <h1 class="display-5 text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
             <p class="lead text-white">
                 {% if article.show_author %}{{ article.author }} // {% endif %}
                 {% if article.show_date %}{{ article.date|date:"l j F" }}{% endif %}
