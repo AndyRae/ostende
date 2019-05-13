@@ -12,11 +12,10 @@
 
 
 <div class="container">
-  <h1 class="display-3 font-weight-bold">What's On This Month</h1>
+  <h1 class="display-3 font-weight-bold mt-5">What's On This Month</h1>
 
   <div id="whatson" class="mt-5">
-
-
+    {% if screenings %}
       <div class="row mt-5">
           <div class="col-sm-4" v-for="screening in screenings">
 
@@ -27,13 +26,17 @@
               <div class="card-body">
                 <div class="card-title h4"><a :href="`/screenings/${ screening.id }/`">${ screening.film.name }</a></div>
                 <div class="card-text text-muted">${ screening.venue.name }, ${ screening.venue.city }</div>
-                <div class="card-text text-muted">${ screening.date|date:"l j F" } - ${ screening.start_time|time:"H:i" }</div>
+                <div class="card-text text-muted">${ screening.date } - ${ screening.start_time }</div>
                 <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a>
               </div>
             </div>
 
           </div>
       </div>
+    {% else %}
+      <p>There are no screenings this month.</p>
+      
+    {% endif %}
 
       <hr>
 

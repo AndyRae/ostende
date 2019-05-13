@@ -140,35 +140,37 @@
     <footer class="footer text-white mt-5">
       <div class="container pt-3">
         <hr class="border-white seperator mt-5">
-        <p class="small text-white">{{ description }}</p>
+        <p class="small text-white text-center mt-5">{{ description }}</p>
       </div>
 
       <div class="container">
-        <div class="row pt-3">
-          <div class="col-sm-3">
-            <nav class="nav small flex-column">
+        <div class="row pt-3 justify-content-center">
+            <nav class="nav small">
               <a class="nav-link text-white" href="/">{{ title }}</a>
               <a class="nav-link text-white" href="{% url 'about' %}">About</a>
               <a class="nav-link text-white" href="{% url 'privacy' %}">Privacy</a>
               <a class="nav-link text-white" href="{% url 'venues' %}">Venues</a>
               <a class="nav-link text-white" href="{% url 'films' %}">Films</a>
               <a class="nav-link text-white" href="{% url 'seasons' %}">Seasons</a>
-              <p class="nav-link">Built by <a href="https://rae.li" class="text-white font-weight-bold" target="_blank">rae.li</a></p>
             </nav>
-          </div>
-          <div class="col-sm-3">
+        </div>
+        <div class="row pt-3 justify-content-center">
+          <p class="nav-link small">Built by <a href="https://rae.li" class="text-white font-weight-bold" target="_blank">rae.li</a></p>
+        </div>
+        <div class="row pt-3 text-center">
+          <div class="col-sm-4">
             <div class="logo pt-3">
-              <a href="#"><img class="footer-logo" src="{% static 'images/logo1.svg' %}"></a>
+              <a href="#"><img class="footer-logo justify-content-center" alt="null" src="{% static 'images/logo1.svg' %}"></a>
             </div>
           </div>
-          <div class="col-sm-3">
-            <div class="logo pt-3">
-              <a href="#"><img class="footer-logo" src="{% static 'images/logo1.svg' %}"></a>
+          <div class="col-sm-4">
+            <div class="logo pt-3 justify-content-center">
+              <a href="#"><img class="footer-logo" alt="null" src="{% static 'images/logo1.svg' %}"></a>
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="logo pt-3">
-              <a href="#"><img class="footer-logo" src="{% static 'images/logo1.svg' %}"></a>
+              <a href="#"><img class="footer-logo" alt="null" src="{% static 'images/logo1.svg' %}"></a>
             </div>
           </div>
         </div>
