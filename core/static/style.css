@@ -144,8 +144,8 @@ a {
 
 .footer {
   background: #000;
-  height: 600px;
-  overflow: auto;
+  min-height: 600px;
+  overflow: hidden;
   vertical-align: middle;
 }
 
