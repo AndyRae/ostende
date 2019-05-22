@@ -24,7 +24,7 @@
   <a href="{% url 'season-delete' season.slug season.id %}" class="btn-sm btn-dark mb-5">Delete Season</a>
 {% endif %}
 
-  <div class="col-10 mb-5 mt-5">
+  <div class="col-10 mb-5">
     <p>{{ object.copy }}</p>
   </div>
 
@@ -32,7 +32,7 @@
 
   <div class="mt-5">
     {% if object_list %}
-      <h1 class="">What's On</h1>
+      <h1 class="">Past Screenings</h1>
 
       {% include "../includes/screening_loop.html" %}
 
@@ -40,7 +40,7 @@
   </div>
 
   <div class="mt-5">
-      <h5><a href="{% url 'season-archive' season.slug season.id %}">Past Screenings from {{ object.name }} ></a></h5>
+      <h5><a href="{% url 'season-detail' season.slug season.id %}">Upcoming Screenings from {{ object.name }} ></a></h5>
       <hr>
   </div>
 {% endblock content %}

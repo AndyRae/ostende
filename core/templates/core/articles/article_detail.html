@@ -28,7 +28,7 @@
     <a href="{% url 'article-delete' article.slug article.id %}" class="btn-sm btn-dark mb-5">Delete Article</a>
   {% endif %}
 
-  <div class="col-10 mb-3">
+  <div class="col-10 mt-5 mb-3">
     <h1 class="font-weight-bold">{{ object.title }}</h1>
     {% if article.show_author %}<h4 class="text-secondary">{{ object.author }}</h4>{% endif %}
     {% if article.show_date %}<h4 class="text-secondary">{{ object.date|date:"l j F" }}</h4>{% endif %}
