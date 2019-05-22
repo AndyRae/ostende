@@ -7,7 +7,7 @@
               <img src="{{ object.film.image_thumbnail.url }}" alt="{{ object.film }}" class="card-img-top">
             </a>
             <div class="card-body">
-              <div class="card-title h5"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></div>
+              <div class="card-title h5"><a href="/screenings/{{object.id}}/">{{ object.film }} {{ object.subtitle }}</a></div>
               <div class="card-text text-muted">{{ object.venue }}, {{ object.venue.city }}</div>
               <div class="card-text text-muted">{{ object.date|date:"l j F" }} - {{ object.start_time|time:"H:i" }}</div>
               <a href="{{ object.tickets }}" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a>

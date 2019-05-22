@@ -57,7 +57,7 @@
               <img :src="`${ screening.film.image_thumbnail }`" :alt="`${ screening.film.name }`" class="card-img-top">
             </a>
             <div class="card-body">
-              <div class="card-title h5"><a :href="`screenings/${ screening.id }/`">${ screening.film.name }</a></div>
+              <div class="card-title h5"><a :href="`screenings/${ screening.id }/`">${ screening.film.name } ${ screening.subtitle }</a></div>
               <div class="card-text text-muted">${ screening.venue.name }, ${ screening.venue.city }</div>
               <div class="card-text text-muted">${ screening.date } - ${ screening.start_time }</div>
               <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a>

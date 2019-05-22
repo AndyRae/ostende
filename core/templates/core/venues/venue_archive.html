@@ -14,7 +14,9 @@
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ object.name }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ venue.image.url }});">
     <div class="container">
-      <h1 class="text-white mt-5 font-weight-bold banner-title">{{ object.name }}, {{ object.city }}</h1>
+      <div class="container">
+        <h1 class="text-white mt-5 font-weight-bold banner-title">{{ object.name }}, {{ object.city }}</h1>
+      </div>
     </div>
   </div>
 {% endblock %}
@@ -27,10 +29,7 @@
 {% endif %}
 
 <div class="container">
-  <div class="col-10 mb-5 mt-5">
-
-    <p>{{ object.copy }}</p>
-    <p>{{ object.city}}, {{ object.county }}, {{ object.postcode }}</p>
+  <div class="col-10 mb-5">
 
     <div class="social-icons">
       {% if object.website %}
@@ -44,25 +43,27 @@
       {% endif %}
     </div>
 
+    <p>{{ object.copy }}</p>
+    <p>{{ object.city}}, {{ object.county }}, {{ object.postcode }}</p>
   </div>
 
 <div class="mt-5">
 
   {% if object_list %}
-    <h1 class="">What's On</h1>
+    <h1 class="">Past Screenings</h1>
 
     {% include "../includes/screening_loop.html" %}
 
   {% else %}
 
-    <p class="">There are no upcoming screenings</p>
+    <p class="">There are no past screenings</p>
 
   {% endif %}
 
 </div>
 
 <div class="mt-5">
-  <h5><a href="{% url 'venue-archive' venue.slug venue.id %}">Past Screenings at {{ object.name }} ></a></h5>
+  <h5><a href="{% url 'venue-detail' venue.slug venue.id %}">Upcoming Screenings at {{ object.name }} ></a></h5>
   <hr>
 </div>
 

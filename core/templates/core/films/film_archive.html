@@ -28,7 +28,7 @@
   <a href="{% url 'film-delete' film.slug film.id %}" class="btn-sm btn-dark mb-5">Delete Film</a>
 {% endif %}
 
-  <div class="col-10 mb-5 mt-5">
+  <div class="col-10 mb-5">
     <p><strong>Director:</strong> {{ object.director }}<br>
     <strong>Cast:</strong> {{ object.cast }}<br>
     <strong>Country:</strong> {{ object.country }}<br>
@@ -57,7 +57,7 @@
 
   <div class="mt-5">
     {% if object_list %}
-      <h1 class="">Upcoming Screenings</h1>
+      <h1 class="">Past Screenings</h1>
 
       <div class="row mt-5">
         <table class="table col-sm-8 table-striped">
@@ -84,7 +84,7 @@
   </div>
 
   <div class="mt-5">
-      <h5><a href="{% url 'film-archive' film.slug film.id %}">Past Screenings of {{ object.name }} ></a></h5>
+      <h5><a href="{% url 'film-detail' film.slug film.id %}">Upcoming Screenings of {{ object.name }} ></a></h5>
       <hr>
   </div>
 

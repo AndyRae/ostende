@@ -31,7 +31,7 @@ class VenueDetailView(DetailView, MultipleObjectMixin):
 
 class VenueArchiveView(DetailView, MultipleObjectMixin):
     model = Venue
-    template_name = 'core/venues/venue_detail.html'
+    template_name = 'core/venues/venue_archive.html'
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
@@ -83,7 +83,7 @@ class FilmDetailView(DetailView, MultipleObjectMixin):
 
 class FilmArchiveView(DetailView, MultipleObjectMixin):
     model = Film
-    template_name = 'core/films/film_detail.html'
+    template_name = 'core/films/film_archive.html'
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
@@ -135,7 +135,7 @@ class SeasonDetailView(DetailView, MultipleObjectMixin):
 
 class SeasonArchiveView(DetailView, MultipleObjectMixin):
     model = Season
-    template_name = 'core/seasons/season_detail.html'
+    template_name = 'core/seasons/season_archive.html'
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
@@ -202,12 +202,14 @@ class ScreeningCreateView(LoginRequiredMixin, CreateView):
     model = Screening
     template_name = 'core/screenings/screening_form.html'
     form_class = ScreeningUpdateForm
+    success_url = '/'
 
 
 class ScreeningUpdateView(LoginRequiredMixin, UpdateView):
     model = Screening
     template_name = 'core/screenings/screening_form.html'
     form_class = ScreeningUpdateForm
+    success_url = '/'
 
 
 class ScreeningDeleteView(LoginRequiredMixin, DeleteView):
@@ -222,7 +224,14 @@ class ArticleListView(ListView):
     context_object_name = 'articles'
     ordering = ['-date']
     paginate_by = 9
-    todaysdate = datetime.now().date()
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        todaysdate = datetime.now().date()
+        # Add in a QuerySet for all objects
+        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-date')
+        return context
 
 
 class ArticleDetailView(DetailView):
