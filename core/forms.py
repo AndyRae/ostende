@@ -23,7 +23,7 @@ class ScreeningUpdateForm(forms.ModelForm):
         }
 
 
-class articleuploadform(forms.ModelForm):
+class ArticleUploadForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ('image',)

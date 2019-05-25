@@ -267,7 +267,7 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-date')[:3]
+        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-date')
         return context
 
 
