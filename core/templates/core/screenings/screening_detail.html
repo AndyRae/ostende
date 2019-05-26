@@ -8,6 +8,8 @@
 
 {% block title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock title %}
 
+{% block description %}{{ screening.date|date:"l j F" }}, {{ screening.film.copy }}{% endblock description %}
+
 {% block schema %}
   "@type": "ScreeningEvent",
   "name": "{{ screening.film }}",
@@ -113,7 +115,7 @@
           Sorry you missed it! This screening has already taken place.
         </div>
         {% else %}
-        <a href="{{ screening.tickets }}" target="_blank" class="mr-3 btn btn-outline-primary">Buy Tickets</a>
+        <a href="{{ screening.tickets }}" target="_blank" rel="noopener" class="mr-3 btn btn-outline-primary">Buy Tickets</a>
       {% endif %}
       {% if screening.film.trailer %}
       <a data-fancybox href="{{ screening.film.trailer }}"  class="btn btn-outline-secondary">Trailer</a>

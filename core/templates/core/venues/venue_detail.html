@@ -6,9 +6,9 @@
 {% block og:image %}{{ venue.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ venue.image.url }}{% endblock twitter:image %}
 
-{% block title %}
-  {{ object.name }}, {{ object.city }}
-{% endblock title %}
+{% block title %}{{ object.name }}, {{ object.city }}{% endblock title %}
+
+{% block description %}{{ object.city}}, {{ object.county }},{% endblock description %}
 
 {% block schema %}
   "@type" : "MovieTheater",

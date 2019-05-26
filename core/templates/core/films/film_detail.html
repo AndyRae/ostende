@@ -6,9 +6,9 @@
 {% block og:image %}{{ film.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ film.image.url }}{% endblock twitter:image %}
 
-{% block title %}
-  {{ object.name }}
-{% endblock title %}
+{% block title %}{{ object.name }}{% endblock title %}
+
+{% block description %}{{ object.director }}, {{ object.cast }}, {{ object.year }}, {{ object.copy }}{% endblock description %}
 
 {% block schema %}
   "@type" : "Movie",
@@ -89,7 +89,7 @@
           <tbody>
           {% for object in object_list %}
             <tr>
-              <td class="font-weight-bold"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></td>
+              <td class="font-weight-bold"><a href="{% url 'screening-detail' object.id %}">{{ object.film }}</a></td>
               <td>{{ object.venue }}, {{ object.venue.city }}</td>
               <td>{{ object.date|date:"l j F" }} {{ object.start_time|time:"H:i" }}</td>
               <td><a href="{{ object.tickets }}" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a></td>
