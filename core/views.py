@@ -78,6 +78,7 @@ class FilmDetailView(DetailView, MultipleObjectMixin):
         todaysdate = datetime.now().date()
         object_list = Screening.objects.filter(film_id=self.kwargs['pk']).filter(date__gte=todaysdate).order_by('date')
         context = super(FilmDetailView, self).get_context_data(object_list=object_list, **kwargs)
+        context['articles'] = Article.objects.filter(film_id=self.kwargs['pk'])
         return context
 
 

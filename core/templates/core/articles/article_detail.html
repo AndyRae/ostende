@@ -10,6 +10,23 @@
   {{ object.title }}
 {% endblock title %}
 
+{% block schema %}
+{% load static %}
+  "@type" : "NewsArticle",
+  "headline" : "{{ object.title }}",
+  "image" : "{{ object.image.url }}",
+  "datePublished" : "{{ object.date }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ object.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ title }}",
+    "logo" : "{% static 'icons/apple-icon-180x180.png' %}"
+    }
+{% endblock schema %}
+
 {% block banner %}
   <div class="banner banner-article">
     <picture>

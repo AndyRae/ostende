@@ -62,6 +62,15 @@
     document.attachEvent('onclick', onclickCallback);
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    {% block schema %}
+
+    {% endblock %}
+  }
+  </script>
+
   </head>
   <body>
 
