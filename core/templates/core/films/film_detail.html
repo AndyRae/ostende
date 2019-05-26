@@ -6,10 +6,35 @@
 {% block og:image %}{{ film.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ film.image.url }}{% endblock twitter:image %}
 
-
 {% block title %}
   {{ object.name }}
 {% endblock title %}
+
+{% block schema %}
+  "@type" : "Movie",
+  "name" : "{{ object.name }}",
+  "image" : "{{ film.image.url }}",
+  "contentRating" : "{{ object.certificate }}",
+  "description" : "{{ object.copy }}",
+  "duration" :  "{{ object.length }}",
+  "dateCreated" : "{{ object.year }}",
+  "countryOfOrigin" : {
+    "@type": "Country",
+    "name" : "{{ object.country }}"
+  },
+  "director" : {
+    "@type" : "Person",
+    "name" : "{{ object.director }}"
+  },
+  "trailer" : {
+    "@type" : "VideoObject",
+    "embedUrl" : "{{ object.trailer }}",
+    "name" : "{{ object.name }}",
+    "description" : "{{ object.copy }}",
+    "thumbnailURL" : "{{ film.image.url }}",
+    "uploaddate" : "01/05/2019"
+  }
+{% endblock schema %}
 
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ object.name }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ film.image.url }});">
@@ -82,6 +107,22 @@
 
     {% endif %}
   </div>
+
+  {% if articles %}
+
+    {% for article in articles %}
+        <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
+          <div class="jumbotron jumbotron-fluid banner mt-5 text-center" alt="{{ article.title }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
+            <h1 class="text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
+            <p class="lead text-white">
+                {% if article.show_author %}{{ article.author }}{% endif %}
+                {% if article.show_date %} // {{ article.date|date:"l j F" }}{% endif %}
+              </p>
+          </div>
+        </a>
+    {% endfor %}
+  
+  {% endif %}
 
   <div class="mt-5">
       <h5><a href="{% url 'film-archive' film.slug film.id %}">Past Screenings of {{ object.name }} ></a></h5>

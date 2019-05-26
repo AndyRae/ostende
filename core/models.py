@@ -186,6 +186,7 @@ class Article(models.Model):
     show_author = models.BooleanField(default='True', blank=True, help_text="Deselect if you want to hide the author",)
     pinned = models.BooleanField(default=False)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
+    film = models.ForeignKey(Film, null=True, blank=True, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='articles')
     text = HTMLField('Text')
     slug = models.SlugField(default='article', editable=False)

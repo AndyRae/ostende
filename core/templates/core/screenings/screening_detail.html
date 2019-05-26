@@ -8,6 +8,51 @@
 
 {% block title %}{{ screening.film }} - {{ screening.venue }}, {{ screening.venue.city }}{% endblock title %}
 
+{% block schema %}
+  "@type": "ScreeningEvent",
+  "name": "{{ screening.film }}",
+  "description": "{{ screening.film.copy }}",
+  "inLanguage": "en",
+  "startDate" : "{{ screening.date }} {{ screening.start_time}}",
+  "endDate" : "{{ screening.date }}",
+  "image" : "{{ screening.film.image.url }}",
+  "location": {
+    "@type" : "MovieTheater",
+    "name" : "{{ screening.venue.name }}",
+    "image" : "{{ screening.venue.image.url }}",
+    "address": {
+      "@type": "PostalAddress",
+      "postalCode": "{{ screening.venue.postcode }}",
+      "streetAddress": "{{ screening.venue.city}} {{ screening.venue.county }}"
+    }
+  },
+  "workPresented": {
+    "@type" : "Movie",
+    "name" : "{{ screening.film }}",
+    "image" : "{{ screening.film.image.url }}",
+    "description" : "{{ screening.film.copy }}",
+    "dateCreated" : "{{ screening.film.year }}",
+    "duration" :  "{{ screening.film.length }}",
+    "contentRating" : "{{ screening.film.certificate }}",
+    "countryOfOrigin" : {
+      "@type": "Country",
+      "name" : "{{ screening.film.country }}"
+    },
+    "director" : {
+      "@type" : "Person",
+      "name" : "{{ screening.film.director }}"
+    },
+    "trailer" : {
+      "@type" : "VideoObject",
+      "embedUrl" : "{{ screening.film.trailer }}",
+      "name" : "{{ screening.film.name }}",
+      "description" : "{{ screening.film.copy }}",
+      "thumbnailURL" : "{{ screening.film.image.url }}",
+      "uploaddate" : "01/05/2019"
+    }
+  }
+{% endblock schema %}
+
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ screening.film }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ screening.film.image.url }});">
     <div class="container">
