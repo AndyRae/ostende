@@ -6,8 +6,9 @@
 {% block og:image %}{{ season.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ season.image.url }}{% endblock twitter:image %}
 
-
 {% block title %}{{ object.name }}{% endblock title %}
+
+{% block description %}{{ object.copy }}{% endblock description %}
 
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ object.name }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ season.image.url }});">

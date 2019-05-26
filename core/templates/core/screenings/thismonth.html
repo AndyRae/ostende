@@ -8,6 +8,8 @@
 
 {% block title %}What's On{% endblock title %}
 
+{% block description %}{{ description }}{% endblock description %}
+
 {% block content %}
 
   <h1 class="font-weight-bold mt-5">What's On This Month</h1>
@@ -25,7 +27,7 @@
                 <div class="card-title h4"><a :href="`/screenings/${ screening.id }/`">${ screening.film.name }</a></div>
                 <div class="card-text text-muted">${ screening.venue.name }, ${ screening.venue.city }</div>
                 <div class="card-text text-muted">${ screening.date } - ${ screening.start_time }</div>
-                <a :href="`${ screening.tickets }`" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a>
+                <a :href="`${ screening.tickets }`" target="_blank" rel="noopener" class="btn btn-outline-primary mt-3">Buy tickets</a>
               </div>
             </div>
 
@@ -42,7 +44,7 @@
 
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
 
 <script type="text/javascript">

@@ -29,13 +29,13 @@
             </thead>
           {% for screening in screenings %}
             <tr>
-              <td><a href="/screenings/{{screening.id}}/">{{ screening.film }}</a></td>
+              <td><a href="{% url 'screening-detail' screening.id %}">{{ screening.film }}</a></td>
               <td>{{ screening.venue }}, {{ screening.venue.city }}</td>
               <td>{{ screening.date }} {{ screening.start_time }}</td>
-              <td><a href="{{ screening.tickets }}" target="_blank" class="btn btn-primary mt-3">Buy tickets</a></td>
+              <td><a href="{{ screening.tickets }}" target="_blank" rel="noopener" class="btn btn-primary mt-3">Buy tickets</a></td>
               <td>
-                <a href="/screenings/{{screening.id}}/update/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M18 14.45V21H2V9h6.743l1.978-2H0v16h20V12.427l-2 2.023zm1.473-10.615l1.707 1.707-9.281 9.378-2.23.472.512-2.169 9.292-9.388zM19.465 1L8.361 12.216 7 18l5.898-1.248L24.001 5.534 19.465 1z"/></svg></a>
-                <a href="/screenings/{{screening.id}}/delete/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M3 6l3 18h12l3-18H3zm19-4v2H2V2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2H22z"/></svg></a>
+                <a href="{% url 'screening-update' screening.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M18 14.45V21H2V9h6.743l1.978-2H0v16h20V12.427l-2 2.023zm1.473-10.615l1.707 1.707-9.281 9.378-2.23.472.512-2.169 9.292-9.388zM19.465 1L8.361 12.216 7 18l5.898-1.248L24.001 5.534 19.465 1z"/></svg></a>
+                <a href="{% url 'screening-delete' screening.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M3 6l3 18h12l3-18H3zm19-4v2H2V2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2H22z"/></svg></a>
               </td>
             </tr>
           {% endfor %}

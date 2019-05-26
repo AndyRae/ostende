@@ -6,10 +6,35 @@
 {% block og:image %}{{ film.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ film.image.url }}{% endblock twitter:image %}
 
+{% block title %}{{ object.name }}{% endblock title %}
 
-{% block title %}
-  {{ object.name }}
-{% endblock title %}
+{% block description %}{{ object.director }}, {{ object.cast }}, {{ object.year }}, {{ object.copy }}{% endblock description %}
+
+{% block schema %}
+  "@type" : "Movie",
+  "name" : "{{ object.name }}",
+  "image" : "{{ film.image.url }}",
+  "contentRating" : "{{ object.certificate }}",
+  "description" : "{{ object.copy }}",
+  "duration" :  "{{ object.length }}",
+  "dateCreated" : "{{ object.year }}",
+  "countryOfOrigin" : {
+    "@type": "Country",
+    "name" : "{{ object.country }}"
+  },
+  "director" : {
+    "@type" : "Person",
+    "name" : "{{ object.director }}"
+  },
+  "trailer" : {
+    "@type" : "VideoObject",
+    "embedUrl" : "{{ object.trailer }}",
+    "name" : "{{ object.name }}",
+    "description" : "{{ object.copy }}",
+    "thumbnailURL" : "{{ film.image.url }}",
+    "uploaddate" : "01/05/2019"
+  }
+{% endblock schema %}
 
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ object.name }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ film.image.url }});">
@@ -64,7 +89,7 @@
           <tbody>
           {% for object in object_list %}
             <tr>
-              <td class="font-weight-bold"><a href="/screenings/{{object.id}}/">{{ object.film }}</a></td>
+              <td class="font-weight-bold"><a href="{% url 'screening-detail' object.id %}">{{ object.film }}</a></td>
               <td>{{ object.venue }}, {{ object.venue.city }}</td>
               <td>{{ object.date|date:"l j F" }} {{ object.start_time|time:"H:i" }}</td>
               <td><a href="{{ object.tickets }}" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a></td>

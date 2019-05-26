@@ -6,10 +6,21 @@
 {% block og:image %}{{ venue.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ venue.image.url }}{% endblock twitter:image %}
 
+{% block title %}{{ object.name }}, {{ object.city }}{% endblock title %}
 
-{% block title %}
-  {{ object.name }}, {{ object.city }}
-{% endblock title %}
+{% block description %}{{ object.city}}, {{ object.county }},{% endblock description %}
+
+{% block schema %}
+  "@type" : "MovieTheater",
+  "name" : "{{ object.name }}",
+  "image" : "{{ venue.image.url }}",
+  "sameAs" : "{{ object.website }}",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "{{ object.postcode }}",
+    "streetAddress": "{{ object.city}} {{ object.county }}, {{ object.copy }}"
+  }
+{% endblock schema %}
 
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ object.name }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ venue.image.url }});">

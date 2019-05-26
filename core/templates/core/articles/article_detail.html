@@ -6,9 +6,9 @@
 {% block og:image %}{{ object.image.url }}{% endblock og:image %}
 {% block twitter:image %}{{ object.image.url }}{% endblock twitter:image %}
 
-{% block title %}
-  {{ object.title }}
-{% endblock title %}
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block description %}{{ object.author }},{{ object.text|truncatechars_html:140 }}{% endblock description %}
 
 {% block schema %}
 {% load static %}
