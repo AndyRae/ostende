@@ -65,7 +65,7 @@
     <a data-fancybox href="{{ object.trailer }}" class="mb-3 btn btn-outline-secondary">Play Trailer</a>
     {% endif %}
 
-    <p>{{ object.copy }}</p>
+    <p>{{ object.copy|safe }}</p>
 
     {% if object.quote %}
       <blockquote class="blockquote mt-4">
@@ -89,10 +89,9 @@
           <tbody>
           {% for object in object_list %}
             <tr>
-              <td class="font-weight-bold"><a href="{% url 'screening-detail' object.id %}">{{ object.film }}</a></td>
               <td>{{ object.venue }}, {{ object.venue.city }}</td>
               <td>{{ object.date|date:"l j F" }} {{ object.start_time|time:"H:i" }}</td>
-              <td><a href="{{ object.tickets }}" target="_blank" class="btn btn-outline-primary mt-3">Buy tickets</a></td>
+              <td><a href="{% url 'screening-detail' object.id %}" class="btn btn-outline-primary mt-3">Find out more</a></td>
             </tr>
           {% endfor %}
         </tbody>

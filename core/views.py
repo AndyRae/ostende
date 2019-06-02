@@ -203,14 +203,12 @@ class ScreeningCreateView(LoginRequiredMixin, CreateView):
     model = Screening
     template_name = 'core/screenings/screening_form.html'
     form_class = ScreeningUpdateForm
-    success_url = '/'
 
 
 class ScreeningUpdateView(LoginRequiredMixin, UpdateView):
     model = Screening
     template_name = 'core/screenings/screening_form.html'
     form_class = ScreeningUpdateForm
-    success_url = '/'
 
 
 class ScreeningDeleteView(LoginRequiredMixin, DeleteView):

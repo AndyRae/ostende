@@ -139,7 +139,7 @@
     <strong>Duration:</strong> {{ screening.film.length }} minutes<br>
     <strong>Certificate:</strong> {{ screening.film.certificate }}</p>
 
-    <p>{{ screening.film.copy }}</p>
+    <p>{{ screening.film.copy|safe }}</p>
 
     {% if screening.film.quote %}
       <blockquote class="blockquote mt-4">
