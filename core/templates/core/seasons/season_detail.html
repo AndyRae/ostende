@@ -10,6 +10,14 @@
 
 {% block description %}{{ object.copy }}{% endblock description %}
 
+{% block schema %}
+{% load static %}
+    "@type": "Project",
+    "name" : "{{ title }}",
+    "url" : "https://{{ request.get_host }}",
+    "logo" : "{% static 'icons/icon.png' %}"
+{% endblock schema %}
+
 {% block banner %}
   <div class="jumbotron mt-5 banner" alt="{{ object.name }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ season.image.url }});">
     <div class="container">

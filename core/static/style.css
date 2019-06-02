@@ -55,13 +55,17 @@ a {
 }
 
 .card:hover {
-  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+  box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
   transform: translateY(-3px);
   transition: all .3s cubic-bezier(.77,0,.175,1);
 }
 
 .main {
   min-height: 600px;
+}
+
+.mt-10 { 
+  margin-top: 7rem!important;
 }
 
 .jumbotron-home {
@@ -173,6 +177,12 @@ a {
 
 .article-card:hover {
   text-decoration: none;
+}
+
+.article-card-container:hover {
+    box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
+    transform: translateY(-3px);
+    transition: all .3s cubic-bezier(.77,0,.175,1);
 }
 
 span {

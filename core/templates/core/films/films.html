@@ -10,8 +10,15 @@
 
 {% block description %}{{ description }}{% endblock description %}
 
+{% block schema %}
+    "@type": "Project",
+    "name" : "{{ title }}",
+    "url" : "https://{{ request.get_host }}",
+    "logo" : "{% static 'icons/icon.png' %}"
+{% endblock schema %}
+
 {% block content %}
-  <h1 class="font-weight-bold mt-5">Films</h1>
+  <h1 class="font-weight-bold mt-10">Films</h1>
     {% if films %}
 
     <div class="row mt-5">

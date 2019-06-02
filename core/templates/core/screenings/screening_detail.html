@@ -18,6 +18,10 @@
   "startDate" : "{{ screening.date }} {{ screening.start_time}}",
   "endDate" : "{{ screening.date }}",
   "image" : "{{ screening.film.image.url }}",
+  "offers"  : {
+      "@type" : "Offer",
+      "url" : "{{ screening.tickets }}"
+    },  
   "location": {
     "@type" : "MovieTheater",
     "name" : "{{ screening.venue.name }}",
@@ -82,27 +86,27 @@
     <h4>{{ screening.date|date:"l j F" }} - {{ screening.start_time|time:"H:i" }} </h4>
 
     {% if screening.q_and_a %}
-      <button class="btn-sm btn-secondary mt-2 mb-2">Q&A</button>
+      <button class="btn-sm btn-outline-primary mt-2 mb-2">Q&A</button>
     {% endif %}
 
     {% if screening.introduction %}
-      <button class="btn-sm btn-secondary mt-2 mb-2">Introduction</button>
+      <button class="btn-sm btn-outline-primary mt-2 mb-2">Introduction</button>
     {% endif %}
 
     {% if screening.subtitled %}
-      <button class="btn-sm btn-secondary mt-2 mb-2">Subtitled</button>
+      <button class="btn-sm btn-outline-primary mt-2 mb-2">Subtitled</button>
     {% endif %}
 
     {% if screening.audio_description %}
-      <button class="btn-sm btn-secondary mt-2 mb-2">Audio Description</button>
+      <button class="btn-sm btn-outline-primary mt-2 mb-2">Audio Description</button>
     {% endif %}
 
     {% if screening.relaxed_environment %}
-      <button class="btn-sm btn-secondary mt-2 mb-2">Relaxed Environment</button>
+      <button class="btn-sm btn-outline-primary mt-2 mb-2">Relaxed Environment</button>
     {% endif %}
 
     {% if screening.dementia_friendly %}
-      <button class="btn-sm btn-secondary mt-2 mb-2">Dementia Friendly</button>
+      <button class="btn-sm btn-outline-primary mt-2 mb-2">Dementia Friendly</button>
     {% endif %}
   
     {% if screening.season %}
@@ -115,10 +119,10 @@
           Sorry you missed it! This screening has already taken place.
         </div>
         {% else %}
-        <a href="{{ screening.tickets }}" target="_blank" rel="noopener" class="mr-3 btn btn-outline-primary">Buy Tickets</a>
+        <a href="{{ screening.tickets }}" target="_blank" rel="noopener" class="mr-3 btn btn-primary">Buy Tickets</a>
       {% endif %}
       {% if screening.film.trailer %}
-      <a data-fancybox href="{{ screening.film.trailer }}"  class="btn btn-outline-secondary">Trailer</a>
+      <a data-fancybox href="{{ screening.film.trailer }}"  class="btn btn-primary">Trailer</a>
       {% endif %}
     </div>
 

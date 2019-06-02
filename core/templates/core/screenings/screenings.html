@@ -10,9 +10,16 @@
 
 {% block description %}{{ description }}{% endblock description %}
 
+{% block schema %}
+    "@type": "Project",
+    "name" : "{{ title }}",
+    "url" : "https://{{ request.get_host }}",
+    "logo" : "{% static 'icons/icon.png' %}"
+{% endblock schema %}
+
 {% block content %}
 
-  <h1 class="font-weight-bold mt-5">What's On</h1>
+  <h1 class="font-weight-bold mt-10">What's On</h1>
 
   <div class="mt-5">
     {% if screenings %}
