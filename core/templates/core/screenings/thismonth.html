@@ -10,6 +10,13 @@
 
 {% block description %}{{ description }}{% endblock description %}
 
+{% block schema %}
+    "@type": "Project",
+    "name" : "{{ title }}",
+    "url" : "https://{{ request.get_host }}",
+    "logo" : "{% static 'icons/icon.png' %}"
+{% endblock schema %}
+
 {% block content %}
 
   <h1 class="font-weight-bold mt-5">What's On This Month</h1>

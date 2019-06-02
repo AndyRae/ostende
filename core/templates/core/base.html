@@ -112,11 +112,11 @@
                   New
                 </button>
                 <div class="dropdown-menu bg-dark">
-                  <a href="/venues/new/" class="nav-item nav-link">Add Venue</a>
-                  <a href="/films/new/" class="nav-item nav-link">Add Film</a>
-                  <a href="/seasons/new/" class="nav-item nav-link">Add Season</a>
-                  <a href="/screenings/new/" class="nav-item nav-link">Add Screening</a>
-                  <a href="/articles/new/" class="nav-item nav-link">Add Article</a>
+                  <a href="{% url 'venue-create' %}" class="nav-item nav-link">Add Venue</a>
+                  <a href="{% url 'film-create' %}" class="nav-item nav-link">Add Film</a>
+                  <a href="{% url 'season-create' %}" class="nav-item nav-link">Add Season</a>
+                  <a href="{% url 'screening-create' %}" class="nav-item nav-link">Add Screening</a>
+                  <a href="{% url 'article-create' %}" class="nav-item nav-link">Add Article</a>
                 </div>
               </div>
               <a class="nav-item nav-link" href="{% url 'venues' %}" class="btn btn-link">Venues</a>
@@ -158,7 +158,7 @@
       <div class="container">
         <div class="row pt-3 justify-content-center">
             <nav class="nav">
-              <a class="nav-link text-white" href="/">{{ title }}</a>
+              <a class="nav-link text-white" href="/">Home</a>
               <a class="nav-link text-white" href="{% url 'screenings' %}">What's On</a>
               <a class="nav-link text-white" href="{% url 'venues' %}">Locations</a>
               <a class="nav-link text-white" href="{% url 'seasons' %}">Seasons</a>

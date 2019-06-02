@@ -8,10 +8,17 @@
 
 {% block title %}{{ flatpage.title }}{% endblock title %}
 
+{% block schema %}
+    "@type": "Project",
+    "name" : "{{ title }}",
+    "url" : "https://{{ request.get_host }}",
+    "logo" : "{% static 'icons/icon.png' %}"
+{% endblock schema %}
+
 {% block content %}
 
 <div class="container">
-  <h1 class="font-weight-bold mt-5">{{ flatpage.title }}</h1>
+  <h1 class="font-weight-bold mt-10">{{ flatpage.title }}</h1>
   <div class="col-md-8 mt-5 article-text">
     {{ flatpage.content }}
   </div>
