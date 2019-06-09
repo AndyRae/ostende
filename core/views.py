@@ -168,10 +168,10 @@ class ScreeningListView(ListView):
     model = Screening
     template_name = 'core/screenings/screenings.html'
     context_object_name = 'screenings'
-    ordering = ['date']
+    ordering = ['date', 'start_time']
     paginate_by = 9
     todaysdate = datetime.now().date()
-    queryset = Screening.objects.filter(date__gte=todaysdate).order_by('date')
+    queryset = Screening.objects.filter(date__gte=todaysdate)
 
 
 class ScreeningListingView(LoginRequiredMixin, ListView):
@@ -229,7 +229,7 @@ class ArticleListView(ListView):
         context = super().get_context_data(**kwargs)
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-date')
+        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-pinned', '-date')
         return context
 
 
@@ -266,7 +266,7 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         todaysdate = datetime.now().date()
         # Add in a QuerySet for all objects
-        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-date')
+        context['articles'] = Article.objects.filter(date__lte=todaysdate).order_by('-pinned', '-date')[:3]
         return context
 
 
