@@ -87,22 +87,8 @@
 
   {% if articles %}
   <div class="mt-5">
-    {% for article in articles %}
-      {% if article.pinned %}
-        <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
-          <div class="jumbotron jumbotron-fluid banner article-card-container mt-5 text-center" alt="{{ article.title }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
-            <h1 class="text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
-            <p class="lead text-white">
-                {% if article.show_author %}{{ article.author }}{% endif %}
-                {% if article.show_date %} // {{ article.date|date:"l j F" }}{% endif %}
-              </p>
-          </div>
-        </a>
-      {% endif %}
-    {% endfor %}
 
-    {% for article in articles|slice:":3" %}
-      {% if not article.pinned %}
+    {% for article in articles %}
         <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
           <div class="jumbotron jumbotron-fluid banner article-card-container mt-5 text-center" alt="{{ article.title }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
             <h1 class="text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
@@ -112,7 +98,6 @@
               </p>
           </div>
         </a>
-      {% endif %}
     {% endfor %}
   </div>
       <div class="row mt-5 mb-5">
