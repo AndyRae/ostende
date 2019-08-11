@@ -116,6 +116,7 @@
                   <a href="{% url 'film-create' %}" class="nav-item nav-link">Add Film</a>
                   <a href="{% url 'season-create' %}" class="nav-item nav-link">Add Season</a>
                   <a href="{% url 'screening-create' %}" class="nav-item nav-link">Add Screening</a>
+                  <a href="{% url 'author-create' %}" class="nav-item nav-link">Add Author</a>
                   <a href="{% url 'article-create' %}" class="nav-item nav-link">Add Article</a>
                 </div>
               </div>
@@ -124,6 +125,7 @@
               <a class="nav-item nav-link" href="{% url 'seasons' %}" class="btn btn-link">Seasons</a>
               <a class="nav-item nav-link" href="{% url 'screenings' %}" class="btn btn-link">Screenings</a>
               <a class="nav-item nav-link" href="/screenings/screening_list/" class="btn btn-link">Screening List</a>
+              <a class="nav-item nav-link" href="{% url 'author' %}" class="btn btn-link">Authors</a>
               <a class="nav-item nav-link" href="{% url 'articles' %}" class="btn btn-link">Articles</a>
               <a class="nav-item nav-link" href="#" class="btn btn-link">|</a>
               <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
@@ -163,6 +165,7 @@
               <a class="nav-link text-white" href="{% url 'venues' %}">Locations</a>
               <a class="nav-link text-white" href="{% url 'seasons' %}">Seasons</a>
               <a class="nav-link text-white" href="{% url 'films' %}">Films</a>
+              <a class="nav-link text-white" href="{% url 'author' %}">Authors</a>
               <a class="nav-link text-white" href="{% url 'articles' %}">Articles</a>
               <a class="nav-link text-white" href="{% url 'about' %}">About</a>
               <a class="nav-link text-white" href="{% url 'privacy' %}">Privacy</a>

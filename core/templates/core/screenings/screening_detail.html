@@ -76,6 +76,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
+{% if screening.film.image_credit %}
+<p class="small text-uppercase text-monospace text-right">IMAGE {{ screening.film.image_credit}}</p>
+{% endif %}
+
+
 {% if user.is_authenticated %}
   <a href="{% url 'screening-update' screening.id %}" class="btn-sm btn-dark mb-5">Edit Screening</a>
   <a href="{% url 'screening-delete' screening.id %}" class="btn-sm btn-dark mb-5">Delete Screening</a>

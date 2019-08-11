@@ -65,7 +65,7 @@
     <a data-fancybox href="{{ object.trailer }}" class="mb-3 btn btn-outline-secondary">Play Trailer</a>
     {% endif %}
 
-    <p>{{ object.copy }}</p>
+    <p>{{ object.copy|safe }}</p>
 
     {% if object.quote %}
       <blockquote class="blockquote mt-4">

@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+
+{% block og:title %}{{ object.name }}{% endblock og:title %}
+{% block twitter:title %}{{ object.name }}{% endblock twitter:title %}
+
+{% block og:image %}{{ object.image.url }}{% endblock og:image %}
+{% block twitter:image %}{{ object.image.url }}{% endblock twitter:image %}
+
+{% block title %}{{ object.name }}{% endblock title %}
+
+{% block description %}{{ object.description|truncatechars_html:140 }}{% endblock description %}
+
+{% block schema %}
+{% endblock schema %}
+
+{% block content %}
+
+  <div class="row pt-5">
+    <div class="col-md-2 pt-5">
+        <img src="{{ object.image.url }}" alt="{{ object.title }}" class="author-image"> 
+    </div>
+
+    <div class="col-md-6 pt-5">
+      <h1 class="font-weight-bold text-left">{{ object.name }}</h1>
+      <h5 class="lead">{{ object.title }}</h5>
+      <h5 class="text-secondary"><a href="https://twitter.com/{{ object.twitter }}" target="_blank" rel="noopener">@{{ object.twitter }}</a></h5>
+    </div>
+
+  </div>
+
+  <div class="col-md-8">
+    <p>{{ object.description|safe }}</p>
+  </div>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'author-update' author.slug author.id %}" class="btn-sm btn-dark mb-5">Edit Author</a>
+    <a href="{% url 'author-delete' author.slug author.id %}" class="btn-sm btn-dark mb-5">Delete Author</a>
+  {% endif %}
+
+<hr>
+
+  {% if articles %}
+    <h2 class="mt-5 text-center">Articles</h2>
+
+    {% for article in articles %}
+        <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
+          <div class="jumbotron jumbotron-fluid banner mt-5 text-center" alt="{{ article.title }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
+            <h1 class="text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
+            <p class="lead text-white">
+                {% if article.show_date %} {{ article.date|date:"l j F" }} {% endif %}
+              </p>
+          </div>
+        </a>
+    {% endfor %}
+	{% endif %}
+
+{% endblock content %}

@@ -31,6 +31,9 @@
 {% endblock %}
 
 {% block content %}
+{% if object.image_credit %}
+<p class="small text-uppercase text-monospace text-right">IMAGE {{ object.image_credit}}</p>
+{% endif %}
 
 {% if user.is_authenticated %}
   <a href="{% url 'venue-update' venue.slug venue.id %}" class="btn-sm btn-dark mb-5">Edit Venue</a>
@@ -40,7 +43,7 @@
 <div class="container">
   <div class="col-10 mb-5 mt-5">
 
-    <p>{{ object.copy }}</p>
+    <p>{{ object.copy|safe }}</p>
     <p>{{ object.city}}, {{ object.county }}, {{ object.postcode }}</p>
 
     <div class="social-icons">
