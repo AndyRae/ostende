@@ -27,6 +27,9 @@
 {% endblock %}
 
 {% block content %}
+{% if object.image_credit %}
+<p class="small text-uppercase text-monospace text-right">IMAGE {{ object.image_credit}}</p>
+{% endif %}
 
 {% if user.is_authenticated %}
   <a href="{% url 'season-update' season.slug season.id %}" class="btn-sm btn-dark mb-5">Edit Season</a>

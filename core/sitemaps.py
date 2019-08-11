@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from .models import Venue, Film, Season, Screening, Article
+from .models import Venue, Film, Season, Screening, Author, Article
 
 
 class VenueSitemap(Sitemap):
@@ -20,6 +20,11 @@ class SeasonSitemap(Sitemap):
 class ScreeningSitemap(Sitemap):
     def items(self):
         return Screening.objects.all()
+
+
+class AuthorSitemap(Sitemap):
+    def items(self):
+        return Author.objects.all()
 
 
 class ArticleSitemap(Sitemap):

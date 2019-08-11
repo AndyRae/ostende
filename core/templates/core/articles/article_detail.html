@@ -40,6 +40,10 @@
 
 {% block content %}
 
+  {% if object.image_credit %}
+  <p class="small text-uppercase text-monospace text-right">IMAGE {{ object.image_credit}}</p>
+  {% endif %}
+
   {% if user.is_authenticated %}
     <a href="{% url 'article-update' article.slug article.id %}" class="btn-sm btn-dark mb-5">Edit Article</a>
     <a href="{% url 'article-delete' article.slug article.id %}" class="btn-sm btn-dark mb-5">Delete Article</a>
@@ -47,8 +51,15 @@
 
   <div class="col-10 mt-5 mb-3">
     <h1 class="font-weight-bold">{{ object.title }}</h1>
-    {% if article.show_author %}<h4 class="text-secondary">{{ object.author }}</h4>{% endif %}
-    {% if article.show_date %}<h4 class="text-secondary">{{ object.date|date:"l j F" }}</h4>{% endif %}
+    {% if object.subtitle %}
+    <h4 class="mt-3 lead">{{ object.subtitle }}</h4>
+    {% endif %}
+    {% if article.show_author %}
+    <h5 class="text-secondary mt-3"><a href="{% url 'author-detail' object.author.slug object.author.id %}">{{ object.author }}</a>, <a href="https://twitter.com/{{ object.author.twitter }}" target="_blank" rel="noopener">@{{ object.author.twitter }}</a></h5>
+    {% endif %}
+    {% if article.show_date %}
+    <h5 class="text-secondary mt-3">{{ object.date|date:"l j F" }}</h5>
+    {% endif %}
   </div>
 
   <hr>
@@ -56,5 +67,25 @@
   <div class="col-md-8 article-text">
     <p>{{ object.text|safe }}</p>
   </div>
+
+  {% if articles %}
+	    <hr class="mt-5">
+	    <h2 class="mt-5 text-center">Recommended</h2>
+	    <div class="row mt-1">
+	      {% for article in articles %}
+	        <div class="col-sm-4">
+	          <a href="{% url 'article-detail' article.slug article.id %}" class="article-card">
+	            <div class="jumbotron jumbotron-fluid banner article-card-container mt-5 text-center" alt="{{ article.title }}" style="background-image: linear-gradient(#00000080, #0200007d), url({{ article.image_thumbnail.url }});">
+	              <h1 class="text-white mt-5 font-weight-bold"><span>{{ article.title }}</span></h1>
+	              <p class="lead text-white">
+	                  {% if article.show_author %}{{ article.author }}{% endif %}
+	                  {% if article.show_date %} // {{ article.date|date:"l j F" }}{% endif %}
+	                </p>
+	            </div>
+	          </a>
+	        </div>
+	      {% endfor %}
+	    </div>
+	  {% endif %}
 
 {% endblock content %}

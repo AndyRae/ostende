@@ -1,0 +1,56 @@
+{% extends "core/base.html" %}
+
+{% block og:title %}Authors{% endblock og:title %}
+{% block twitter:title %}Authors{% endblock twitter:title %}
+
+{% block og:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock og:image %}
+{% block twitter:image %}{% load static %}{% static 'images/home.jpg' %}{% endblock twitter:image %}
+
+{% block title %}Authors{% endblock title %}
+
+{% block description %}{{ description }}{% endblock description %}
+
+{% block schema %}
+    "@type": "Project",
+    "name" : "{{ title }}",
+    "url" : "https://{{ request.get_host }}",
+    "logo" : "{% static 'icons/icon.png' %}"
+{% endblock schema %}
+
+{% block content %}
+
+  <h1 class="font-weight-bold mt-10">Authors</h1>
+
+  {% if authors %}
+        {% for author in authors %}
+            <div class="row">
+                <div class="col-sm-2 pt-5">
+                    <a href="{% url 'author-detail' author.slug author.id %}">
+                    <img src="{{ author.image.url }}" alt="{{ author.name }}" class="author-image"> 
+                    </a>
+                </div>
+            
+                <div class="col-sm-2 pt-5">
+                  <h2 class="font-weight-bold text-left"><a href="{% url 'author-detail' author.slug author.id %}">{{ author.name }}</a></h2>
+                  <h5 class="lead">{{ author.title }}</h5>
+                  <p class="text-secondary"><a href="https://twitter.com/{{ author.twitter }}" target="_blank" rel="noopener">@{{ author.twitter }}</a></p>
+                </div>
+
+                <div class="col-md-6 pt-5">
+                  <p>{{ author.description|safe }}</p>
+                </div>
+                
+              </div>
+              <hr>
+        {% endfor %}
+        
+  {% endif %}
+
+  {% if is_paginated %}
+
+    {% include "../includes/pagination.html" %}
+
+  {% endif %}
+
+
+{% endblock content %}

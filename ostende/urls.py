@@ -22,13 +22,14 @@ from django.contrib.auth import views as auth_views
 from django.contrib.flatpages import views
 from django.contrib.sitemaps.views import sitemap
 from .routers import router
-from core.sitemaps import VenueSitemap, FilmSitemap, SeasonSitemap, ScreeningSitemap, ArticleSitemap
+from core.sitemaps import VenueSitemap, FilmSitemap, SeasonSitemap, ScreeningSitemap, AuthorSitemap, ArticleSitemap
 
 sitemaps = {
     'venues': VenueSitemap,
     'films': FilmSitemap,
     'seasons': SeasonSitemap,
     'screenings': ScreeningSitemap,
+    'authors': AuthorSitemap,
     'articles': ArticleSitemap,
 }
 

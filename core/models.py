@@ -34,8 +34,9 @@ class Venue(models.Model):
     website = models.URLField(max_length=50, help_text="Full URL including https://", blank=True, null=True)
     twitter = models.CharField(max_length=25, help_text="Username only, no @", blank=True)
     facebook = models.CharField(max_length=50,  help_text="Username only", blank=True)
-    copy = models.TextField(max_length=1000, blank=True)
+    copy = HTMLField('Text', help_text="Only if the screening needs special copy", blank=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='venues')
+    image_credit = models.CharField(max_length=100, blank=True)
     slug = models.SlugField(default='venue', editable=False)
     image_thumbnail = ImageSpecField(source='image',
                                     processors=[ResizeToFill(350, 350)],
@@ -82,10 +83,11 @@ class Film(models.Model):
     certificate = models.CharField(max_length=10, choices=CERTIFICATES, null=True)
     length = models.PositiveIntegerField(null=True, help_text="In minutes",)
     trailer = models.URLField(max_length=100, help_text="Youtube or Vimeo link", blank=True, null=True)
-    copy = models.TextField(max_length=1000, null=True)
+    copy = HTMLField('Text', help_text="Only if the screening needs special copy", null=True)
     quote = models.TextField(max_length=500, blank=True)
     quote_source = models.CharField(max_length=100, blank=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='films')
+    image_credit = models.CharField(max_length=100, blank=True)
     slug = models.SlugField(default='film', editable=False)
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFill(350, 350)],
@@ -117,8 +119,9 @@ class Film(models.Model):
 class Season(models.Model):
     name = models.CharField(max_length=100, null=True)
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
-    copy = models.TextField(max_length=1000, null=True)
+    copy = HTMLField('Text', help_text="Only if the screening needs special copy", null=True)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='seasons')
+    image_credit = models.CharField(max_length=100, blank=True)
     slug = models.SlugField(default='season', editable=False)
     image_thumbnail = ImageSpecField(source='image',
                                     processors=[ResizeToFill(350, 350)],
@@ -157,13 +160,14 @@ class Screening(models.Model):
     start_time = models.TimeField()
     tickets = models.URLField(max_length=100, help_text="Link to external tickets page", blank=True, null=True)
     subtitle = models.CharField(max_length=100, help_text="Only if the screening needs a special subtitle", blank=True)
-    copy = models.TextField(max_length=1000, help_text="Only if the screening needs special copy", blank=True)
+    copy = HTMLField('Text', help_text="Only if the screening needs special copy", blank=True)
     q_and_a = models.BooleanField(blank=True)
     introduction = models.BooleanField(blank=True)
     subtitled = models.BooleanField(blank=True)
     audio_description = models.BooleanField(blank=True)
     relaxed_environment = models.BooleanField(blank=True)
     dementia_friendly = models.BooleanField(blank=True)
+    pinned = models.BooleanField(default=False, help_text="If you want to pin the screening to the front page")
 
     def __str__(self):
         return str(self.id)
@@ -178,16 +182,45 @@ class Screening(models.Model):
             return True
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    twitter = models.CharField(max_length=100, blank=True, null=True, help_text="Username only, no @")
+    description = HTMLField('Text')
+    slug = models.SlugField(default='author', editable=False)
+    image = models.ImageField(default='default.jpg', help_text="Square dimensions work best", upload_to='authors')
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        kwargs = {'slug': self.slug, 'pk': self.pk}
+        return reverse('article-detail', kwargs=kwargs)
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.width > 400 or img.height > 400:
+            img.thumbnail((400, 400), Image.ANTIALIAS)
+            img.save(self.image.path, optimize=True)
+
+
 class Article(models.Model):
     title = models.CharField(max_length=100, null=True)
+    subtitle = models.CharField(max_length=300, null=True)
     date = models.DateField()
+    author = models.ForeignKey(Author, null=True, on_delete=models.CASCADE)
     show_date = models.BooleanField(default='True', blank=True, help_text="Deselect if you want to hide the date",)
-    author = models.CharField(max_length=100, null=True)
     show_author = models.BooleanField(default='True', blank=True, help_text="Deselect if you want to hide the author",)
-    pinned = models.BooleanField(default=False)
+    pinned = models.BooleanField(default=False, help_text="If you want to pin the article to the front page")
     programme = models.ForeignKey(Programme, null=True, on_delete=models.CASCADE)
     film = models.ForeignKey(Film, null=True, blank=True, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', help_text="Dimensions 1200px+ width work best", upload_to='articles')
+    image_credit = models.CharField(max_length=100, blank=True)
     text = HTMLField('Text')
     slug = models.SlugField(default='article', editable=False)
     image_thumbnail = ImageSpecField(source='image',
