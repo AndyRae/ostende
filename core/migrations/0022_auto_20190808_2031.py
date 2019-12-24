@@ -7,13 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0021_auto_20190808_1840'),
+        ("core", "0021_auto_20190808_1840"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='article',
-            name='author',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='core.Author'),
+            model_name="article",
+            name="author",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="core.Author",
+            ),
         ),
     ]

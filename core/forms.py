@@ -4,27 +4,27 @@ from .models import Screening, Article
 
 
 class DateInput(forms.DateInput):
-    input_type = 'date'
+    input_type = "date"
 
 
 class TimeInput(forms.TimeInput):
-    input_type = 'time'
+    input_type = "time"
 
 
 class ScreeningUpdateForm(forms.ModelForm):
     class Meta:
         model = Screening
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            'date': DateInput(),
-            'start_time': TimeInput(),
+            "date": DateInput(),
+            "start_time": TimeInput(),
         }
 
 
 class ArticleUploadForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('image',)
+        fields = ("image",)
 
 
 class TinyMCEWidget(TinyMCE):
@@ -34,14 +34,12 @@ class TinyMCEWidget(TinyMCE):
 
 class ArticleForm(forms.ModelForm):
     text = forms.CharField(
-        widget=TinyMCEWidget(
-            attrs={'required': False, 'cols': 30, 'rows': 10}
-        )
+        widget=TinyMCEWidget(attrs={"required": False, "cols": 30, "rows": 10})
     )
-    
+
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            'date': DateInput(),
+            "date": DateInput(),
         }

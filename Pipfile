@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
 
 [packages]
 defusedxml = "==0.5.0"
@@ -35,3 +36,6 @@ PyYAML = "==5.1"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
