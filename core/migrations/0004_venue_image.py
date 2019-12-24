@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0003_auto_20190323_2154'),
+        ("core", "0003_auto_20190323_2154"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='venue',
-            name='image',
-            field=models.ImageField(default='./media/default.jpg', upload_to='venues'),
+            model_name="venue",
+            name="image",
+            field=models.ImageField(default="./media/default.jpg", upload_to="venues"),
         ),
     ]

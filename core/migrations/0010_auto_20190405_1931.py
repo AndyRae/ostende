@@ -7,18 +7,15 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0009_venue_thumbnail'),
+        ("core", "0009_venue_thumbnail"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='venue',
-            name='thumbnail',
-        ),
+        migrations.RemoveField(model_name="venue", name="thumbnail",),
         migrations.AlterField(
-            model_name='article',
-            name='text',
-            field=tinymce.models.HTMLField(default=2, verbose_name='Text'),
+            model_name="article",
+            name="text",
+            field=tinymce.models.HTMLField(default=2, verbose_name="Text"),
             preserve_default=False,
         ),
     ]

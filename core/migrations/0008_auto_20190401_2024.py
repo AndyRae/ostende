@@ -6,30 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0007_auto_20190327_2323'),
+        ("core", "0007_auto_20190327_2323"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='screening',
-            name='slug',
-        ),
-        migrations.RemoveField(
-            model_name='venue',
-            name='lat',
-        ),
-        migrations.RemoveField(
-            model_name='venue',
-            name='long',
-        ),
+        migrations.RemoveField(model_name="screening", name="slug",),
+        migrations.RemoveField(model_name="venue", name="lat",),
+        migrations.RemoveField(model_name="venue", name="long",),
         migrations.AddField(
-            model_name='venue',
-            name='city',
+            model_name="venue",
+            name="city",
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='venue',
-            name='county',
+            model_name="venue",
+            name="county",
             field=models.CharField(max_length=50, null=True),
         ),
     ]

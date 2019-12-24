@@ -6,38 +6,42 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0017_auto_20190512_0125'),
+        ("core", "0017_auto_20190512_0125"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='film',
-            name='copy',
+            model_name="film",
+            name="copy",
             field=models.TextField(max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='film',
-            name='quote',
+            model_name="film",
+            name="quote",
             field=models.TextField(blank=True, max_length=500),
         ),
         migrations.AlterField(
-            model_name='programme',
-            name='copy',
+            model_name="programme",
+            name="copy",
             field=models.TextField(max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='screening',
-            name='copy',
-            field=models.TextField(blank=True, help_text='Only if the screening needs special copy', max_length=1000),
+            model_name="screening",
+            name="copy",
+            field=models.TextField(
+                blank=True,
+                help_text="Only if the screening needs special copy",
+                max_length=1000,
+            ),
         ),
         migrations.AlterField(
-            model_name='season',
-            name='copy',
+            model_name="season",
+            name="copy",
             field=models.TextField(max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='venue',
-            name='copy',
+            model_name="venue",
+            name="copy",
             field=models.TextField(blank=True, max_length=1000),
         ),
     ]

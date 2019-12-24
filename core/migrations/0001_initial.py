@@ -8,78 +8,153 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Film',
+            name="Film",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, null=True)),
-                ('director', models.CharField(max_length=50, null=True)),
-                ('cast', models.CharField(max_length=50, null=True)),
-                ('country', models.CharField(max_length=50, null=True)),
-                ('year', models.CharField(max_length=10, null=True)),
-                ('certificate', models.CharField(choices=[('U', 'U'), ('PG', 'PG'), ('12A', '12A'), ('12', '12'), ('15', '15'), ('18', '18'), ('TBC', 'TBC')], max_length=10, null=True)),
-                ('length', models.PositiveIntegerField(null=True)),
-                ('copy', models.TextField(max_length=200, null=True)),
-                ('image', models.ImageField(default='./media/default.jpg', upload_to='films')),
-                ('slug', models.SlugField(default='venue', editable=False)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, null=True)),
+                ("director", models.CharField(max_length=50, null=True)),
+                ("cast", models.CharField(max_length=50, null=True)),
+                ("country", models.CharField(max_length=50, null=True)),
+                ("year", models.CharField(max_length=10, null=True)),
+                (
+                    "certificate",
+                    models.CharField(
+                        choices=[
+                            ("U", "U"),
+                            ("PG", "PG"),
+                            ("12A", "12A"),
+                            ("12", "12"),
+                            ("15", "15"),
+                            ("18", "18"),
+                            ("TBC", "TBC"),
+                        ],
+                        max_length=10,
+                        null=True,
+                    ),
+                ),
+                ("length", models.PositiveIntegerField(null=True)),
+                ("copy", models.TextField(max_length=200, null=True)),
+                (
+                    "image",
+                    models.ImageField(default="./media/default.jpg", upload_to="films"),
+                ),
+                ("slug", models.SlugField(default="venue", editable=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Home',
+            name="Home",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('home', models.CharField(max_length=50, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("home", models.CharField(max_length=50, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Screening',
+            name="Screening",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField(blank=True)),
-                ('start_time', models.TimeField(blank=True)),
-                ('tickets', models.URLField(blank=True, max_length=100, null=True)),
-                ('subtitle', models.CharField(blank=True, max_length=50)),
-                ('q_and_a', models.BooleanField(blank=True)),
-                ('slug', models.SlugField(default='venue', editable=False)),
-                ('film', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.Film')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField(blank=True)),
+                ("start_time", models.TimeField(blank=True)),
+                ("tickets", models.URLField(blank=True, max_length=100, null=True)),
+                ("subtitle", models.CharField(blank=True, max_length=50)),
+                ("q_and_a", models.BooleanField(blank=True)),
+                ("slug", models.SlugField(default="venue", editable=False)),
+                (
+                    "film",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.Film",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Season',
+            name="Season",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, null=True)),
-                ('copy', models.TextField(max_length=200, null=True)),
-                ('image', models.ImageField(default='./media/default.jpg', upload_to='seasons')),
-                ('slug', models.SlugField(default='season', editable=False)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, null=True)),
+                ("copy", models.TextField(max_length=200, null=True)),
+                (
+                    "image",
+                    models.ImageField(
+                        default="./media/default.jpg", upload_to="seasons"
+                    ),
+                ),
+                ("slug", models.SlugField(default="season", editable=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Venue',
+            name="Venue",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, null=True)),
-                ('address', models.CharField(blank=True, max_length=100)),
-                ('postcode', models.CharField(blank=True, max_length=10)),
-                ('county', models.CharField(blank=True, max_length=50)),
-                ('website', models.URLField(blank=True, max_length=50, null=True)),
-                ('twitter', models.CharField(blank=True, max_length=25)),
-                ('facebook', models.CharField(blank=True, max_length=50)),
-                ('slug', models.SlugField(default='venue', editable=False)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, null=True)),
+                ("address", models.CharField(blank=True, max_length=100)),
+                ("postcode", models.CharField(blank=True, max_length=10)),
+                ("county", models.CharField(blank=True, max_length=50)),
+                ("website", models.URLField(blank=True, max_length=50, null=True)),
+                ("twitter", models.CharField(blank=True, max_length=25)),
+                ("facebook", models.CharField(blank=True, max_length=50)),
+                ("slug", models.SlugField(default="venue", editable=False)),
             ],
         ),
         migrations.AddField(
-            model_name='screening',
-            name='season',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, to='core.Season'),
+            model_name="screening",
+            name="season",
+            field=models.ForeignKey(
+                blank=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="core.Season",
+            ),
         ),
         migrations.AddField(
-            model_name='screening',
-            name='venue',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, to='core.Venue'),
+            model_name="screening",
+            name="venue",
+            field=models.ForeignKey(
+                blank=True, on_delete=django.db.models.deletion.CASCADE, to="core.Venue"
+            ),
         ),
     ]

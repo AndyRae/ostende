@@ -7,33 +7,51 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0025_auto_20190810_2125'),
+        ("core", "0025_auto_20190810_2125"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='author',
-            name='twitter',
-            field=models.CharField(blank=True, help_text='Username only, no @', max_length=100, null=True),
+            model_name="author",
+            name="twitter",
+            field=models.CharField(
+                blank=True, help_text="Username only, no @", max_length=100, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='film',
-            name='copy',
-            field=tinymce.models.HTMLField(help_text='Only if the screening needs special copy', null=True, verbose_name='Text'),
+            model_name="film",
+            name="copy",
+            field=tinymce.models.HTMLField(
+                help_text="Only if the screening needs special copy",
+                null=True,
+                verbose_name="Text",
+            ),
         ),
         migrations.AlterField(
-            model_name='screening',
-            name='copy',
-            field=tinymce.models.HTMLField(blank=True, help_text='Only if the screening needs special copy', verbose_name='Text'),
+            model_name="screening",
+            name="copy",
+            field=tinymce.models.HTMLField(
+                blank=True,
+                help_text="Only if the screening needs special copy",
+                verbose_name="Text",
+            ),
         ),
         migrations.AlterField(
-            model_name='season',
-            name='copy',
-            field=tinymce.models.HTMLField(help_text='Only if the screening needs special copy', null=True, verbose_name='Text'),
+            model_name="season",
+            name="copy",
+            field=tinymce.models.HTMLField(
+                help_text="Only if the screening needs special copy",
+                null=True,
+                verbose_name="Text",
+            ),
         ),
         migrations.AlterField(
-            model_name='venue',
-            name='copy',
-            field=tinymce.models.HTMLField(blank=True, help_text='Only if the screening needs special copy', verbose_name='Text'),
+            model_name="venue",
+            name="copy",
+            field=tinymce.models.HTMLField(
+                blank=True,
+                help_text="Only if the screening needs special copy",
+                verbose_name="Text",
+            ),
         ),
     ]

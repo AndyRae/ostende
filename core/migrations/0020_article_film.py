@@ -7,13 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0019_article_pinned'),
+        ("core", "0019_article_pinned"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='film',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='core.Film'),
+            model_name="article",
+            name="film",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="core.Film",
+            ),
         ),
     ]
